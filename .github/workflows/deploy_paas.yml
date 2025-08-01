@@ -1,17 +1,17 @@
 name: Deploy solvespace to PAAS env
 
 on:
-  workflow_dispatch:  # 启用手动触发
+  workflow_dispatch: 
     inputs:
-      environment:  # 定义可选输入参数
+      environment: 
         description: 'Target environment (e.g., production, staging)'
-        required: true
-        default: 'production'
+        required: false
+        default: 'pass'
         type: choice
         options:
-          - production
-          - staging
-          - development
+          - test1
+          - test2
+          - test3
 
 
 jobs:
@@ -20,20 +20,20 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4  # 检出你的仓库代码
+      uses: actions/checkout@v4 
 
     - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.9.0  # 使用一个 Action 来设置 SSH Agent，方便使用密钥
+      uses: webfactory/ssh-agent@v0.9.0 
 
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # 使用之前创建的 Secret
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  
 
     - name: Deploy files with rsync
       run: |
         ssh-keyscan -H ${{ secrets.PAAS_ENV_SERVER_IP }} >> ~/.ssh/known_hosts
         chmod 600 ~/.ssh/known_hosts
 
-        # 使用 rsync 同步文件。  修改这些内容以适应你的实际需求
+        
         rsync -avz --delete \
-          ./test/         \  # 本地要上传的内容的路径
-          orth_github_user@${{ secrets.PAAS_ENV_SERVER_IP }}:/var/www/html/solvespace/  # 目标服务器的路径
+          ./test/         \
+          orth_github_user@${{ secrets.PAAS_ENV_SERVER_IP }}:/var/www/html/solvespace/ 
