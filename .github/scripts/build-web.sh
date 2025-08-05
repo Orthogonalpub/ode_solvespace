@@ -13,8 +13,8 @@ git clone https://github.com/emscripten-core/emsdk.git --depth 1
 cd emsdk
 ./emsdk install latest
 ./emsdk activate latest
-cd ../solvespace
-source ../emsdk/emsdk_env.sh
+# cd ../solvespace
+source ./emsdk_env.sh
 mkdir build
 cd build
 emcmake cmake .. \
