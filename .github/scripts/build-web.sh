@@ -8,14 +8,14 @@ else
     ENABLE_LTO="OFF"
 fi
 
-cd ..
-git clone https://github.com/emscripten-core/emsdk.git --depth 1
-cd emsdk
-./emsdk install latest
-./emsdk activate latest
-cd ../solvespace
-source ../emsdk/emsdk_env.sh
-mkdir build
+# cd ..
+# git clone https://github.com/emscripten-core/emsdk.git --depth 1
+# cd emsdk
+# ./emsdk install latest
+# ./emsdk activate latest
+# cd ../solvespace
+# source ../emsdk/emsdk_env.sh
+mkdir -p build
 cd build
 emcmake cmake .. \
   -DCMAKE_BUILD_TYPE="${BUILD_TYPE}" \
