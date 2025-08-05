@@ -1,0 +1,32 @@
+name: release wasm web
+
+on:
+  workflow_dispatch: # Always show "Run workflow" button, can not lazy trigger single job
+
+jobs:
+  build_release_web:
+    name: Build Release Web
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Dependencies
+      run: .github/scripts/install-web.sh
+    - name: Build & Pack
+      run: |
+        .github/scripts/build-web.sh release
+        cd build/bin
+        rm *.a || true
+        zip -r solvespace.zip build/bin
+    - name: Upload artifact
+      uses: mdallasanta/ssh-scp-deploy@v1.2.0
+      with:
+        host: ${{secrets.PAAS_ORTHOGONAL_CC_IP}}
+        port: 22
+        user: ${{secrets.PAAS_ORTHOGONAL_CC_USERNAME}} # github_user
+        password: ${{secrets.PAAS_ORTHOGONAL_CC_PASSWD}}
+        local: './solvespace.zip'
+        remote: '/var/www/html/'
+        pre_upload: rm -rf /var/www/html/solvespace/
+        post_upload: unzip /var/www/html/solvespace.zip -d /var/www/html/
+        ssh_options: -o StrictHostKeyChecking=no
+        scp_options: -v
