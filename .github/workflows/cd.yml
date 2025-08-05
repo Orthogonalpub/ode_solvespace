@@ -1,12 +1,13 @@
 name: CD
 
 on:
-  push:
-    branches:
-      - master
-  release:
-    types:
-      - created
+  # push:
+  #   branches:
+  #     - master
+  # release:
+  #   types:
+  #     - created
+  workflow_dispatch: # Always show "Run workflow" button, can not lazy trigger single job
 
 jobs:
   cancel_previous_runs:

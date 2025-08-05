@@ -1,14 +1,15 @@
 name: Test
 
 on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches-ignore:
-      - master
-    tags-ignore:
-      - v*
+  # pull_request:
+  #   branches:
+  #     - master
+  # push:
+  #   branches-ignore:
+  #     - master
+  #   tags-ignore:
+  #     - v*
+  workflow_dispatch: # Always show "Run workflow" button, can not lazy trigger single job
 
 jobs:
   test_ubuntu:
