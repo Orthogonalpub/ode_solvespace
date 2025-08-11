@@ -16,6 +16,16 @@
 .vscode/
 .cache/
 
+/extlib/angle/*
+/extlib/cairo/*
+/extlib/eigen/*
+/extlib/freetype/*
+/extlib/libdxfrw/*
+/extlib/libpng/*
+/extlib/mimalloc/*
+/extlib/zlib/*
+/emsdk
+
 # Visual Studio
 out/
 .vs/

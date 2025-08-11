@@ -2,11 +2,11 @@
 <html><!--
  --><head><!--
      --><meta charset="utf-8"><!--
-     --><title>SolveSpace Web Edition (EXPERIMENTAL)</title><!--
+     --><title>ODE SolveSpace Web Edition</title><!--
      --><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous"><!--
-     --><link rel="stylesheet" href="solvespaceui.css"><!--
-     --><script src="solvespaceui.js"></script><!--
-     --><script src="filemanagerui.js"></script><!--
+     --><link rel="stylesheet" href="/solvespace/solvespaceui.css"><!--
+     --><script src="/solvespace/solvespaceui.js"></script><!--
+     --><script src="/solvespace/filemanagerui.js"></script><!--
  --></head><!--
  --><body><!--
      --><div id="splash">
@@ -55,6 +55,12 @@
             print: console.log,
             printErr: console.error,
             state: 'loading',
+            locateFile: function(path, prefix) {
+              if (path.endsWith(".wasm") || path.endsWith(".js") || path.endsWith(".data")) {
+                return "/solvespace/" + path;
+              }
+              return prefix + path;
+            },
             setStatus: function(text) {
                 if(this.state == 'crashed') {
                     spinnerElement.style.display = 'none';
@@ -62,7 +68,7 @@
                     crashElement.style.display = '';
                     splashElement.style.display = '';
                 } else if(text != '') {
-                    console.log('Status:', text);
+                    // console.log('Status:', text);
                     statusElement.innerText = text;
                 } else if(this.state != 'done') {
                     console.log('Status: Done!');
@@ -87,5 +93,6 @@
             return false;
         };
         </script><!--
-     -->{{{ SCRIPT }}}<!--
+      --><script src="/solvespace/solvespace.js"></script><!--
+      origin: {{{ SCRIPT }}}
  --></body></html>

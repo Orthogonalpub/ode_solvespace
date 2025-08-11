@@ -197,8 +197,8 @@ After that, build SolveSpace as following:
 ```sh
 mkdir build
 cd build
-emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -DENABLE_LTO="ON" -DENABLE_TESTS="OFF" -DENABLE_CLI="OFF" -DENABLE_COVERAGE="OFF"
-make
+emcmake cmake .. -DCMAKE_BUILD_TYPE="release" -DENABLE_CLI="OFF" -DENABLE_TESTS="OFF" -DENABLE_COVERAGE="OFF" -DENABLE_OPENMP="OFF"  -DENABLE_LTO="ON"
+cmake --build . --config "release" -j$(nproc) --target solvespace
 ```
 
 The graphical interface is built as multiple files in the `build/bin` directory with names
