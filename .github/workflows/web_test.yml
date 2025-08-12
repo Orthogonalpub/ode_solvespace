@@ -1,0 +1,37 @@
+name: release wasm web to test
+
+on:
+  workflow_dispatch: # Always show "Run workflow" button, can not lazy trigger single job
+
+jobs:
+  build_release_web:
+    name: Build Release Web
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Dependencies
+      run: .github/scripts/install-web.sh
+    - uses: mymindstorm/setup-emsdk@v14
+    - name: Verify emssdk
+      run: emcc -v
+    - name: Build & Pack
+      run: |
+        .github/scripts/build-web.sh release
+        cd build/bin
+        rm *.a || true
+        cd ../../
+        mv build/bin solvespace
+        zip -r solvespace.zip solvespace
+    - name: Upload artifact
+      uses: mdallasanta/ssh-scp-deploy@v1.2.0
+      with:
+        host: ${{secrets.TEST_ORTHOGONAL_CC_IP}}
+        port: 22
+        user: ${{secrets.TEST_ORTHOGONAL_CC_USERNAME}} # github_user
+        password: ${{secrets.TEST_ORTHOGONAL_CC_PASSWD}}
+        local: './solvespace.zip'
+        remote: '/var/www/html/'
+        pre_upload: rm -rf /var/www/html/solvespace/
+        post_upload: unzip /var/www/html/solvespace.zip -d /var/www/html/
+        ssh_options: -o StrictHostKeyChecking=no
+        scp_options: -v
