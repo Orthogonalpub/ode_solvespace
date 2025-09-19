@@ -20,8 +20,8 @@ jobs:
         cd build/bin
         rm *.a || true
         cd ../../
-        mv build/bin solvespace
-        zip -r solvespace.zip solvespace
+        mv build/bin geometry
+        zip -r geometry.zip geometry
     - name: Upload artifact
       uses: mdallasanta/ssh-scp-deploy@v1.2.0
       with:
@@ -29,9 +29,9 @@ jobs:
         port: 22
         user: ${{secrets.TEST_ORTHOGONAL_CC_USERNAME}} # github_user
         password: ${{secrets.TEST_ORTHOGONAL_CC_PASSWD}}
-        local: './solvespace.zip'
+        local: './geometry.zip'
         remote: '/var/www/html/'
-        pre_upload: rm -rf /var/www/html/solvespace/
-        post_upload: unzip /var/www/html/solvespace.zip -d /var/www/html/
+        pre_upload: rm -rf /var/www/html/geometry/
+        post_upload: unzip /var/www/html/geometry.zip -d /var/www/html/
         ssh_options: -o StrictHostKeyChecking=no
         scp_options: -v
