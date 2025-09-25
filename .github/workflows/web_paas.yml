@@ -22,16 +22,24 @@ jobs:
         cd ../../
         mv build/bin geometry
         zip -r geometry.zip geometry
-    - name: Upload artifact
-      uses: mdallasanta/ssh-scp-deploy@v1.2.0
-      with:
-        host: ${{secrets.PAAS_ORTHOGONAL_CC_IP}}
-        port: 22
-        user: ${{secrets.PAAS_ORTHOGONAL_CC_USERNAME}} # github_user
-        password: ${{secrets.PAAS_ORTHOGONAL_CC_PASSWD}}
-        local: './geometry.zip'
-        remote: '/var/www/html/'
-        pre_upload: rm -rf /var/www/html/geometry/
-        post_upload: unzip /var/www/html/geometry.zip -d /var/www/html/
-        ssh_options: -o StrictHostKeyChecking=no
-        scp_options: -v
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SERVER_SSH_PAAS_IP }} >> ~/.ssh/known_hosts
+
+    - name: Remove old files on server
+      run: |
+          ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_SSH_USERNAME }}@${{ secrets.SERVER_SSH_PAAS_IP }} \
+            "rm -rf /var/www/html/geometry/"
+
+    - name: upload files
+      run: |
+        scp -i ~/.ssh/id_rsa geometry.zip \
+          ${{ secrets.SERVER_SSH_USERNAME }}@${{ secrets.SERVER_SSH_PAAS_IP }}:/var/www/html/
+
+    - name: Unzip on server
+      run: |
+        ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_SSH_USERNAME }}@${{ secrets.SERVER_SSH_PAAS_IP }} \
+          "unzip -o /var/www/html/geometry.zip -d /var/www/html/"
