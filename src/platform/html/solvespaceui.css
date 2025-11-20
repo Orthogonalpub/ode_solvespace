@@ -1,20 +1,28 @@
 * {
-    font-family: sans;
+    font-family: 'Inter', sans-serif;
 }
-html, body {
+
+html,
+body {
     padding: 0;
-    margin:  0;
-    background: black;
+    margin: 0;
+    background: #eef2f5;
     display: flex;
     flex-direction: column;
     height: 100%;
 }
-html, body, canvas, #splash, #container {
-    margin:  0;
+
+html,
+body,
+canvas,
+#splash,
+#container {
+    margin: 0;
     padding: 0;
-    width:   100%;
-    height:  100%;
+    width: 100%;
+    height: 100%;
 }
+
 body {
     overflow: hidden;
 }
@@ -22,61 +30,72 @@ body {
 /* Splashscreen */
 #splash {
     z-index: 1000;
-    background: black;
-    color: white;
+    background: #eef2f5;
+    color: #4a5568;
     position: absolute;
 }
+
 #splash .center {
     position: absolute;
-    top:  50%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
 }
+
 #splash a {
-    color: white;
+    color: #3182ce;
 }
 
 #spinner {
     height: 30px;
-    width:  30px;
+    width: 30px;
     margin: 0px auto;
-    border-left:   10px solid rgb(255, 255, 255);
-    border-top:    10px solid rgb(0, 255, 0);
-    border-right:  10px solid rgb(255, 0, 255);
-    border-bottom: 10px solid rgb(0, 255, 0);
+    border-left: 10px solid #eef2f5;
+    border-top: 10px solid #3182ce;
+    border-right: 10px solid #eef2f5;
+    border-bottom: 10px solid #3182ce;
     border-radius: 100%;
     animation: rotation 3s linear infinite;
     margin-bottom: 5px;
 }
+
 @keyframes rotation {
-    from  { transform: rotate(0deg);   }
-    to    { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Grid layout for main */
 main {
     height: 100%;
-
-    /* Use CSS Grid layout for vertical placement. */
     display: grid;
-    /* Row 0 for menubar (fit to content), Row 1 for canvas0, canvas1 (rest of space) */
     grid-template-rows: auto 1fr;
 }
 
 /* Buttons */
 .button {
-    border: 1px solid hsl(0, 0%, 60%);
-    background: hsl(0, 0%, 10%);
-    color: white;
-    padding: 4px 8px;
-    cursor: default;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #4a5568;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
 }
+
 .button.selected {
-    background: hsl(0, 0%, 20%);
+    background: #ebf8ff;
+    border: 1px solid #3182ce;
+    color: #2b6cb0;
 }
+
 .button:hover {
-    background: hsl(0, 0%, 40%);
+    background: #edf2f7;
 }
 
 /* Editors */
@@ -89,105 +108,126 @@ main {
 /* Menus */
 .menu {
     font-size: 0;
-    margin:  0;
+    margin: 0;
     padding: 0;
     padding-right: 10px;
     list-style-type: none;
-    background: hsl(0, 0%, 20%);
-    color: white;
+    background: #F9FAFB;
+    color: #4a5568;
     cursor: default;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-     user-select: none;
+    user-select: none;
 }
 
 /* Normal menu items */
-.menu > li {
+.menu>li {
     z-index: 100;
-    font-size: 16px;
+    font-size: 14px;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
     white-space: nowrap;
     position: relative;
     width: 100%;
-    height: 19px;
+    height: 32px;
     margin: 2px;
-    padding: 3px;
+    padding: 0 12px;
+    border-radius: 6px;
 }
-.menu > li::before, .menu > li::after {
+
+.menu>li::before,
+.menu>li::after {
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
     font-size: 12px;
 }
-.menu > li.hover,
-.menu > li.selected,
-.menu.menubar > li:hover:not(.selected) {
-    background: hsl(0, 0%, 30%);
+
+.menu>li.hover,
+.menu>li.selected,
+.menu.menubar>li:hover:not(.selected) {
+    background: #edf2f7;
+    color: #2d3748;
 }
-.menu > li.disabled {
-    color: hsl(0, 0%, 30%);
+
+.menu>li.disabled {
+    color: #a0aec0;
 }
 
 /* Check and radio menu items */
-.menu > li {
-    padding-left: 24px;
+.menu>li {
+    padding-left: 32px;
 }
-.menu > li::before {
+
+.menu>li::before {
     position: absolute;
     text-align: center;
-    left: 0px;
+    left: 4px;
     width: 24px;
 }
-.menu > li.check::before {
+
+.menu>li.check::before {
     content: '\f0c8';
 }
-.menu > li.check.active::before {
+
+.menu>li.check.active::before {
     content: '\f14a';
+    color: #3182ce;
 }
-.menu > li.radio::before {
+
+.menu>li.radio::before {
     content: '\f111';
 }
-.menu > li.radio.active::before {
+
+.menu>li.radio.active::before {
     content: '\f192';
+    color: #3182ce;
 }
 
 /* Separator menu items */
-.menu > li.separator {
+.menu>li.separator {
     height: 0px;
-    border-top: 1px solid hsl(0, 0%, 30%);
-    margin: 0 2px 0 2px;
-    padding-top: 0;
-    padding-bottom: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 4px 0;
+    padding: 0;
 }
 
 /* Accelerators */
-.menu > li > .accel {
+.menu>li>.accel {
     text-align: right;
-    margin-left: 20px;
+    margin-left: 24px;
+    color: #718096;
+    font-size: 12px;
 }
 
 /* Submenus */
-.menu > li > .menu,
+.menu>li>.menu,
 .menu.popup {
     display: none;
     white-space: normal;
-    padding-right: 31px;
+    padding-right: 0;
 }
-.menu > li.has-submenu::after {
+
+.menu>li.has-submenu::after {
     content: '\f0da';
+    color: #718096;
 }
-.menu > li.selected > .menu,
-.menu > li.hover > .menu,
+
+.menu>li.selected>.menu,
+.menu>li.hover>.menu,
 .menu.popup {
     display: block;
-    background: hsl(0, 0%, 10%);
-    border: 1px solid hsl(0, 0%, 30%);
+    background: white;
+    border: 1px solid #e2e8f0;
     position: absolute;
     left: 100%;
-    top: -3px;
+    top: -4px;
+    border-radius: 8px;
+    padding: 4px;
 }
 
 /* Popup menus */
@@ -199,70 +239,90 @@ main {
 
 /* Menubars */
 .menubar {
-    padding-left: 5px;
+    padding-left: 8px;
+    background: transparent;
+    box-shadow: none;
 }
-.menubar > li {
+
+.menubar>li {
     width: auto;
     width: fit-content;
-    margin: 0;
-    padding: 5px;
+    margin: 0 2px;
+    padding: 6px 12px;
 }
-.menubar > li.selected {
-    background: hsl(0, 0%, 10%);
-    border: 1px solid hsl(0, 0%, 30%);
-    padding: 4px;
+
+.menubar>li.selected {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 5px 11px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.menubar.menu > li.selected > .menu {
+
+.menubar.menu>li.selected>.menu {
     display: block;
     position: absolute;
-    left: -1px;
-    top: 27px;
+    left: 0;
+    top: 100%;
+    margin-top: 4px;
 }
 
 /* Modal popups */
 .modal {
     position: absolute;
     left: 0;
-    top:  0;
-    width:  100%;
+    top: 0;
+    width: 100%;
     height: 100%;
-    background: hsla(0, 0%, 0%, 60%);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
 }
-.modal > div {
+
+.modal>div {
     position: absolute;
-    top:  15%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, 0%);
 }
 
 /* Dialogs */
 .dialog {
-    border: 1px solid hsl(0, 0%, 30%);
-    background: hsl(0, 0%, 10%);
-    color: white;
-    padding: 20px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #2d3748;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    min-width: 200px;
-    max-width: 400px;
+    min-width: 300px;
+    max-width: 500px;
     white-space: pre-wrap;
-    max-height: 70%;
+    max-height: 80%;
     overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
+
 .dialog.wide {
     width: 80%;
     max-width: 1200px;
 }
-.dialog > .buttons {
+
+.dialog>.buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
 }
+
 .dialog .filedrop {
-    margin: 1em 0 1em 0;
-    padding: 1em;
-    border: 2px solid black;
-    background-color:  hsl(0, 0%, 50%);
+    margin: 1em 0;
+    padding: 2em;
+    border: 2px dashed #cbd5e0;
+    background-color: #f7fafc;
+    border-radius: 8px;
+    text-align: center;
+    color: #718096;
 }
+
 .dialog .filelist {
     display: flex;
     flex-flow: row wrap;
@@ -270,49 +330,60 @@ main {
     margin: 0;
     padding: 0;
 }
+
 .dialog .filelist li {
-    padding: 0.2em 0.5em 0.2em 0.5em;
-    break-inside: avoid;
+    padding: 4px 8px;
+    background: #edf2f7;
+    border-radius: 4px;
+    margin: 4px;
+    font-size: 12px;
 }
 
 /* Mnemonics */
-.label > u {
+.label>u {
     position: relative;
     top: 0px;
     text-decoration: none;
 }
-body.mnemonic .label > u {
+
+body.mnemonic .label>u {
     border-bottom: 1px solid;
 }
 
 /* Canvases */
 canvas {
     border: 0px none;
-    background-color: black;
+    background-color: #eef2f5;
 }
 
 #container {
     display: flex;
     overflow: hidden;
 }
+
 /* FIXME(emscripten): this should be dynamically adjustable, not hardcoded in CSS */
 #container0 {
-    flex-basis: 80%;
+    flex-basis: 100%;
     height: 100%;
-    position:  relative;
+    position: relative;
     overflow: hidden;
 }
 
 #container1parent {
-    flex-basis: 20%;
-    height: 100%;
-    position:  relative;
-    overflow: hidden;
-    min-width: 410px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    bottom: 10px;
+    width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 
     display: grid;
-    grid-template-columns: auto 19px;
+    grid-template-columns: auto 12px;
     grid-template-rows: 100%;
+    background: #F9FAFB;
+    border: 1px solid #e2e8f0;
 }
 
 #container1 {
@@ -320,25 +391,22 @@ canvas {
 }
 
 #canvas1scrollbarbox {
-    /* 19px is a magic number for scrollbar width (Yes, this is platform-dependent value but looks almost working.) */
-    width: 19px;
-    min-width: 19px;
+    width: 12px;
+    min-width: 12px;
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
 
-    background-color: lightgray;
+    background-color: #f7fafc;
     -webkit-overflow-scrolling: auto;
 }
 
 #canvas1scrollbar {
-    /* 0px will disable the scrollbar by browser. */
     width: 1px;
-    /* Disable scrollbar as default. This value will be overwritten by program. */
     height: 100%;
 }
 
 #view_separator {
-    width: 4px;
-    background: hsl(0, 0%, 20%);
+    width: 1px;
+    background: #e2e8f0;
 }

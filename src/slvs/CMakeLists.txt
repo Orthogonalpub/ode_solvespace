@@ -54,7 +54,7 @@ if(EMSCRIPTEN)
         "SHELL:-s ALLOW_MEMORY_GROWTH"
         -O3
         -flto
-        --closure 1)
+        --closure 0)
     set_target_properties(slvs-wasm PROPERTIES OUTPUT_NAME "slvs" SUFFIX ".js")
 endif()
 

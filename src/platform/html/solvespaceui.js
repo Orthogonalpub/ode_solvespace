@@ -19,6 +19,46 @@ function stringPadLeft(s, digits, ch) {
     }
     for (let i = s.length; i < digits; i++) {
         s = ch + s;
+        // Make text window draggable
+        const textWindow = document.getElementById('container1parent');
+        let isDraggingTextWindow = false;
+        let textWindowDragOffsetX = 0;
+        let textWindowDragOffsetY = 0;
+
+        textWindow.addEventListener('mousedown', (e) => {
+            // Only drag if clicking on the background, not on interactive elements
+            if (e.target === textWindow || e.target.classList.contains('text-window-header')) {
+                isDraggingTextWindow = true;
+                const rect = textWindow.getBoundingClientRect();
+                textWindowDragOffsetX = e.clientX - rect.left;
+                textWindowDragOffsetY = e.clientY - rect.top;
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDraggingTextWindow) {
+                const x = e.clientX - textWindowDragOffsetX;
+                const y = e.clientY - textWindowDragOffsetY;
+
+                // Convert to right/top/bottom positioning if needed, or just set left/top
+                // Since we used right/top/bottom in CSS, let's switch to left/top for dragging
+                textWindow.style.right = 'auto';
+                textWindow.style.bottom = 'auto';
+                textWindow.style.left = x + 'px';
+                textWindow.style.top = y + 'px';
+                textWindow.style.width = '450px'; // Maintain width
+                textWindow.style.height = 'calc(100% - ' + y + 'px - 10px)'; // Adjust height if needed, or fixed
+                // Actually, let's keep height simple for now
+                textWindow.style.height = 'auto';
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDraggingTextWindow = false;
+        });
+
+        Module.canvas = canvas;
     }
     return s;
 }
@@ -29,8 +69,8 @@ function stringPadLeft(s, digits, ch) {
 function GetCurrentDateTimeString() {
     const now = new Date();
     const padLeft2 = (num) => { return stringPadLeft(num.toString(), 2, '0') };
-    return (`${now.getFullYear()}_${padLeft2(now.getMonth()+1)}_${padLeft2(now.getDate())}` +
-            `_` + `${padLeft2(now.getHours())}${padLeft2(now.getMinutes())}`);
+    return (`${now.getFullYear()}_${padLeft2(now.getMonth() + 1)}_${padLeft2(now.getDate())}` +
+        `_` + `${padLeft2(now.getHours())}${padLeft2(now.getMinutes())}`);
 }
 
 /* CSS helpers */
@@ -44,7 +84,7 @@ function removeClass(element, className) {
     element.classList.remove(className);
 }
 function removeClassFromAllChildren(element, className) {
-    element.querySelectorAll('.' + className).forEach(function(element) {
+    element.querySelectorAll('.' + className).forEach(function (element) {
         removeClass(element, className);
     })
 }
@@ -56,15 +96,15 @@ function setLabelWithMnemonic(element, labelText) {
     element.appendChild(label);
 
     var matches = labelText.match('(.*?)&(.)(.*)?');
-    if(matches) {
+    if (matches) {
         label.appendChild(document.createTextNode(matches[1]));
-        if(matches[2]) {
+        if (matches[2]) {
             var mnemonic = document.createElement('u');
             mnemonic.innerText = matches[2];
             label.appendChild(mnemonic);
             addClass(element, 'mnemonic-Key' + matches[2].toUpperCase());
         }
-        if(matches[3]) {
+        if (matches[3]) {
             label.appendChild(document.createTextNode(matches[3]));
         }
     } else {
@@ -89,21 +129,21 @@ function isButton(element) {
 
 /* Button DOM traversal helpers */
 function getButton(element) {
-    if(!element) return;
-    if(element.tagName == 'U') {
+    if (!element) return;
+    if (element.tagName == 'U') {
         element = element.parentElement;
     }
-    if(hasClass(element, 'label')) {
+    if (hasClass(element, 'label')) {
         return getButton(element.parentElement);
-    } else if(isButton(element)) {
+    } else if (isButton(element)) {
         return element;
     }
 }
 
 /* Button behavior */
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     var button = getButton(event.target);
-    if(button) {
+    if (button) {
         button.dispatchEvent(new Event('trigger'));
     }
 });
@@ -117,31 +157,31 @@ window.addEventListener("touchend", (event) => {
     }
 });
 
-window.addEventListener('keydown', function(event) {
+window.addEventListener('keydown', function (event) {
     var selected = document.querySelector('.button.selected');
-    if(!selected) return;
+    if (!selected) return;
 
     var outSelected, newSelected;
-    if(event.key == 'ArrowRight') {
+    if (event.key == 'ArrowRight') {
         outSelected = selected;
         newSelected = selected.nextElementSibling;
-        if(!newSelected) {
+        if (!newSelected) {
             newSelected = outSelected.parentElement.firstElementChild;
         }
-    } else if(event.key == 'ArrowLeft') {
+    } else if (event.key == 'ArrowLeft') {
         outSelected = selected;
         newSelected = selected.previousElementSibling;
-        if(!newSelected) {
+        if (!newSelected) {
             newSelected = outSelected.parentElement.lastElementChild;
         }
-    } else if(event.key == 'Enter') {
+    } else if (event.key == 'Enter') {
         selected.dispatchEvent(new Event('trigger'));
-    } else if(event.key == 'Escape' && hasClass(selected, 'default')) {
+    } else if (event.key == 'Escape' && hasClass(selected, 'default')) {
         selected.dispatchEvent(new Event('trigger'));
     }
 
-    if(outSelected) removeClass(outSelected, 'selected');
-    if(newSelected) addClass(newSelected, 'selected');
+    if (outSelected) removeClass(outSelected, 'selected');
+    if (newSelected) addClass(newSelected, 'selected');
 
     event.stopPropagation();
 });
@@ -153,24 +193,24 @@ function isEditor(element) {
 
 /* Editor DOM traversal helpers */
 function getEditor(element) {
-    if(!element) return;
-    if(isEditor(element)) {
+    if (!element) return;
+    if (isEditor(element)) {
         return element;
     }
 }
 
 /* Editor behavior */
-window.addEventListener('keydown', function(event) {
+window.addEventListener('keydown', function (event) {
     var editor = getEditor(event.target);
-    if(editor) {
-        if(event.key == 'Enter') {
+    if (editor) {
+        if (event.key == 'Enter') {
             editor.dispatchEvent(new Event('trigger'));
-        } else if(event.key == 'Escape') {
+        } else if (event.key == 'Escape') {
             editor.style.display = 'none';
         }
         event.stopPropagation();
     }
-}, {capture: true});
+}, { capture: true });
 
 /* Menu helpers */
 function isMenubar(element) {
@@ -203,7 +243,7 @@ function selectMenuItem(menuItem) {
     var menu = menuItem.parentElement;
     removeClassFromAllChildren(menu, 'selected');
     removeClassFromAllChildren(menu, 'hover');
-    if(isMenubar(menu)) {
+    if (isMenubar(menu)) {
         addClass(menuItem, 'selected');
     } else {
         addClass(menuItem, 'hover');
@@ -211,16 +251,16 @@ function selectMenuItem(menuItem) {
 }
 function triggerMenuItem(menuItem) {
     selectMenuItem(menuItem);
-    if(hasSubmenu(menuItem)) {
+    if (hasSubmenu(menuItem)) {
         selectMenuItem(menuItem.querySelector('li:first-child'));
     } else {
         var parent = menuItem.parentElement;
-        while(!isMenubar(parent) && !isPopupMenu(parent)) {
+        while (!isMenubar(parent) && !isPopupMenu(parent)) {
             parent = parent.parentElement;
         }
         removeClassFromAllChildren(parent, 'selected');
         removeClassFromAllChildren(parent, 'hover');
-        if(isPopupMenu(parent)) {
+        if (isPopupMenu(parent)) {
             parent.remove();
         }
 
@@ -230,54 +270,54 @@ function triggerMenuItem(menuItem) {
 
 /* Menu DOM traversal helpers */
 function getMenuItem(element) {
-    if(!element) return;
-    if(element.tagName == 'U') {
+    if (!element) return;
+    if (element.tagName == 'U') {
         element = element.parentElement;
     }
-    if(hasClass(element, 'label')) {
+    if (hasClass(element, 'label')) {
         return getMenuItem(element.parentElement);
-    } else if(element.tagName == 'LI' && isMenu(element.parentElement)) {
+    } else if (element.tagName == 'LI' && isMenu(element.parentElement)) {
         return element;
     }
 }
 function getMenu(element) {
-    if(!element) return;
-    if(isMenu(element)) {
+    if (!element) return;
+    if (isMenu(element)) {
         return element;
     } else {
         var menuItem = getMenuItem(element);
-        if(menuItem && isMenu(menuItem.parentElement)) {
+        if (menuItem && isMenu(menuItem.parentElement)) {
             return menuItem.parentElement;
         }
     }
 }
 
 /* Menu behavior */
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     var menuItem = getMenuItem(event.target);
     var menu = getMenu(menuItem);
-    if(menu && isMenubar(menu)) {
-        if(hasClass(menuItem, 'selected')) {
+    if (menu && isMenubar(menu)) {
+        if (hasClass(menuItem, 'selected')) {
             removeClass(menuItem, 'selected');
         } else {
             selectMenuItem(menuItem);
         }
         event.stopPropagation();
-    } else if(menu) {
-        if(!hasSubmenu(menuItem)) {
+    } else if (menu) {
+        if (!hasSubmenu(menuItem)) {
             triggerMenuItem(menuItem);
         }
         event.stopPropagation();
     } else {
         document.querySelectorAll('.menu .selected, .menu .hover')
-                .forEach(function(menuItem) {
-            deselectMenuItem(menuItem);
-            event.stopPropagation();
-        });
+            .forEach(function (menuItem) {
+                deselectMenuItem(menuItem);
+                event.stopPropagation();
+            });
         document.querySelectorAll('.menu.popup')
-                .forEach(function(menu) {
-            menu.remove();
-        });
+            .forEach(function (menu) {
+                menu.remove();
+            });
     }
 });
 window.addEventListener("touchend", (event) => {
@@ -286,16 +326,16 @@ window.addEventListener("touchend", (event) => {
     }
     var menuItem = getMenuItem(event.target);
     var menu = getMenu(menuItem);
-    if(menu && isMenubar(menu)) {
-        if(hasClass(menuItem, 'selected')) {
+    if (menu && isMenubar(menu)) {
+        if (hasClass(menuItem, 'selected')) {
             removeClass(menuItem, 'selected');
         } else {
             selectMenuItem(menuItem);
         }
         event.stopPropagation();
         event.preventDefault();
-    } else if(menu) {
-        if(!hasSubmenu(menuItem)) {
+    } else if (menu) {
+        if (!hasSubmenu(menuItem)) {
             triggerMenuItem(menuItem);
         } else {
             addClass(menuItem, "selected");
@@ -304,121 +344,121 @@ window.addEventListener("touchend", (event) => {
         event.stopPropagation();
     } else {
         document.querySelectorAll('.menu .selected, .menu .hover')
-                .forEach(function(menuItem) {
-            deselectMenuItem(menuItem);
-            event.stopPropagation();
-        });
+            .forEach(function (menuItem) {
+                deselectMenuItem(menuItem);
+                event.stopPropagation();
+            });
         document.querySelectorAll('.menu.popup')
-                .forEach(function(menu) {
-            menu.remove();
-        });
+            .forEach(function (menu) {
+                menu.remove();
+            });
     }
 });
-window.addEventListener('mouseover', function(event) {
+window.addEventListener('mouseover', function (event) {
     var menuItem = getMenuItem(event.target);
     var menu = getMenu(menuItem);
-    if(menu) {
+    if (menu) {
         var selected = menu.querySelectorAll('.selected, .hover');
-        if(isMenubar(menu)) {
-            if(selected.length > 0) {
-                selected.forEach(function(menuItem) {
-                    if(selected != menuItem) {
+        if (isMenubar(menu)) {
+            if (selected.length > 0) {
+                selected.forEach(function (menuItem) {
+                    if (selected != menuItem) {
                         deselectMenuItem(menuItem);
                     }
                 });
                 addClass(menuItem, 'selected');
             }
         } else {
-            if(isMenuItemSelectable(menuItem)) {
+            if (isMenuItemSelectable(menuItem)) {
                 selectMenuItem(menuItem);
             }
         }
     }
 });
-window.addEventListener('keydown', function(event) {
+window.addEventListener('keydown', function (event) {
     var allSelected = document.querySelectorAll('.menubar .selected, .menubar .hover,' +
-                                                '.menu.popup .selected, .menu.popup .hover');
-    if(allSelected.length == 0) return;
+        '.menu.popup .selected, .menu.popup .hover');
+    if (allSelected.length == 0) return;
 
     var selected = allSelected[allSelected.length - 1];
     var outSelected, newSelected;
     var isMenubarItem = isMenubar(getMenu(selected));
 
-    if(isMenubarItem && event.key == 'ArrowRight' ||
-            !isMenubarItem && event.key == 'ArrowDown') {
+    if (isMenubarItem && event.key == 'ArrowRight' ||
+        !isMenubarItem && event.key == 'ArrowDown') {
         outSelected = selected;
         newSelected = selected.nextElementSibling;
-        while(newSelected && !isMenuItemSelectable(newSelected)) {
+        while (newSelected && !isMenuItemSelectable(newSelected)) {
             newSelected = newSelected.nextElementSibling;
         }
-        if(!newSelected) {
+        if (!newSelected) {
             newSelected = outSelected.parentElement.firstElementChild;
         }
-    } else if(isMenubarItem && event.key == 'ArrowLeft' ||
-                !isMenubarItem && event.key == 'ArrowUp') {
+    } else if (isMenubarItem && event.key == 'ArrowLeft' ||
+        !isMenubarItem && event.key == 'ArrowUp') {
         outSelected = selected;
         newSelected = selected.previousElementSibling;
-        while(newSelected && !isMenuItemSelectable(newSelected)) {
+        while (newSelected && !isMenuItemSelectable(newSelected)) {
             newSelected = newSelected.previousElementSibling;
         }
-        if(!newSelected) {
+        if (!newSelected) {
             newSelected = outSelected.parentElement.lastElementChild;
         }
-    } else if(!isMenubarItem && event.key == 'ArrowRight') {
-        if(hasSubmenu(selected)) {
+    } else if (!isMenubarItem && event.key == 'ArrowRight') {
+        if (hasSubmenu(selected)) {
             selectMenuItem(selected.querySelector('li:first-child'));
         } else {
             outSelected = allSelected[0];
             newSelected = outSelected.nextElementSibling;
-            if(!newSelected) {
+            if (!newSelected) {
                 newSelected = outSelected.parentElement.firstElementChild;
             }
         }
-    } else if(!isMenubarItem && event.key == 'ArrowLeft') {
-        if(allSelected.length > 2) {
+    } else if (!isMenubarItem && event.key == 'ArrowLeft') {
+        if (allSelected.length > 2) {
             outSelected = selected;
         } else {
             outSelected = allSelected[0];
             newSelected = outSelected.previousElementSibling;
-            if(!newSelected) {
+            if (!newSelected) {
                 newSelected = outSelected.parentElement.lastElementChild;
             }
         }
-    } else if(isMenubarItem && event.key == 'ArrowDown') {
+    } else if (isMenubarItem && event.key == 'ArrowDown') {
         newSelected = selected.querySelector('li:first-child');
-    } else if(event.key == 'Enter') {
+    } else if (event.key == 'Enter') {
         triggerMenuItem(selected);
-    } else if(event.key == 'Escape') {
+    } else if (event.key == 'Escape') {
         outSelected = allSelected[0];
     } else {
         var withMnemonic = getMenu(selected).querySelector('.mnemonic-' + event.key);
-        if(withMnemonic) {
+        if (withMnemonic) {
             triggerMenuItem(withMnemonic);
         }
     }
 
-    if(outSelected) deselectMenuItem(outSelected);
-    if(newSelected) selectMenuItem(newSelected);
+    if (outSelected) deselectMenuItem(outSelected);
+    if (newSelected) selectMenuItem(newSelected);
 
     event.stopPropagation();
 });
 
 /* Mnemonic behavior */
-window.addEventListener('keydown', function(event) {
+window.addEventListener('keydown', function (event) {
     var withMnemonic;
-    if(event.altKey && event.key == 'Alt') {
+    if (event.altKey && event.key == 'Alt') {
         addClass(document.body, 'mnemonic');
-    } else if(!isModal() && event.altKey && (withMnemonic =
-                document.querySelector('.menubar > .mnemonic-' + event.code))) {
+    } else if (!isModal() && event.altKey && (withMnemonic =
+        document.querySelector('.menubar > .mnemonic-' + event.code))) {
         triggerMenuItem(withMnemonic);
         event.stopPropagation();
     } else {
         removeClass(document.body, 'mnemonic');
     }
 });
-window.addEventListener('keyup', function(event) {
-    if(event.key == 'Alt') {
-       removeClass(document.body, 'mnemonic');
+window.addEventListener('keyup', function (event) {
+    if (event.key == 'Alt') {
+        removeClass(document.body, 'mnemonic');
     }
 });
 
@@ -430,7 +470,7 @@ class FileUploadHelper {
         addClass(this.modalRoot, "modal");
         this.modalRoot.style.display = "none";
         this.modalRoot.style.zIndex = 1000;
-        
+
         this.dialogRoot = document.createElement("div");
         addClass(this.dialogRoot, "dialog");
         this.modalRoot.appendChild(this.dialogRoot);
@@ -452,7 +492,7 @@ class FileUploadHelper {
 
         this.fileInputElement = document.createElement("input");
         this.fileInputElement.setAttribute("type", "file");
-        this.fileInputElement.addEventListener("change", (ev)=> this.onFileInputChanged(ev));
+        this.fileInputElement.addEventListener("change", (ev) => this.onFileInputChanged(ev));
         this.fileInputContainer.appendChild(this.fileInputElement);
 
         this.dialogRoot.appendChild(this.fileInputContainer);
@@ -463,7 +503,7 @@ class FileUploadHelper {
 
         this.AddButton("OK", 0, false);
         this.AddButton("Cancel", 1, true);
-        
+
         this.closeDialog();
 
         document.querySelector("body").appendChild(this.modalRoot);
@@ -590,7 +630,7 @@ class FileDownloadHelper {
         addClass(this.modalRoot, "modal");
         this.modalRoot.style.display = "none";
         this.modalRoot.style.zIndex = 1000;
-        
+
         this.dialogRoot = document.createElement("div");
         addClass(this.dialogRoot, "dialog");
         this.modalRoot.appendChild(this.dialogRoot);
@@ -604,7 +644,7 @@ class FileDownloadHelper {
         this.buttonHolder = document.createElement("div");
         addClass(this.buttonHolder, "buttons");
         this.dialogRoot.appendChild(this.buttonHolder);
-        
+
         this.closeDialog();
 
         document.querySelector("body").appendChild(this.modalRoot);
@@ -770,16 +810,16 @@ class ScrollbarHelper {
         // console.log(`ScrollbarHelper.setScrollbarPosition(): pos=${position}, currentPositionRatio=${currentPositionRatio}, calculated scrollTop=${newScrollTop}`);
 
         if (false) {
-        // const ratio = (position - this.rangeMin) * ((this.rangeMax - this.pageSize) - this.rangeMin);
+            // const ratio = (position - this.rangeMin) * ((this.rangeMax - this.pageSize) - this.rangeMin);
 
-        const scrollTopMin = 0;
-        const scrollTopMax = this.target.scrollHeight - this.target.clientHeight;
-        const scrollWidth = scrollTopMax - scrollTopMin;
-        const newScrollTop = ratio * scrollWidth;
-        // this.target.parentElement.scrollTop = ratio * scrollWidth;
-        this.target.scrollTop = ratio * scrollWidth;
+            const scrollTopMin = 0;
+            const scrollTopMax = this.target.scrollHeight - this.target.clientHeight;
+            const scrollWidth = scrollTopMax - scrollTopMin;
+            const newScrollTop = ratio * scrollWidth;
+            // this.target.parentElement.scrollTop = ratio * scrollWidth;
+            this.target.scrollTop = ratio * scrollWidth;
 
-        console.log(`ScrollbarHelper.setScrollbarPosition(): pos=${position}, ratio=${ratio}, calculated scrollTop=${newScrollTop}`);
+            console.log(`ScrollbarHelper.setScrollbarPosition(): pos=${position}, ratio=${ratio}, calculated scrollTop=${newScrollTop}`);
         }
     }
 

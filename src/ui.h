@@ -12,7 +12,7 @@ class Locale {
 public:
     std::string language;
     std::string region;
-    uint16_t    lcid;
+    uint16_t lcid;
     std::string displayName;
 
     std::string Culture() const {
@@ -22,8 +22,7 @@ public:
 
 struct LocaleLess {
     bool operator()(const Locale &a, const Locale &b) const {
-        return a.language < b.language ||
-            (a.language == b.language && a.region < b.region);
+        return a.language < b.language || (a.language == b.language && a.region < b.region);
     }
 };
 
@@ -180,49 +179,45 @@ class Button;
 
 class TextWindow {
 public:
-    enum {
-        MAX_COLS = 100,
-        MIN_COLS = 45,
-        MAX_ROWS = 4000
-    };
+    enum { MAX_COLS = 100, MIN_COLS = 45, MAX_ROWS = 4000 };
 
     typedef struct {
-        char      c;
+        char c;
         RgbaColor color;
     } Color;
     static const Color fgColors[];
     static const Color bgColors[];
 
-    float bgColorTable[256*3];
-    float fgColorTable[256*3];
+    float bgColorTable[256 * 3];
+    float fgColorTable[256 * 3];
 
     enum {
-        CHAR_WIDTH_    = 9,
-        CHAR_HEIGHT    = 16,
-        LINE_HEIGHT    = 20,
-        LEFT_MARGIN    = 6,
+        CHAR_WIDTH_ = 9,
+        CHAR_HEIGHT = 16,
+        LINE_HEIGHT = 20,
+        LEFT_MARGIN = 6,
     };
 
 #define CHECK_FALSE "\xEE\x80\x80" // U+E000
-#define CHECK_TRUE  "\xEE\x80\x81"
+#define CHECK_TRUE "\xEE\x80\x81"
 #define RADIO_FALSE "\xEE\x80\x82"
-#define RADIO_TRUE  "\xEE\x80\x83"
+#define RADIO_TRUE "\xEE\x80\x83"
 
-    int scrollPos;      // The scrollbar position, in half-row units
-    int halfRows;       // The height of our window, in half-row units
+    int scrollPos; // The scrollbar position, in half-row units
+    int halfRows;  // The height of our window, in half-row units
 
     uint32_t text[MAX_ROWS][MAX_COLS];
     typedef void LinkFunction(int link, uint32_t v);
     enum { NOT_A_LINK = 0 };
     struct {
-        char            fg;
-        char            bg;
-        RgbaColor       bgRgb;
-        int             link;
-        uint32_t        data;
-        LinkFunction   *f;
-        LinkFunction   *h;
-    }       meta[MAX_ROWS][MAX_COLS];
+        char fg;
+        char bg;
+        RgbaColor bgRgb;
+        int link;
+        uint32_t data;
+        LinkFunction *f;
+        LinkFunction *h;
+    } meta[MAX_ROWS][MAX_COLS];
     int hoveredRow, hoveredCol;
 
     int top[MAX_ROWS]; // in half-line units, or -1 for unused
@@ -238,21 +233,16 @@ public:
     void MouseLeave();
     void ScrollbarEvent(double newPos);
 
-    enum DrawOrHitHow : uint32_t {
-        PAINT = 0,
-        HOVER = 1,
-        CLICK = 2
-    };
-    void DrawOrHitTestIcons(UiCanvas *canvas, DrawOrHitHow how,
-                            double mx, double my);
+    enum DrawOrHitHow : uint32_t { PAINT = 0, HOVER = 1, CLICK = 2 };
+    void DrawOrHitTestIcons(UiCanvas *canvas, DrawOrHitHow how, double mx, double my);
     Button *hoveredButton;
 
     Vector HsvToRgb(Vector hsv);
     std::shared_ptr<Pixmap> HsvPattern2d(int w, int h);
     std::shared_ptr<Pixmap> HsvPattern1d(double hue, double sat, int w, int h);
     void ColorPickerDone();
-    bool DrawOrHitTestColorPicker(UiCanvas *canvas, DrawOrHitHow how,
-                                  bool leftDown, double x, double y);
+    bool DrawOrHitTestColorPicker(UiCanvas *canvas, DrawOrHitHow how, bool leftDown, double x,
+                                  double y);
 
     void Init();
     void MakeColorTable(const Color *in, float *out);
@@ -264,116 +254,116 @@ public:
 
     // State for the screen that we are showing in the text window.
     enum class Screen : uint32_t {
-        LIST_OF_GROUPS      = 0,
-        GROUP_INFO          = 1,
-        GROUP_SOLVE_INFO    = 2,
-        CONFIGURATION       = 3,
-        STEP_DIMENSION      = 4,
-        LIST_OF_STYLES      = 5,
-        STYLE_INFO          = 6,
-        PASTE_TRANSFORMED   = 7,
-        EDIT_VIEW           = 8,
-        TANGENT_ARC         = 9
+        LIST_OF_GROUPS    = 0,
+        GROUP_INFO        = 1,
+        GROUP_SOLVE_INFO  = 2,
+        CONFIGURATION     = 3,
+        STEP_DIMENSION    = 4,
+        LIST_OF_STYLES    = 5,
+        STYLE_INFO        = 6,
+        PASTE_TRANSFORMED = 7,
+        EDIT_VIEW         = 8,
+        TANGENT_ARC       = 9
     };
     typedef struct {
-        Screen  screen;
+        Screen screen;
 
-        hGroup      group;
-        hStyle      style;
+        hGroup group;
+        hStyle style;
 
         hConstraint constraint;
 
         struct {
-            int         times;
-            Vector      trans;
-            double      theta;
-            Vector      origin;
-            double      scale;
-        }           paste;
+            int times;
+            Vector trans;
+            double theta;
+            Vector origin;
+            double scale;
+        } paste;
     } ShownState;
     ShownState shown;
 
     enum class Edit : uint32_t {
-        NOTHING               = 0,
+        NOTHING = 0,
         // For multiple groups
-        TIMES_REPEATED        = 1,
-        GROUP_NAME            = 2,
-        GROUP_SCALE           = 3,
-        GROUP_COLOR           = 4,
-        GROUP_OPACITY         = 5,
+        TIMES_REPEATED = 1,
+        GROUP_NAME     = 2,
+        GROUP_SCALE    = 3,
+        GROUP_COLOR    = 4,
+        GROUP_OPACITY  = 5,
         // For the configuration screen
-        LIGHT_DIRECTION       = 100,
-        LIGHT_INTENSITY       = 101,
-        COLOR                 = 102,
-        CHORD_TOLERANCE       = 103,
-        MAX_SEGMENTS          = 104,
-        CAMERA_TANGENT        = 105,
-        GRID_SPACING          = 106,
-        DIGITS_AFTER_DECIMAL  = 107,
+        LIGHT_DIRECTION             = 100,
+        LIGHT_INTENSITY             = 101,
+        COLOR                       = 102,
+        CHORD_TOLERANCE             = 103,
+        MAX_SEGMENTS                = 104,
+        CAMERA_TANGENT              = 105,
+        GRID_SPACING                = 106,
+        DIGITS_AFTER_DECIMAL        = 107,
         DIGITS_AFTER_DECIMAL_DEGREE = 108,
-        EXPORT_SCALE          = 109,
-        EXPORT_OFFSET         = 110,
-        CANVAS_SIZE           = 111,
-        G_CODE_DEPTH          = 112,
-        G_CODE_SAFE_HEIGHT    = 113,
-        G_CODE_PASSES         = 114,
-        G_CODE_FEED           = 115,
-        G_CODE_PLUNGE_FEED    = 116,
-        AUTOSAVE_INTERVAL     = 117,
-        LIGHT_AMBIENT         = 118,
-        FIND_CONSTRAINT_TIMEOUT = 119,
-        EXPLODE_DISTANCE      = 120,
-        ANIMATION_SPEED       = 121,
+        EXPORT_SCALE                = 109,
+        EXPORT_OFFSET               = 110,
+        CANVAS_SIZE                 = 111,
+        G_CODE_DEPTH                = 112,
+        G_CODE_SAFE_HEIGHT          = 113,
+        G_CODE_PASSES               = 114,
+        G_CODE_FEED                 = 115,
+        G_CODE_PLUNGE_FEED          = 116,
+        AUTOSAVE_INTERVAL           = 117,
+        LIGHT_AMBIENT               = 118,
+        FIND_CONSTRAINT_TIMEOUT     = 119,
+        EXPLODE_DISTANCE            = 120,
+        ANIMATION_SPEED             = 121,
         // For TTF text
-        TTF_TEXT              = 300,
+        TTF_TEXT = 300,
         // For the step dimension screen
-        STEP_DIM_FINISH       = 400,
-        STEP_DIM_STEPS        = 401,
+        STEP_DIM_FINISH = 400,
+        STEP_DIM_STEPS  = 401,
         // For the styles stuff
-        STYLE_WIDTH           = 500,
-        STYLE_TEXT_HEIGHT     = 501,
-        STYLE_TEXT_ANGLE      = 502,
-        STYLE_COLOR           = 503,
-        STYLE_FILL_COLOR      = 504,
-        STYLE_NAME            = 505,
-        BACKGROUND_COLOR      = 506,
-        STYLE_STIPPLE_PERIOD  = 508,
+        STYLE_WIDTH          = 500,
+        STYLE_TEXT_HEIGHT    = 501,
+        STYLE_TEXT_ANGLE     = 502,
+        STYLE_COLOR          = 503,
+        STYLE_FILL_COLOR     = 504,
+        STYLE_NAME           = 505,
+        BACKGROUND_COLOR     = 506,
+        STYLE_STIPPLE_PERIOD = 508,
         // For paste transforming
-        PASTE_TIMES_REPEATED  = 600,
-        PASTE_ANGLE           = 601,
-        PASTE_SCALE           = 602,
+        PASTE_TIMES_REPEATED = 600,
+        PASTE_ANGLE          = 601,
+        PASTE_SCALE          = 602,
         // For view
-        VIEW_SCALE            = 700,
-        VIEW_ORIGIN           = 701,
-        VIEW_PROJ_RIGHT       = 702,
-        VIEW_PROJ_UP          = 703,
+        VIEW_SCALE      = 700,
+        VIEW_ORIGIN     = 701,
+        VIEW_PROJ_RIGHT = 702,
+        VIEW_PROJ_UP    = 703,
         // For tangent arc
-        TANGENT_ARC_RADIUS    = 800,
+        TANGENT_ARC_RADIUS = 800,
         // For helix pitch
-        HELIX_PITCH           = 802
+        HELIX_PITCH = 802
     };
     struct {
-        bool        showAgain;
-        Edit        meaning;
-        int         i;
-        hGroup      group;
-        hRequest    request;
-        hStyle      style;
+        bool showAgain;
+        Edit meaning;
+        int i;
+        hGroup group;
+        hRequest request;
+        hStyle style;
     } edit;
 
     static void ReportHowGroupSolved(hGroup hg);
 
     struct {
-        int     halfRow;
-        int     col;
+        int halfRow;
+        int col;
 
         struct {
             RgbaColor rgb;
-            double    h, s, v;
-            bool      show;
-            bool      picker1dActive;
-            bool      picker2dActive;
-        }       colorPicker;
+            double h, s, v;
+            bool show;
+            bool picker1dActive;
+            bool picker2dActive;
+        } colorPicker;
     } editControl;
 
     void HideEditControl();
@@ -463,13 +453,13 @@ public:
     static void ScreenAllowRedundant(int link, uint32_t v);
 
     struct {
-        bool    isDistance;
-        double  finish;
-        int     steps;
+        bool isDistance;
+        double finish;
+        int steps;
 
         Platform::TimerRef timer;
         int64_t time;
-        int     step;
+        int step;
     } stepDim;
     static void ScreenStepDimSteps(int link, uint32_t v);
     static void ScreenStepDimFinish(int link, uint32_t v);
@@ -529,7 +519,7 @@ class GraphicsWindow {
 public:
     void Init();
 
-    Platform::WindowRef   window;
+    Platform::WindowRef window;
 
     void PopulateMainMenu();
     void PopulateRecentFiles();
@@ -568,34 +558,34 @@ public:
     Platform::MenuItemRef redoMenuItem;
 
     std::shared_ptr<ViewportCanvas> canvas;
-    std::shared_ptr<BatchCanvas>    persistentCanvas;
+    std::shared_ptr<BatchCanvas> persistentCanvas;
     bool persistentDirty;
 
     // These parameters define the map from 2d screen coordinates to the
     // coordinates of the 3d sketch points. We will use an axonometric
     // projection.
-    Vector  offset;
-    Vector  projRight;
-    Vector  projUp;
-    double  scale;
+    Vector offset;
+    Vector projRight;
+    Vector projUp;
+    double scale;
     struct {
-        bool    mouseDown;
-        Vector  offset;
-        Vector  projRight;
-        Vector  projUp;
+        bool mouseDown;
+        Vector offset;
+        Vector projRight;
+        Vector projUp;
         Point2d mouse;
         Point2d mouseOnButtonDown;
-        Vector  marqueePoint;
-        bool    startedMoving;
-    }       orig;
+        Vector marqueePoint;
+        bool startedMoving;
+    } orig;
     // We need to detect when the projection is changed to invalidate
     // caches for drawn items.
     struct {
-        Vector  offset;
-        Vector  projRight;
-        Vector  projUp;
-        double  scale;
-    }       cached;
+        Vector offset;
+        Vector projRight;
+        Vector projUp;
+        double scale;
+    } cached;
 
     // Most recent mouse position, updated every time the mouse moves.
     Point2d currentMousePosition;
@@ -603,12 +593,12 @@ public:
     // When the user is dragging a point, don't solve multiple times without
     // allowing a paint in between. The extra solves are wasted if they're
     // not displayed.
-    bool    havePainted;
+    bool havePainted;
 
     // Some state for the context menu.
     struct {
-        bool        active;
-    }       context;
+        bool active;
+    } context;
 
     Camera GetCamera() const;
     Lighting GetLighting() const;
@@ -625,21 +615,18 @@ public:
     void AnimateOntoWorkplane();
 
     Vector VectorFromProjs(Vector rightUpForward);
-    void HandlePointForZoomToFit(Vector p, Point2d *pmax, Point2d *pmin,
-                                 double *wmin, bool usePerspective,
-                                 const Camera &camera);
+    void HandlePointForZoomToFit(Vector p, Point2d *pmax, Point2d *pmin, double *wmin,
+                                 bool usePerspective, const Camera &camera);
     void ZoomToMouse(double delta);
     void LoopOverPoints(const std::vector<Entity *> &entities,
                         const std::vector<Constraint *> &constraints,
-                        const std::vector<hEntity> &faces,
-                        Point2d *pmax, Point2d *pmin,
-                        double *wmin, bool usePerspective, bool includeMesh,
-                        const Camera &camera);
+                        const std::vector<hEntity> &faces, Point2d *pmax, Point2d *pmin,
+                        double *wmin, bool usePerspective, bool includeMesh, const Camera &camera);
     void ZoomToFit(bool includingInvisibles = false, bool useSelection = false);
-    double ZoomToFit(const Camera &camera,
-                     bool includingInvisibles = false, bool useSelection = false);
+    double ZoomToFit(const Camera &camera, bool includingInvisibles = false,
+                     bool useSelection = false);
 
-    hGroup  activeGroup;
+    hGroup activeGroup;
     void EnsureValidActives();
     bool LockedInWorkplane();
     void SetWorkplaneFreeIn3d();
@@ -649,37 +636,37 @@ public:
     // Operations that must be completed by doing something with the mouse
     // are noted here.
     enum class Pending : uint32_t {
-        NONE                        = 0,
-        COMMAND                     = 1,
-        DRAGGING_POINTS             = 2,
-        DRAGGING_NEW_POINT          = 3,
-        DRAGGING_NEW_LINE_POINT     = 4,
-        DRAGGING_NEW_CUBIC_POINT    = 5,
-        DRAGGING_NEW_ARC_POINT      = 6,
-        DRAGGING_CONSTRAINT         = 7,
-        DRAGGING_RADIUS             = 8,
-        DRAGGING_NORMAL             = 9,
-        DRAGGING_NEW_RADIUS         = 10,
-        DRAGGING_MARQUEE            = 11,
+        NONE                     = 0,
+        COMMAND                  = 1,
+        DRAGGING_POINTS          = 2,
+        DRAGGING_NEW_POINT       = 3,
+        DRAGGING_NEW_LINE_POINT  = 4,
+        DRAGGING_NEW_CUBIC_POINT = 5,
+        DRAGGING_NEW_ARC_POINT   = 6,
+        DRAGGING_CONSTRAINT      = 7,
+        DRAGGING_RADIUS          = 8,
+        DRAGGING_NORMAL          = 9,
+        DRAGGING_NEW_RADIUS      = 10,
+        DRAGGING_MARQUEE         = 11,
     };
 
     struct {
-        Pending              operation;
-        Command              command;
+        Pending operation;
+        Command command;
 
-        hRequest             request;
-        hEntity              point;
-        List<hEntity>        points;
-        List<hRequest>       requests;
-        hEntity              circle;
-        hEntity              normal;
-        hConstraint          constraint;
+        hRequest request;
+        hEntity point;
+        List<hEntity> points;
+        List<hRequest> requests;
+        hEntity circle;
+        hEntity normal;
+        hConstraint constraint;
 
-        const char          *description;
-        Platform::Path       filename;
+        const char *description;
+        Platform::Path filename;
 
-        bool                 hasSuggestion;
-        Constraint::Type     suggestion;
+        bool hasSuggestion;
+        Constraint::Type suggestion;
     } pending;
     void ClearPending(bool scheduleShowTW = true);
     bool IsFromPending(hRequest r);
@@ -710,8 +697,8 @@ public:
         Vector TangentAt(double t);
         double LengthForAuto();
 
-        void CreateRequestTrimmedTo(double t, bool reuseOrig,
-            hEntity orig, hEntity arc, bool arcFinish, bool pointf);
+        void CreateRequestTrimmedTo(double t, bool reuseOrig, hEntity orig, hEntity arc,
+                                    bool arcFinish, bool pointf);
         void ConstrainPointIfCoincident(hEntity hpt);
     };
     void MakeTangentArc();
@@ -729,11 +716,11 @@ public:
     // A selected entity.
     class Selection {
     public:
-        int         tag;
+        int tag;
 
-        hEntity     entity;
+        hEntity entity;
         hConstraint constraint;
-        bool        emphasized;
+        bool emphasized;
 
         void Draw(bool isHovered, Canvas *canvas);
 
@@ -746,10 +733,10 @@ public:
     // A hovered entity, with its location relative to the cursor.
     class Hover {
     public:
-        int         zIndex;
-        double      distance;
-        double      depth;
-        Selection   selection;
+        int zIndex;
+        double distance;
+        double depth;
+        Selection selection;
     };
 
     List<Hover> hoverList;
@@ -765,28 +752,28 @@ public:
     void ClearNonexistentSelectionItems();
     /// This structure is filled by a call to GroupSelection().
     struct {
-        std::vector<hEntity>     point;
-        std::vector<hEntity>     entity;
-        std::vector<hEntity>     anyNormal;
-        std::vector<hEntity>     vector;
-        std::vector<hEntity>     face;
+        std::vector<hEntity> point;
+        std::vector<hEntity> entity;
+        std::vector<hEntity> anyNormal;
+        std::vector<hEntity> vector;
+        std::vector<hEntity> face;
         std::vector<hConstraint> constraint;
-        int         points;
-        int         entities;
-        int         workplanes;
-        int         faces;
-        int         lineSegments;
-        int         circlesOrArcs;
-        int         arcs;
-        int         cubics;
-        int         periodicCubics;
-        int         anyNormals;
-        int         vectors;
-        int         constraints;
-        int         stylables;
-        int         constraintLabels;
-        int         withEndpoints;
-        int         n;                 ///< Number of selected items
+        int points;
+        int entities;
+        int workplanes;
+        int faces;
+        int lineSegments;
+        int circlesOrArcs;
+        int arcs;
+        int cubics;
+        int periodicCubics;
+        int anyNormals;
+        int vectors;
+        int constraints;
+        int stylables;
+        int constraintLabels;
+        int withEndpoints;
+        int n; ///< Number of selected items
     } gs;
     void GroupSelection();
     bool IsSelected(Selection *s);
@@ -800,38 +787,44 @@ public:
     void ClearSuper();
 
     // The toolbar, in toolbar.cpp
-    bool ToolbarDrawOrHitTest(int x, int y, UiCanvas *canvas,
-                              Command *hitCommand, int *hitX, int *hitY);
+    bool ToolbarDrawOrHitTest(int x, int y, UiCanvas *canvas, Command *hitCommand, int *hitX,
+                              int *hitY);
     void ToolbarDraw(UiCanvas *canvas);
     bool ToolbarMouseMoved(int x, int y);
     bool ToolbarMouseDown(int x, int y);
+    void ToolbarMouseUp();
     Command toolbarHovered;
+    int toolbarX           = 10;
+    int toolbarY           = 10;
+    bool toolbarDragging   = false;
+    int toolbarDragOffsetX = 0;
+    int toolbarDragOffsetY = 0;
 
 
     // This sets what gets displayed.
-    bool    showWorkplanes;
-    bool    showNormals;
-    bool    showPoints;
-    bool    showConstruction;
+    bool showWorkplanes;
+    bool showNormals;
+    bool showPoints;
+    bool showConstruction;
 
     enum class ShowConstraintMode : unsigned { SCM_NOSHOW, SCM_SHOW_ALL, SCM_SHOW_DIM };
     ShowConstraintMode showConstraints;
 
-    bool    showTextWindow;
-    bool    showShaded;
-    bool    showEdges;
-    bool    showOutlines;
-    bool    showFaces;
-    bool    showFacesDrawing;
-    bool    showFacesNonDrawing;
-    bool    showMesh;
+    bool showTextWindow;
+    bool showShaded;
+    bool showEdges;
+    bool showOutlines;
+    bool showFaces;
+    bool showFacesDrawing;
+    bool showFacesNonDrawing;
+    bool showMesh;
     void ToggleBool(bool *v);
 
     enum class DrawOccludedAs : unsigned { INVISIBLE, STIPPLED, VISIBLE };
     DrawOccludedAs drawOccludedAs;
 
-    bool    showSnapGrid;
-    bool    dimSolidModel;
+    bool showSnapGrid;
+    bool dimSolidModel;
     void DrawSnapGrid(Canvas *canvas);
 
     void AddPointToDraggedList(hEntity hp);
@@ -847,8 +840,8 @@ public:
     void Paint();
 
     bool MouseEvent(Platform::MouseEvent event);
-    void MouseMoved(double x, double y, bool leftDown, bool middleDown,
-                    bool rightDown, bool shiftDown, bool ctrlDown);
+    void MouseMoved(double x, double y, bool leftDown, bool middleDown, bool rightDown,
+                    bool shiftDown, bool ctrlDown);
     void MouseLeftDown(double x, double y, bool shiftDown, bool ctrlDown);
     void MouseLeftUp(double x, double y, bool shiftDown, bool ctrlDown);
     void MouseLeftDoubleClick(double x, double y);
