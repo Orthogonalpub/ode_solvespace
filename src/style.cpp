@@ -8,23 +8,28 @@
 #include "solvespace.h"
 
 const Style::Default Style::Defaults[] = {
-    { { ACTIVE_GRP },   "ActiveGrp",    RGBf(1.0, 1.0, 1.0), 1.5, 4, true,  StipplePattern::CONTINUOUS },
-    { { CONSTRUCTION }, "Construction", RGBf(0.1, 0.7, 0.1), 1.5, 0, false, StipplePattern::CONTINUOUS },
-    { { INACTIVE_GRP }, "InactiveGrp",  RGBf(0.5, 0.3, 0.0), 1.5, 3, true,  StipplePattern::CONTINUOUS },
-    { { DATUM },        "Datum",        RGBf(0.0, 0.8, 0.0), 1.5, 0, true,  StipplePattern::CONTINUOUS },
-    { { SOLID_EDGE },   "SolidEdge",    RGBf(0.8, 0.8, 0.8), 1.0, 2, true,  StipplePattern::CONTINUOUS },
-    { { CONSTRAINT },   "Constraint",   RGBf(1.0, 0.1, 1.0), 1.0, 0, true,  StipplePattern::CONTINUOUS },
-    { { SELECTED },     "Selected",     RGBf(1.0, 0.0, 0.0), 1.5, 0, true,  StipplePattern::CONTINUOUS },
-    { { HOVERED },      "Hovered",      RGBf(1.0, 1.0, 0.0), 1.5, 0, true,  StipplePattern::CONTINUOUS },
-    { { CONTOUR_FILL }, "ContourFill",  RGBf(0.0, 0.1, 0.1), 1.0, 0, true,  StipplePattern::CONTINUOUS },
-    { { NORMALS },      "Normals",      RGBf(0.0, 0.4, 0.4), 1.0, 0, true,  StipplePattern::CONTINUOUS },
-    { { ANALYZE },      "Analyze",      RGBf(0.0, 1.0, 1.0), 3.0, 0, true,  StipplePattern::CONTINUOUS },
-    { { DRAW_ERROR },   "DrawError",    RGBf(1.0, 0.0, 0.0), 8.0, 0, true,  StipplePattern::CONTINUOUS },
-    { { DIM_SOLID },    "DimSolid",     RGBf(0.1, 0.1, 0.1), 1.0, 0, true,  StipplePattern::CONTINUOUS },
-    { { HIDDEN_EDGE },  "HiddenEdge",   RGBf(0.8, 0.8, 0.8), 1.0, 1, true,  StipplePattern::DASH },
-    { { OUTLINE },      "Outline",      RGBf(0.8, 0.8, 0.8), 3.0, 5, true,  StipplePattern::CONTINUOUS },
-    { { 0 },            NULL,           RGBf(0.0, 0.0, 0.0), 0.0, 0, true,  StipplePattern::CONTINUOUS }
-};
+    {{ACTIVE_GRP}, "ActiveGrp", RGBf(1.0, 1.0, 1.0), 1.5, 4, true, StipplePattern::CONTINUOUS},
+    {{CONSTRUCTION},
+     "Construction",
+     RGBf(0.1, 0.7, 0.1),
+     1.5,
+     0,
+     false,
+     StipplePattern::CONTINUOUS},
+    {{INACTIVE_GRP}, "InactiveGrp", RGBf(0.5, 0.3, 0.0), 1.5, 3, true, StipplePattern::CONTINUOUS},
+    {{DATUM}, "Datum", RGBf(0.0, 0.8, 0.0), 1.5, 0, true, StipplePattern::CONTINUOUS},
+    {{SOLID_EDGE}, "SolidEdge", RGBf(0.8, 0.8, 0.8), 1.0, 2, true, StipplePattern::CONTINUOUS},
+    {{CONSTRAINT}, "Constraint", RGBf(1.0, 0.1, 1.0), 1.0, 0, true, StipplePattern::CONTINUOUS},
+    {{SELECTED}, "Selected", RGBf(1.0, 0.0, 0.0), 1.5, 0, true, StipplePattern::CONTINUOUS},
+    {{HOVERED}, "Hovered", RGBf(1.0, 1.0, 0.0), 1.5, 0, true, StipplePattern::CONTINUOUS},
+    {{CONTOUR_FILL}, "ContourFill", RGBf(0.0, 0.1, 0.1), 1.0, 0, true, StipplePattern::CONTINUOUS},
+    {{NORMALS}, "Normals", RGBf(0.0, 0.4, 0.4), 1.0, 0, true, StipplePattern::CONTINUOUS},
+    {{ANALYZE}, "Analyze", RGBf(0.0, 1.0, 1.0), 3.0, 0, true, StipplePattern::CONTINUOUS},
+    {{DRAW_ERROR}, "DrawError", RGBf(1.0, 0.0, 0.0), 8.0, 0, true, StipplePattern::CONTINUOUS},
+    {{DIM_SOLID}, "DimSolid", RGBf(0.1, 0.1, 0.1), 1.0, 0, true, StipplePattern::CONTINUOUS},
+    {{HIDDEN_EDGE}, "HiddenEdge", RGBf(0.8, 0.8, 0.8), 1.0, 1, true, StipplePattern::DASH},
+    {{OUTLINE}, "Outline", RGBf(0.8, 0.8, 0.8), 3.0, 5, true, StipplePattern::CONTINUOUS},
+    {{0}, NULL, RGBf(0.0, 0.0, 0.0), 0.0, 0, true, StipplePattern::CONTINUOUS}};
 
 std::string Style::CnfColor(const std::string &prefix) {
     return "Style_" + prefix + "_Color";
@@ -68,12 +73,13 @@ void Style::CreateDefaultStyle(hStyle h) {
     bool isDefaultStyle = true;
     const Default *d;
     for(d = &(Defaults[0]); d->h.v; d++) {
-        if(d->h == h) break;
+        if(d->h == h)
+            break;
     }
     if(!d->h.v) {
         // Not a default style; so just create it the same as our default
         // active group entity style.
-        d = &(Defaults[0]);
+        d              = &(Defaults[0]);
         isDefaultStyle = false;
     }
 
@@ -92,34 +98,27 @@ void Style::CreateDefaultStyle(hStyle h) {
 void Style::FillDefaultStyle(Style *s, const Default *d, bool factory) {
     Platform::SettingsRef settings = Platform::GetSettings();
 
-    if(d == NULL) d = &Defaults[0];
-    s->color         = (factory)
-                        ? d->color
-                        : settings->ThawColor(CnfColor(d->cnfPrefix), d->color);
-    s->width         = (factory)
-                        ? d->width
-                        : settings->ThawFloat(CnfWidth(d->cnfPrefix), (float)(d->width));
-    s->widthAs       = UnitsAs::PIXELS;
-    s->textHeight    = (factory) ? 11.5
-                                 : settings->ThawFloat(CnfTextHeight(d->cnfPrefix), 11.5);
-    s->textHeightAs  = UnitsAs::PIXELS;
-    s->textOrigin    = TextOrigin::NONE;
-    s->textAngle     = 0;
-    s->visible       = true;
-    s->exportable    = (factory)
-                        ? d->exportable
-                        : settings->ThawBool(CnfExportable(d->cnfPrefix), d->exportable);
-    s->filled        = false;
-    s->fillColor     = RGBf(0.3, 0.3, 0.3);
-    s->stippleType   = (factory)
-                        ? d->stippleType
-                        : Style::StipplePatternFromString(
-                            settings->ThawString(CnfStippleType(d->cnfPrefix),
-                            StipplePatternName(d->stippleType)));
-    s->stippleScale  = (factory)
-                        ? 15.0
-                        : settings->ThawFloat(CnfStippleScale(d->cnfPrefix), 15.0);
-    s->zIndex        = d->zIndex;
+    if(d == NULL)
+        d = &Defaults[0];
+    s->color = (factory) ? d->color : settings->ThawColor(CnfColor(d->cnfPrefix), d->color);
+    s->width =
+        (factory) ? d->width : settings->ThawFloat(CnfWidth(d->cnfPrefix), (float)(d->width));
+    s->widthAs      = UnitsAs::PIXELS;
+    s->textHeight   = (factory) ? 11.5 : settings->ThawFloat(CnfTextHeight(d->cnfPrefix), 11.5);
+    s->textHeightAs = UnitsAs::PIXELS;
+    s->textOrigin   = TextOrigin::NONE;
+    s->textAngle    = 0;
+    s->visible      = true;
+    s->exportable =
+        (factory) ? d->exportable : settings->ThawBool(CnfExportable(d->cnfPrefix), d->exportable);
+    s->filled       = false;
+    s->fillColor    = RGBf(0.3, 0.3, 0.3);
+    s->stippleType  = (factory)
+                          ? d->stippleType
+                          : Style::StipplePatternFromString(settings->ThawString(
+                               CnfStippleType(d->cnfPrefix), StipplePatternName(d->stippleType)));
+    s->stippleScale = (factory) ? 15.0 : settings->ThawFloat(CnfStippleScale(d->cnfPrefix), 15.0);
+    s->zIndex       = d->zIndex;
 }
 
 void Style::LoadFactoryDefaults() {
@@ -128,7 +127,7 @@ void Style::LoadFactoryDefaults() {
         Style *s = Get(d->h);
         FillDefaultStyle(s, d, /*factory=*/true);
     }
-    SS.backgroundColor = RGBi(0, 0, 0);
+    SS.backgroundColor = RGBi(238, 242, 245);
 }
 
 void Style::FreezeDefaultStyles(Platform::SettingsRef settings) {
@@ -144,9 +143,10 @@ void Style::FreezeDefaultStyles(Platform::SettingsRef settings) {
 }
 
 uint32_t Style::CreateCustomStyle(bool rememberForUndo) {
-    if(rememberForUndo) SS.UndoRemember();
+    if(rememberForUndo)
+        SS.UndoRemember();
     uint32_t vs = max((uint32_t)Style::FIRST_CUSTOM, SK.style.MaximumId() + 1);
-    hStyle hs = { vs };
+    hStyle hs   = {vs};
     (void)Style::Get(hs);
     return hs.v;
 }
@@ -159,8 +159,9 @@ void Style::AssignSelectionToStyle(uint32_t v) {
     int i;
     for(i = 0; i < SS.GW.gs.entities; i++) {
         hEntity he = SS.GW.gs.entity[i];
-        Entity *e = SK.GetEntity(he);
-        if(!e->IsStylable()) continue;
+        Entity *e  = SK.GetEntity(he);
+        if(!e->IsStylable())
+            continue;
 
         if(!he.isFromRequest()) {
             showError = true;
@@ -168,14 +169,15 @@ void Style::AssignSelectionToStyle(uint32_t v) {
         }
 
         hRequest hr = he.request();
-        Request *r = SK.GetRequest(hr);
-        r->style.v = v;
+        Request *r  = SK.GetRequest(hr);
+        r->style.v  = v;
         SS.MarkGroupDirty(r->group);
     }
     for(i = 0; i < SS.GW.gs.constraints; i++) {
         hConstraint hc = SS.GW.gs.constraint[i];
-        Constraint *c = SK.GetConstraint(hc);
-        if(!c->IsStylable()) continue;
+        Constraint *c  = SK.GetConstraint(hc);
+        if(!c->IsStylable())
+            continue;
 
         c->disp.style.v = v;
         SS.MarkGroupDirty(c->group);
@@ -200,7 +202,8 @@ void Style::AssignSelectionToStyle(uint32_t v) {
 // the style, according to our table of default styles.
 //-----------------------------------------------------------------------------
 Style *Style::Get(hStyle h) {
-    if(h.v == 0) h.v = ACTIVE_GRP;
+    if(h.v == 0)
+        h.v = ACTIVE_GRP;
 
     Style *s = SK.style.FindByIdNoOops(h);
     if(s) {
@@ -218,11 +221,11 @@ Style *Style::Get(hStyle h) {
 // hStyle or with the integer corresponding to that hStyle.v.
 //-----------------------------------------------------------------------------
 RgbaColor Style::Color(int s, bool forExport) {
-    hStyle hs = { (uint32_t)s };
+    hStyle hs = {(uint32_t)s};
     return Color(hs, forExport);
 }
 double Style::Width(int s) {
-    hStyle hs = { (uint32_t)s };
+    hStyle hs = {(uint32_t)s};
     return Width(hs);
 }
 
@@ -232,7 +235,7 @@ double Style::Width(int s) {
 //-----------------------------------------------------------------------------
 RgbaColor Style::RewriteColor(RgbaColor rgbin) {
     Vector rgb = Vector::From(rgbin.redF(), rgbin.greenF(), rgbin.blueF());
-    rgb = rgb.Minus(Vector::From(1, 1, 1));
+    rgb        = rgb.Minus(Vector::From(1, 1, 1));
     if(rgb.Magnitude() < 0.4 && SS.fixExportColors) {
         // This is an almost-white color in a default style, which is
         // good for the default on-screen view (black bg) but probably
@@ -274,8 +277,8 @@ RgbaColor Style::FillColor(hStyle h, bool forExport) {
 double Style::Width(hStyle h) {
     Style *s = Get(h);
     switch(s->widthAs) {
-        case UnitsAs::MM:     return s->width * SS.GW.scale;
-        case UnitsAs::PIXELS: return s->width;
+    case UnitsAs::MM: return s->width * SS.GW.scale;
+    case UnitsAs::PIXELS: return s->width;
     }
     ssassert(false, "Unexpected units");
 }
@@ -294,14 +297,14 @@ double Style::WidthMm(int hs) {
 double Style::TextHeight(hStyle h) {
     Style *s = Get(h);
     switch(s->textHeightAs) {
-        case UnitsAs::MM:     return s->textHeight * SS.GW.scale;
-        case UnitsAs::PIXELS: return s->textHeight;
+    case UnitsAs::MM: return s->textHeight * SS.GW.scale;
+    case UnitsAs::PIXELS: return s->textHeight;
     }
     ssassert(false, "Unexpected units");
 }
 
 double Style::DefaultTextHeight() {
-    hStyle hs { Style::CONSTRAINT };
+    hStyle hs{Style::CONSTRAINT};
     return TextHeight(hs);
 }
 
@@ -310,24 +313,20 @@ double Style::DefaultTextHeight() {
 //-----------------------------------------------------------------------------
 Canvas::Stroke Style::Stroke(hStyle hs) {
     Canvas::Stroke stroke = {};
-    Style *style = Style::Get(hs);
-    stroke.color = style->color;
+    Style *style          = Style::Get(hs);
+    stroke.color          = style->color;
     stroke.stipplePattern = style->stippleType;
-    stroke.stippleScale = style->stippleScale;
-    stroke.width = style->width;
+    stroke.stippleScale   = style->stippleScale;
+    stroke.width          = style->width;
     switch(style->widthAs) {
-        case Style::UnitsAs::PIXELS:
-            stroke.unit = Canvas::Unit::PX;
-            break;
-        case Style::UnitsAs::MM:
-            stroke.unit = Canvas::Unit::MM;
-            break;
+    case Style::UnitsAs::PIXELS: stroke.unit = Canvas::Unit::PX; break;
+    case Style::UnitsAs::MM: stroke.unit = Canvas::Unit::MM; break;
     }
     return stroke;
 }
 
 Canvas::Stroke Style::Stroke(int hsv) {
-    hStyle hs = { (uint32_t) hsv };
+    hStyle hs = {(uint32_t)hsv};
     return Style::Stroke(hs);
 }
 
@@ -336,8 +335,8 @@ Canvas::Stroke Style::Stroke(int hsv) {
 // if it's both shown and exportable.
 //-----------------------------------------------------------------------------
 bool Style::Exportable(int si) {
-    hStyle hs = { (uint32_t)si };
-    Style *s = Get(hs);
+    hStyle hs = {(uint32_t)si};
+    Style *s  = Get(hs);
     return (s->exportable) && (s->visible);
 }
 
@@ -403,15 +402,15 @@ std::string Style::StipplePatternName(hStyle hs) {
 
 std::string Style::StipplePatternName(StipplePattern stippleType) {
     switch(stippleType) {
-        case StipplePattern::CONTINUOUS:   return "Continuous";
-        case StipplePattern::SHORT_DASH:   return "ShortDash";
-        case StipplePattern::DASH:         return "Dash";
-        case StipplePattern::LONG_DASH:    return "LongDash";
-        case StipplePattern::DASH_DOT:     return "DashDot";
-        case StipplePattern::DASH_DOT_DOT: return "DashDotDot";
-        case StipplePattern::DOT:          return "Dot";
-        case StipplePattern::FREEHAND:     return "FreeHand";
-        case StipplePattern::ZIGZAG:       return "ZigZag";
+    case StipplePattern::CONTINUOUS: return "Continuous";
+    case StipplePattern::SHORT_DASH: return "ShortDash";
+    case StipplePattern::DASH: return "Dash";
+    case StipplePattern::LONG_DASH: return "LongDash";
+    case StipplePattern::DASH_DOT: return "DashDot";
+    case StipplePattern::DASH_DOT_DOT: return "DashDotDot";
+    case StipplePattern::DOT: return "Dot";
+    case StipplePattern::FREEHAND: return "FreeHand";
+    case StipplePattern::ZIGZAG: return "ZigZag";
     }
 
     return "Continuous";
@@ -471,45 +470,38 @@ void TextWindow::ShowListOfStyles() {
 
     bool darkbg = false;
     for(Style &s : SK.style) {
-        Printf(false, "%Bp  %Bz   %Bp   %Fl%Ll%f%D%s%E",
-            darkbg ? 'd' : 'a',
-            &s.color,
-            darkbg ? 'd' : 'a',
-            ScreenShowStyleInfo, s.h.v,
-            s.DescriptionString().c_str());
+        Printf(false, "%Bp  %Bz   %Bp   %Fl%Ll%f%D%s%E", darkbg ? 'd' : 'a', &s.color,
+               darkbg ? 'd' : 'a', ScreenShowStyleInfo, s.h.v, s.DescriptionString().c_str());
 
         darkbg = !darkbg;
     }
 
-    Printf(true, "  %Fl%Ll%fcreate a new custom style%E",
-        &ScreenCreateCustomStyle);
+    Printf(true, "  %Fl%Ll%fcreate a new custom style%E", &ScreenCreateCustomStyle);
 
     Printf(false, "");
 
     RgbaColor rgb = SS.backgroundColor;
     Printf(false, "%Ft background color (r, g, b)%E");
-    Printf(false, "%Ba   %@, %@, %@ %Fl%D%f%Ll[change]%E",
-        rgb.redF(), rgb.greenF(), rgb.blueF(),
-        top[rows-1] + 2, &ScreenChangeBackgroundColor);
+    Printf(false, "%Ba   %@, %@, %@ %Fl%D%f%Ll[change]%E", rgb.redF(), rgb.greenF(), rgb.blueF(),
+           top[rows - 1] + 2, &ScreenChangeBackgroundColor);
 
     Printf(false, "");
-    Printf(false, "  %Fl%Ll%fload factory defaults%E",
-        &ScreenLoadFactoryDefaultStyles);
+    Printf(false, "  %Fl%Ll%fload factory defaults%E", &ScreenLoadFactoryDefaultStyles);
 }
 
 
 void TextWindow::ScreenChangeStyleName(int link, uint32_t v) {
-    hStyle hs = { v };
-    Style *s = Style::Get(hs);
+    hStyle hs = {v};
+    Style *s  = Style::Get(hs);
     SS.TW.ShowEditControl(12, s->name);
-    SS.TW.edit.style = hs;
+    SS.TW.edit.style   = hs;
     SS.TW.edit.meaning = Edit::STYLE_NAME;
 }
 
 void TextWindow::ScreenDeleteStyle(int link, uint32_t v) {
     SS.UndoRemember();
-    hStyle hs = { v };
-    Style *s = SK.style.FindByIdNoOops(hs);
+    hStyle hs = {v};
+    Style *s  = SK.style.FindByIdNoOops(hs);
     if(s) {
         SK.style.RemoveById(hs);
         // And it will get recreated automatically if something is still using
@@ -520,43 +512,43 @@ void TextWindow::ScreenDeleteStyle(int link, uint32_t v) {
 }
 
 void TextWindow::ScreenChangeStylePatternType(int link, uint32_t v) {
-    hStyle hs = { v };
-    Style *s = Style::Get(hs);
-    s->stippleType = (StipplePattern)(link - 1);
+    hStyle hs             = {v};
+    Style *s              = Style::Get(hs);
+    s->stippleType        = (StipplePattern)(link - 1);
     SS.GW.persistentDirty = true;
 }
 
 void TextWindow::ScreenChangeStyleMetric(int link, uint32_t v) {
-    hStyle hs = { v };
-    Style *s = Style::Get(hs);
+    hStyle hs = {v};
+    Style *s  = Style::Get(hs);
     double val;
     Style::UnitsAs units;
     Edit meaning;
     int col;
     switch(link) {
-        case 't':
-            val = s->textHeight;
-            units = s->textHeightAs;
-            col = 10;
-            meaning = Edit::STYLE_TEXT_HEIGHT;
-            break;
+    case 't':
+        val     = s->textHeight;
+        units   = s->textHeightAs;
+        col     = 10;
+        meaning = Edit::STYLE_TEXT_HEIGHT;
+        break;
 
-        case 's':
-            val = s->stippleScale;
-            units = s->widthAs;
-            col = 17;
-            meaning = Edit::STYLE_STIPPLE_PERIOD;
-            break;
+    case 's':
+        val     = s->stippleScale;
+        units   = s->widthAs;
+        col     = 17;
+        meaning = Edit::STYLE_STIPPLE_PERIOD;
+        break;
 
-        case 'w':
-        case 'W':
-            val = s->width;
-            units = s->widthAs;
-            col = 9;
-            meaning = Edit::STYLE_WIDTH;
-            break;
+    case 'w':
+    case 'W':
+        val     = s->width;
+        units   = s->widthAs;
+        col     = 9;
+        meaning = Edit::STYLE_WIDTH;
+        break;
 
-        default: ssassert(false, "Unexpected link");
+    default: ssassert(false, "Unexpected link");
     }
 
     std::string edit_value;
@@ -566,111 +558,118 @@ void TextWindow::ScreenChangeStyleMetric(int link, uint32_t v) {
         edit_value = SS.MmToString(val, true);
     }
     SS.TW.ShowEditControl(col, edit_value);
-    SS.TW.edit.style = hs;
+    SS.TW.edit.style   = hs;
     SS.TW.edit.meaning = meaning;
 }
 
 void TextWindow::ScreenChangeStyleTextAngle(int link, uint32_t v) {
-    hStyle hs = { v };
-    Style *s = Style::Get(hs);
+    hStyle hs = {v};
+    Style *s  = Style::Get(hs);
     SS.TW.ShowEditControl(9, ssprintf("%.2f", s->textAngle));
-    SS.TW.edit.style = hs;
+    SS.TW.edit.style   = hs;
     SS.TW.edit.meaning = Edit::STYLE_TEXT_ANGLE;
 }
 
 void TextWindow::ScreenChangeStyleColor(int link, uint32_t v) {
-    hStyle hs = { v };
-    Style *s = Style::Get(hs);
+    hStyle hs = {v};
+    Style *s  = Style::Get(hs);
     // Same function used for stroke and fill colors
     Edit em;
     RgbaColor rgb;
     if(link == 's') {
-        em = Edit::STYLE_COLOR;
+        em  = Edit::STYLE_COLOR;
         rgb = s->color;
     } else if(link == 'f') {
-        em = Edit::STYLE_FILL_COLOR;
+        em  = Edit::STYLE_FILL_COLOR;
         rgb = s->fillColor;
-    } else ssassert(false, "Unexpected link");
+    } else
+        ssassert(false, "Unexpected link");
     SS.TW.ShowEditControlWithColorPicker(13, rgb);
-    SS.TW.edit.style = hs;
+    SS.TW.edit.style   = hs;
     SS.TW.edit.meaning = em;
 }
 
 void TextWindow::ScreenChangeStyleYesNo(int link, uint32_t v) {
     SS.UndoRemember();
-    hStyle hs = { v };
-    Style *s = Style::Get(hs);
+    hStyle hs = {v};
+    Style *s  = Style::Get(hs);
     switch(link) {
-        // Units for the width
-        case 'w':
-            if(s->widthAs != Style::UnitsAs::MM) {
-                s->widthAs = Style::UnitsAs::MM;
-                s->width /= SS.GW.scale;
-                s->stippleScale /= SS.GW.scale;
-            }
-            break;
-        case 'W':
-            if(s->widthAs != Style::UnitsAs::PIXELS) {
-                s->widthAs = Style::UnitsAs::PIXELS;
-                s->width *= SS.GW.scale;
-                s->stippleScale *= SS.GW.scale;
-            }
-            break;
+    // Units for the width
+    case 'w':
+        if(s->widthAs != Style::UnitsAs::MM) {
+            s->widthAs = Style::UnitsAs::MM;
+            s->width /= SS.GW.scale;
+            s->stippleScale /= SS.GW.scale;
+        }
+        break;
+    case 'W':
+        if(s->widthAs != Style::UnitsAs::PIXELS) {
+            s->widthAs = Style::UnitsAs::PIXELS;
+            s->width *= SS.GW.scale;
+            s->stippleScale *= SS.GW.scale;
+        }
+        break;
 
-        // Units for the height
-        case 'g':
-            if(s->textHeightAs != Style::UnitsAs::MM) {
-                s->textHeightAs = Style::UnitsAs::MM;
-                s->textHeight /= SS.GW.scale;
-            }
-            break;
+    // Units for the height
+    case 'g':
+        if(s->textHeightAs != Style::UnitsAs::MM) {
+            s->textHeightAs = Style::UnitsAs::MM;
+            s->textHeight /= SS.GW.scale;
+        }
+        break;
 
-        case 'G':
-            if(s->textHeightAs != Style::UnitsAs::PIXELS) {
-                s->textHeightAs = Style::UnitsAs::PIXELS;
-                s->textHeight *= SS.GW.scale;
-            }
-            break;
+    case 'G':
+        if(s->textHeightAs != Style::UnitsAs::PIXELS) {
+            s->textHeightAs = Style::UnitsAs::PIXELS;
+            s->textHeight *= SS.GW.scale;
+        }
+        break;
 
-        case 'e':
-            s->exportable = !(s->exportable);
-            break;
+    case 'e': s->exportable = !(s->exportable); break;
 
-        case 'v':
-            s->visible = !(s->visible);
-            break;
+    case 'v': s->visible = !(s->visible); break;
 
-        case 'f':
-            s->filled = !(s->filled);
-            break;
+    case 'f': s->filled = !(s->filled); break;
 
-        // Horizontal text alignment
-        case 'L':
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin |  (uint32_t)Style::TextOrigin::LEFT);
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::RIGHT);
-            break;
-        case 'H':
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::LEFT);
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::RIGHT);
-            break;
-        case 'R':
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::LEFT);
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin |  (uint32_t)Style::TextOrigin::RIGHT);
-            break;
+    // Horizontal text alignment
+    case 'L':
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin | (uint32_t)Style::TextOrigin::LEFT);
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::RIGHT);
+        break;
+    case 'H':
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::LEFT);
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::RIGHT);
+        break;
+    case 'R':
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::LEFT);
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin | (uint32_t)Style::TextOrigin::RIGHT);
+        break;
 
-        // Vertical text alignment
-        case 'B':
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin |  (uint32_t)Style::TextOrigin::BOT);
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::TOP);
-            break;
-        case 'V':
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::BOT);
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::TOP);
-            break;
-        case 'T':
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::BOT);
-            s->textOrigin = (Style::TextOrigin)((uint32_t)s->textOrigin |  (uint32_t)Style::TextOrigin::TOP);
-            break;
+    // Vertical text alignment
+    case 'B':
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin | (uint32_t)Style::TextOrigin::BOT);
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::TOP);
+        break;
+    case 'V':
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::BOT);
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::TOP);
+        break;
+    case 'T':
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin & ~(uint32_t)Style::TextOrigin::BOT);
+        s->textOrigin =
+            (Style::TextOrigin)((uint32_t)s->textOrigin | (uint32_t)Style::TextOrigin::TOP);
+        break;
     }
     SS.GW.Invalidate(/*clearPersistent=*/true);
 }
@@ -678,69 +677,69 @@ void TextWindow::ScreenChangeStyleYesNo(int link, uint32_t v) {
 bool TextWindow::EditControlDoneForStyles(const std::string &str) {
     Style *s;
     switch(edit.meaning) {
-        case Edit::STYLE_STIPPLE_PERIOD:
-        case Edit::STYLE_TEXT_HEIGHT:
-        case Edit::STYLE_WIDTH: {
-            SS.UndoRemember();
-            s = Style::Get(edit.style);
+    case Edit::STYLE_STIPPLE_PERIOD:
+    case Edit::STYLE_TEXT_HEIGHT:
+    case Edit::STYLE_WIDTH: {
+        SS.UndoRemember();
+        s = Style::Get(edit.style);
 
-            double v;
-            Style::UnitsAs units = (edit.meaning == Edit::STYLE_TEXT_HEIGHT) ?
-                            s->textHeightAs : s->widthAs;
-            if(units == Style::UnitsAs::MM) {
-                v = SS.StringToMm(str);
-            } else {
-                v = atof(str.c_str());
-            }
-            v = max(0.0, v);
-            if(edit.meaning == Edit::STYLE_TEXT_HEIGHT) {
-                s->textHeight = v;
-            } else if(edit.meaning == Edit::STYLE_STIPPLE_PERIOD) {
-                s->stippleScale = v;
-            } else {
-                s->width = v;
-            }
-            break;
+        double v;
+        Style::UnitsAs units =
+            (edit.meaning == Edit::STYLE_TEXT_HEIGHT) ? s->textHeightAs : s->widthAs;
+        if(units == Style::UnitsAs::MM) {
+            v = SS.StringToMm(str);
+        } else {
+            v = atof(str.c_str());
         }
-        case Edit::STYLE_TEXT_ANGLE:
-            SS.UndoRemember();
-            s = Style::Get(edit.style);
-            s->textAngle = WRAP_SYMMETRIC(atof(str.c_str()), 360);
-            break;
+        v = max(0.0, v);
+        if(edit.meaning == Edit::STYLE_TEXT_HEIGHT) {
+            s->textHeight = v;
+        } else if(edit.meaning == Edit::STYLE_STIPPLE_PERIOD) {
+            s->stippleScale = v;
+        } else {
+            s->width = v;
+        }
+        break;
+    }
+    case Edit::STYLE_TEXT_ANGLE:
+        SS.UndoRemember();
+        s            = Style::Get(edit.style);
+        s->textAngle = WRAP_SYMMETRIC(atof(str.c_str()), 360);
+        break;
 
-        case Edit::BACKGROUND_COLOR:
-        case Edit::STYLE_FILL_COLOR:
-        case Edit::STYLE_COLOR: {
-            Vector rgb;
-            if(sscanf(str.c_str(), "%lf, %lf, %lf", &rgb.x, &rgb.y, &rgb.z)==3) {
-                rgb = rgb.ClampWithin(0, 1);
-                if(edit.meaning == Edit::STYLE_COLOR) {
-                    SS.UndoRemember();
-                    s = Style::Get(edit.style);
-                    s->color = RGBf(rgb.x, rgb.y, rgb.z);
-                } else if(edit.meaning == Edit::STYLE_FILL_COLOR) {
-                    SS.UndoRemember();
-                    s = Style::Get(edit.style);
-                    s->fillColor = RGBf(rgb.x, rgb.y, rgb.z);
-                } else {
-                    SS.backgroundColor = RGBf(rgb.x, rgb.y, rgb.z);
-                }
-            } else {
-                Error(_("Bad format: specify color as r, g, b"));
-            }
-            break;
-        }
-        case Edit::STYLE_NAME:
-            if(str.empty()) {
-                Error(_("Style name cannot be empty"));
-            } else {
+    case Edit::BACKGROUND_COLOR:
+    case Edit::STYLE_FILL_COLOR:
+    case Edit::STYLE_COLOR: {
+        Vector rgb;
+        if(sscanf(str.c_str(), "%lf, %lf, %lf", &rgb.x, &rgb.y, &rgb.z) == 3) {
+            rgb = rgb.ClampWithin(0, 1);
+            if(edit.meaning == Edit::STYLE_COLOR) {
                 SS.UndoRemember();
-                s = Style::Get(edit.style);
-                s->name = str;
+                s        = Style::Get(edit.style);
+                s->color = RGBf(rgb.x, rgb.y, rgb.z);
+            } else if(edit.meaning == Edit::STYLE_FILL_COLOR) {
+                SS.UndoRemember();
+                s            = Style::Get(edit.style);
+                s->fillColor = RGBf(rgb.x, rgb.y, rgb.z);
+            } else {
+                SS.backgroundColor = RGBf(rgb.x, rgb.y, rgb.z);
             }
-            break;
+        } else {
+            Error(_("Bad format: specify color as r, g, b"));
+        }
+        break;
+    }
+    case Edit::STYLE_NAME:
+        if(str.empty()) {
+            Error(_("Style name cannot be empty"));
+        } else {
+            SS.UndoRemember();
+            s       = Style::Get(edit.style);
+            s->name = str;
+        }
+        break;
 
-        default: return false;
+    default: return false;
     }
     SS.GW.persistentDirty = true;
     return true;
@@ -754,91 +753,71 @@ void TextWindow::ShowStyleInfo() {
     if(s->h.v < Style::FIRST_CUSTOM) {
         Printf(true, "%FtSTYLE  %E%s ", s->DescriptionString().c_str());
     } else {
-        Printf(true, "%FtSTYLE  %E%s "
-                     "[%Fl%Ll%D%frename%E/%Fl%Ll%D%fdel%E]",
-            s->DescriptionString().c_str(),
-            s->h.v, &ScreenChangeStyleName,
-            s->h.v, &ScreenDeleteStyle);
+        Printf(true,
+               "%FtSTYLE  %E%s "
+               "[%Fl%Ll%D%frename%E/%Fl%Ll%D%fdel%E]",
+               s->DescriptionString().c_str(), s->h.v, &ScreenChangeStyleName, s->h.v,
+               &ScreenDeleteStyle);
     }
     Printf(true, "%Ft line stroke style%E");
-    Printf(false, "%Ba   %Ftcolor %E%Bz  %Ba (%@, %@, %@) %D%f%Ls%Fl[change]%E",
-        &s->color,
-        s->color.redF(), s->color.greenF(), s->color.blueF(),
-        s->h.v, ScreenChangeStyleColor);
+    Printf(false, "%Ba   %Ftcolor %E%Bz  %Ba (%@, %@, %@) %D%f%Ls%Fl[change]%E", &s->color,
+           s->color.redF(), s->color.greenF(), s->color.blueF(), s->h.v, ScreenChangeStyleColor);
 
     // The line width, and its units
     if(s->widthAs == Style::UnitsAs::PIXELS) {
-        Printf(false, "   %Ftwidth%E %@ %D%f%Lp%Fl[change]%E",
-            s->width,
-            s->h.v, &ScreenChangeStyleMetric,
-            (s->h.v < Style::FIRST_CUSTOM) ? 'w' : 'W');
+        Printf(false, "   %Ftwidth%E %@ %D%f%Lp%Fl[change]%E", s->width, s->h.v,
+               &ScreenChangeStyleMetric, (s->h.v < Style::FIRST_CUSTOM) ? 'w' : 'W');
     } else {
-        Printf(false, "   %Ftwidth%E %s %D%f%Lp%Fl[change]%E",
-            SS.MmToString(s->width).c_str(),
-            s->h.v, &ScreenChangeStyleMetric,
-            (s->h.v < Style::FIRST_CUSTOM) ? 'w' : 'W');
+        Printf(false, "   %Ftwidth%E %s %D%f%Lp%Fl[change]%E", SS.MmToString(s->width).c_str(),
+               s->h.v, &ScreenChangeStyleMetric, (s->h.v < Style::FIRST_CUSTOM) ? 'w' : 'W');
     }
 
     if(s->widthAs == Style::UnitsAs::PIXELS) {
-        Printf(false, "%Ba   %Ftstipple width%E %@ %D%f%Lp%Fl[change]%E",
-            s->stippleScale,
-            s->h.v, &ScreenChangeStyleMetric, 's');
+        Printf(false, "%Ba   %Ftstipple width%E %@ %D%f%Lp%Fl[change]%E", s->stippleScale, s->h.v,
+               &ScreenChangeStyleMetric, 's');
     } else {
         Printf(false, "%Ba   %Ftstipple width%E %s %D%f%Lp%Fl[change]%E",
-            SS.MmToString(s->stippleScale).c_str(),
-            s->h.v, &ScreenChangeStyleMetric, 's');
+               SS.MmToString(s->stippleScale).c_str(), s->h.v, &ScreenChangeStyleMetric, 's');
     }
 
     bool widthpx = (s->widthAs == Style::UnitsAs::PIXELS);
     if(s->h.v < Style::FIRST_CUSTOM) {
-        Printf(false,"   %Ftin units of %Fdpixels%E");
+        Printf(false, "   %Ftin units of %Fdpixels%E");
     } else {
-        Printf(false,"%Ba   %Ftin units of  %Fd"
-                            "%D%f%LW%s pixels%E  "
-                            "%D%f%Lw%s %s",
-            s->h.v, &ScreenChangeStyleYesNo,
-            widthpx ? RADIO_TRUE : RADIO_FALSE,
-            s->h.v, &ScreenChangeStyleYesNo,
-            !widthpx ? RADIO_TRUE : RADIO_FALSE,
-            SS.UnitName());
+        Printf(false,
+               "%Ba   %Ftin units of  %Fd"
+               "%D%f%LW%s pixels%E  "
+               "%D%f%Lw%s %s",
+               s->h.v, &ScreenChangeStyleYesNo, widthpx ? RADIO_TRUE : RADIO_FALSE, s->h.v,
+               &ScreenChangeStyleYesNo, !widthpx ? RADIO_TRUE : RADIO_FALSE, SS.UnitName());
     }
 
-    Printf(false,"%Ba   %Ftstipple type:%E");
+    Printf(false, "%Ba   %Ftstipple type:%E");
 
-    const size_t patternCount = (size_t)StipplePattern::LAST + 1;
-    const char *patternsSource[patternCount] = {
-        "___________",
-        "-  -  -  - ",
-        "- - - - - -",
-        "__ __ __ __",
-        "-.-.-.-.-.-",
-        "..-..-..-..",
-        "...........",
-        "~~~~~~~~~~~",
-        "__~__~__~__"
-    };
+    const size_t patternCount                = (size_t)StipplePattern::LAST + 1;
+    const char *patternsSource[patternCount] = {"___________", "-  -  -  - ", "- - - - - -",
+                                                "__ __ __ __", "-.-.-.-.-.-", "..-..-..-..",
+                                                "...........", "~~~~~~~~~~~", "__~__~__~__"};
     std::string patterns[patternCount];
 
     for(uint32_t i = 0; i <= (uint32_t)StipplePattern::LAST; i++) {
         const char *str = patternsSource[i];
         do {
             switch(*str) {
-                case ' ': patterns[i] += " "; break;
-                case '.': patterns[i] += "\xEE\x80\x84"; break;
-                case '_': patterns[i] += "\xEE\x80\x85"; break;
-                case '-': patterns[i] += "\xEE\x80\x86"; break;
-                case '~': patterns[i] += "\xEE\x80\x87"; break;
-                default: ssassert(false, "Unexpected stipple pattern element");
+            case ' ': patterns[i] += " "; break;
+            case '.': patterns[i] += "\xEE\x80\x84"; break;
+            case '_': patterns[i] += "\xEE\x80\x85"; break;
+            case '-': patterns[i] += "\xEE\x80\x86"; break;
+            case '~': patterns[i] += "\xEE\x80\x87"; break;
+            default: ssassert(false, "Unexpected stipple pattern element");
             }
         } while(*(++str));
     }
 
     for(uint32_t i = 0; i <= (uint32_t)StipplePattern::LAST; i++) {
         const char *radio = s->stippleType == (StipplePattern)i ? RADIO_TRUE : RADIO_FALSE;
-        Printf(false, "%Bp     %D%f%Lp%s %s%E",
-            (i % 2 == 0) ? 'd' : 'a',
-            s->h.v, &ScreenChangeStylePatternType,
-            i + 1, radio, patterns[i].c_str());
+        Printf(false, "%Bp     %D%f%Lp%s %s%E", (i % 2 == 0) ? 'd' : 'a', s->h.v,
+               &ScreenChangeStylePatternType, i + 1, radio, patterns[i].c_str());
     }
 
     if(s->h.v >= Style::FIRST_CUSTOM) {
@@ -846,15 +825,12 @@ void TextWindow::ShowStyleInfo() {
 
         Printf(false, "");
         Printf(false, "%Ft contour fill style%E");
-        Printf(false,
-            "%Ba   %Ftcolor %E%Bz  %Ba (%@, %@, %@) %D%f%Lf%Fl[change]%E",
-            &s->fillColor,
-            s->fillColor.redF(), s->fillColor.greenF(), s->fillColor.blueF(),
-            s->h.v, ScreenChangeStyleColor);
+        Printf(false, "%Ba   %Ftcolor %E%Bz  %Ba (%@, %@, %@) %D%f%Lf%Fl[change]%E", &s->fillColor,
+               s->fillColor.redF(), s->fillColor.greenF(), s->fillColor.blueF(), s->h.v,
+               ScreenChangeStyleColor);
 
-        Printf(false, "%Bd   %D%f%Lf%s  contours are filled%E",
-            s->h.v, &ScreenChangeStyleYesNo,
-            s->filled ? CHECK_TRUE : CHECK_FALSE);
+        Printf(false, "%Bd   %D%f%Lf%s  contours are filled%E", s->h.v, &ScreenChangeStyleYesNo,
+               s->filled ? CHECK_TRUE : CHECK_FALSE);
     }
 
     // The text height, and its units
@@ -862,75 +838,72 @@ void TextWindow::ShowStyleInfo() {
     Printf(false, "%Ft text style%E");
 
     if(s->textHeightAs == Style::UnitsAs::PIXELS) {
-        Printf(false, "%Ba   %Ftheight %E%@ %D%f%Lt%Fl%s%E",
-            s->textHeight,
-            s->h.v, &ScreenChangeStyleMetric,
-            "[change]");
+        Printf(false, "%Ba   %Ftheight %E%@ %D%f%Lt%Fl%s%E", s->textHeight, s->h.v,
+               &ScreenChangeStyleMetric, "[change]");
     } else {
-        Printf(false, "%Ba   %Ftheight %E%s %D%f%Lt%Fl%s%E",
-            SS.MmToString(s->textHeight).c_str(),
-            s->h.v, &ScreenChangeStyleMetric,
-            "[change]");
+        Printf(false, "%Ba   %Ftheight %E%s %D%f%Lt%Fl%s%E", SS.MmToString(s->textHeight).c_str(),
+               s->h.v, &ScreenChangeStyleMetric, "[change]");
     }
 
     bool textHeightpx = (s->textHeightAs == Style::UnitsAs::PIXELS);
     if(s->h.v < Style::FIRST_CUSTOM) {
-        Printf(false,"%Bd   %Ftin units of %Fdpixels");
+        Printf(false, "%Bd   %Ftin units of %Fdpixels");
     } else {
-        Printf(false,"%Bd   %Ftin units of  %Fd"
-                            "%D%f%LG%s pixels%E  "
-                            "%D%f%Lg%s %s",
-            s->h.v, &ScreenChangeStyleYesNo,
-            textHeightpx ? RADIO_TRUE : RADIO_FALSE,
-            s->h.v, &ScreenChangeStyleYesNo,
-            !textHeightpx ? RADIO_TRUE : RADIO_FALSE,
-            SS.UnitName());
+        Printf(false,
+               "%Bd   %Ftin units of  %Fd"
+               "%D%f%LG%s pixels%E  "
+               "%D%f%Lg%s %s",
+               s->h.v, &ScreenChangeStyleYesNo, textHeightpx ? RADIO_TRUE : RADIO_FALSE, s->h.v,
+               &ScreenChangeStyleYesNo, !textHeightpx ? RADIO_TRUE : RADIO_FALSE, SS.UnitName());
     }
 
     if(s->h.v >= Style::FIRST_CUSTOM) {
-        Printf(false, "%Ba   %Ftangle %E%@ %D%f%Ll%Fl[change]%E",
-            s->textAngle,
-            s->h.v, &ScreenChangeStyleTextAngle);
+        Printf(false, "%Ba   %Ftangle %E%@ %D%f%Ll%Fl[change]%E", s->textAngle, s->h.v,
+               &ScreenChangeStyleTextAngle);
 
         Printf(false, "");
         Printf(false, "%Ft text comment alignment%E");
         bool neither;
-        neither = !((uint32_t)s->textOrigin & ((uint32_t)Style::TextOrigin::LEFT | (uint32_t)Style::TextOrigin::RIGHT));
-        Printf(false, "%Ba   "
-                      "%D%f%LL%s left%E    "
-                      "%D%f%LH%s center%E  "
-                      "%D%f%LR%s right%E  ",
-            s->h.v, &ScreenChangeStyleYesNo,
-            ((uint32_t)s->textOrigin & (uint32_t)Style::TextOrigin::LEFT) ? RADIO_TRUE : RADIO_FALSE,
-            s->h.v, &ScreenChangeStyleYesNo,
-            neither ? RADIO_TRUE : RADIO_FALSE,
-            s->h.v, &ScreenChangeStyleYesNo,
-            ((uint32_t)s->textOrigin & (uint32_t)Style::TextOrigin::RIGHT) ? RADIO_TRUE : RADIO_FALSE);
+        neither = !((uint32_t)s->textOrigin &
+                    ((uint32_t)Style::TextOrigin::LEFT | (uint32_t)Style::TextOrigin::RIGHT));
+        Printf(false,
+               "%Ba   "
+               "%D%f%LL%s left%E    "
+               "%D%f%LH%s center%E  "
+               "%D%f%LR%s right%E  ",
+               s->h.v, &ScreenChangeStyleYesNo,
+               ((uint32_t)s->textOrigin & (uint32_t)Style::TextOrigin::LEFT) ? RADIO_TRUE
+                                                                             : RADIO_FALSE,
+               s->h.v, &ScreenChangeStyleYesNo, neither ? RADIO_TRUE : RADIO_FALSE, s->h.v,
+               &ScreenChangeStyleYesNo,
+               ((uint32_t)s->textOrigin & (uint32_t)Style::TextOrigin::RIGHT) ? RADIO_TRUE
+                                                                              : RADIO_FALSE);
 
-        neither = !((uint32_t)s->textOrigin & ((uint32_t)Style::TextOrigin::BOT | (uint32_t)Style::TextOrigin::TOP));
-        Printf(false, "%Bd   "
-                      "%D%f%LB%s bottom%E  "
-                      "%D%f%LV%s center%E  "
-                      "%D%f%LT%s top%E  ",
-            s->h.v, &ScreenChangeStyleYesNo,
-            ((uint32_t)s->textOrigin & (uint32_t)Style::TextOrigin::BOT) ? RADIO_TRUE : RADIO_FALSE,
-            s->h.v, &ScreenChangeStyleYesNo,
-            neither ? RADIO_TRUE : RADIO_FALSE,
-            s->h.v, &ScreenChangeStyleYesNo,
-            ((uint32_t)s->textOrigin & (uint32_t)Style::TextOrigin::TOP) ? RADIO_TRUE : RADIO_FALSE);
+        neither = !((uint32_t)s->textOrigin &
+                    ((uint32_t)Style::TextOrigin::BOT | (uint32_t)Style::TextOrigin::TOP));
+        Printf(false,
+               "%Bd   "
+               "%D%f%LB%s bottom%E  "
+               "%D%f%LV%s center%E  "
+               "%D%f%LT%s top%E  ",
+               s->h.v, &ScreenChangeStyleYesNo,
+               ((uint32_t)s->textOrigin & (uint32_t)Style::TextOrigin::BOT) ? RADIO_TRUE
+                                                                            : RADIO_FALSE,
+               s->h.v, &ScreenChangeStyleYesNo, neither ? RADIO_TRUE : RADIO_FALSE, s->h.v,
+               &ScreenChangeStyleYesNo,
+               ((uint32_t)s->textOrigin & (uint32_t)Style::TextOrigin::TOP) ? RADIO_TRUE
+                                                                            : RADIO_FALSE);
     }
 
     Printf(false, "");
 
     if(s->h.v >= Style::FIRST_CUSTOM) {
-        Printf(false, "  %Fd%D%f%Lv%s  show these objects on screen%E",
-                s->h.v, &ScreenChangeStyleYesNo,
-                s->visible ? CHECK_TRUE : CHECK_FALSE);
+        Printf(false, "  %Fd%D%f%Lv%s  show these objects on screen%E", s->h.v,
+               &ScreenChangeStyleYesNo, s->visible ? CHECK_TRUE : CHECK_FALSE);
     }
 
-    Printf(false, "  %Fd%D%f%Le%s  export these objects%E",
-            s->h.v, &ScreenChangeStyleYesNo,
-            s->exportable ? CHECK_TRUE : CHECK_FALSE);
+    Printf(false, "  %Fd%D%f%Le%s  export these objects%E", s->h.v, &ScreenChangeStyleYesNo,
+           s->exportable ? CHECK_TRUE : CHECK_FALSE);
 
     if(s->h.v >= Style::FIRST_CUSTOM) {
         Printf(false, "");
