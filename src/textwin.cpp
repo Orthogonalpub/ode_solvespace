@@ -194,21 +194,22 @@ static Button *buttons[] = {
 
 /** Foreground color codes. */
 const TextWindow::Color TextWindow::fgColors[] = {
-    {'d', RGBi(255, 255, 255)},                           // Default   : white
-    {'l', RGBi(100, 200, 255)},                           // links     : blue
-    {'t', RGBi(255, 200, 100)},                           // tree/text : yellow
-    {'h', RGBi(90, 90, 90)},    {'s', RGBi(40, 255, 40)}, // Ok        : green
-    {'m', RGBi(200, 200, 0)},   {'r', RGBi(0, 0, 0)},     // Reverse   : black
-    {'x', RGBi(255, 20, 20)},                             // Error     : red
-    {'i', RGBi(0, 255, 255)},                             // Info      : cyan
-    {'g', RGBi(128, 128, 128)},                           // Disabled  : gray
-    {'b', RGBi(200, 200, 200)}, {0, RGBi(0, 0, 0)}};
+    {'d', RGBi(32, 54, 70)},                              // Default   : #203646
+    {'l', RGBi(27, 93, 141)},                             // links     : #1B5D8D
+    {'t', RGBi(32, 54, 70)},                              // tree/text : #203646
+    {'h', RGBi(32, 54, 70)},  {'s', RGBi(46, 107, 66)},   // Ok        : #2E6B42
+    {'m', RGBi(163, 65, 41)}, {'r', RGBi(255, 255, 255)}, // Reverse : white
+    {'x', RGBi(163, 65, 41)},                             // Error     : #A34129
+    {'i', RGBi(6, 7, 8)},                                 // Info      : #060708
+    {'g', RGBi(32, 54, 70)},                              // Disabled  : #203646
+    {'b', RGBi(32, 54, 70)},  {0, RGBi(0, 0, 0)}};
 /** Background color codes. */
-const TextWindow::Color TextWindow::bgColors[] = {{'d', RGBi(0, 0, 0)}, // Default   : black
-                                                  {'t', RGBi(34, 15, 15)},
-                                                  {'a', RGBi(25, 25, 25)}, // Alternate : dark gray
-                                                  {'r', RGBi(255, 255, 255)}, // Reverse   : white
-                                                  {0, RGBi(0, 0, 0)}};
+const TextWindow::Color TextWindow::bgColors[] = {
+    {'d', RGBi(244, 246, 247)}, // Default : light gray
+    {'t', RGBi(240, 242, 244)},
+    {'a', RGBi(237, 239, 241)}, // Alternate : slightly darker
+    {'r', RGBi(32, 54, 70)},    // Reverse   : dark
+    {0, RGBi(244, 246, 247)}};
 
 void TextWindow::MakeColorTable(const Color *in, float *out) {
     int i;
@@ -611,7 +612,7 @@ void TextWindow::DrawOrHitTestIcons(UiCanvas *uiCanvas, TextWindow::DrawOrHitHow
     if(how == PAINT) {
         int top = y - 28, bot = y + 4;
         uiCanvas->DrawRect(0, (int)width, top, bot,
-                           /*fillColor=*/{30, 30, 30, 255}, /*outlineColor=*/{});
+                           /*fillColor=*/{244, 246, 247, 255}, /*outlineColor=*/{});
     }
 
     Button *oldHovered = hoveredButton;
@@ -926,7 +927,7 @@ void TextWindow::Paint() {
     camera.offset.y = -camera.height / 2.0;
 
     Lighting lighting        = {};
-    lighting.backgroundColor = RGBi(0, 0, 0);
+    lighting.backgroundColor = RGBi(244, 246, 247);
 
     canvas->SetLighting(lighting);
     canvas->SetCamera(camera);

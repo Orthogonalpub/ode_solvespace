@@ -317,7 +317,7 @@ main {
     margin: 1em 0;
     padding: 2em;
     border: 2px dashed #cbd5e0;
-    background-color: #f7fafc;
+    background-color: #f4f6f7;
     border-radius: 8px;
     text-align: center;
     color: #718096;
@@ -375,15 +375,15 @@ canvas {
     top: 10px;
     bottom: 10px;
     width: 450px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 16px 0px 32px -16px rgba(47, 81, 106, 0.16);
     z-index: 10;
 
     display: grid;
     grid-template-columns: auto 12px;
     grid-template-rows: 100%;
-    background: #F9FAFB;
-    border: 1px solid #e2e8f0;
+    background: #f4f6f7;
+    border: none;
 }
 
 #container1 {
@@ -397,7 +397,7 @@ canvas {
     overflow-x: hidden;
     overflow-y: scroll;
 
-    background-color: #f7fafc;
+    background-color: #f4f6f7;
     -webkit-overflow-scrolling: auto;
 }
 

@@ -148,7 +148,7 @@ bool GraphicsWindow::ToolbarDrawOrHitTest(int mx, int my, UiCanvas *canvas, Comm
         y -= ((y - h) < 32) ? y - h : 32;
     }
 
-    int aleft = SS.GW.toolbarX, aright = SS.GW.toolbarX + 66,
+    int aleft = SS.GW.toolbarX, aright = SS.GW.toolbarX + 68,
         atop = y + 16 + fudge / 2 - SS.GW.toolbarY, abot = y + 16 - h + SS.GW.toolbarY;
 
     bool withinToolbar = (mx >= aleft && mx <= aright && my <= atop && my >= abot);
@@ -163,8 +163,9 @@ bool GraphicsWindow::ToolbarDrawOrHitTest(int mx, int my, UiCanvas *canvas, Comm
     }
 
     if(canvas) {
+        // Draw toolbar background matching Figma design
         canvas->DrawRect(aleft, aright, atop, abot,
-                         /*fillColor=*/{249, 250, 251, 255},
+                         /*fillColor=*/{244, 246, 247, 255},
                          /*outlineColor=*/{});
     }
 
@@ -179,10 +180,10 @@ bool GraphicsWindow::ToolbarDrawOrHitTest(int mx, int my, UiCanvas *canvas, Comm
             y -= 16;
 
             if(canvas) {
-                // Draw a separator bar in a slightly different color.
-                int divw = 30, divh = 2;
+                // Draw a separator bar matching Figma design (subtle, thin divider)
+                int divw = 30, divh = 1;
                 canvas->DrawRect(x + 16 + divw, x + 16 - divw, y + 24 + divh, y + 24 - divh,
-                                 /*fillColor=*/{220, 220, 220, 255},
+                                 /*fillColor=*/{149, 183, 208, 41}, // rgba(149,183,208,0.16)
                                  /*outlineColor=*/{});
             }
 
@@ -194,17 +195,23 @@ bool GraphicsWindow::ToolbarDrawOrHitTest(int mx, int my, UiCanvas *canvas, Comm
         }
 
         if(canvas) {
-            canvas->DrawPixmap(icon.pixmap, x - (int)icon.pixmap->width / 2,
-                               y - (int)icon.pixmap->height / 2);
+            // Draw button background and border based on state
+            const int boxhw = 15;
 
-            if(toolbarHovered == icon.command ||
-               (pending.operation == Pending::COMMAND && pending.command == icon.command)) {
-                // Highlight the hovered or pending item.
-                const int boxhw = 15;
+            if(pending.operation == Pending::COMMAND && pending.command == icon.command) {
+                // Selected/active state: blue border and light blue background
                 canvas->DrawRect(x + boxhw, x - boxhw, y + boxhw, y - boxhw,
-                                 /*fillColor=*/{255, 255, 0, 75},
+                                 /*fillColor=*/{255, 255, 255, 0}, // Transparent fill
+                                 /*outlineColor=*/{27, 93, 141, 255}); // Blue border
+            } else if(toolbarHovered == icon.command) {
+                // Hover state: light gray background
+                canvas->DrawRect(x + boxhw, x - boxhw, y + boxhw, y - boxhw,
+                                 /*fillColor=*/{0, 0, 0, 15}, // Very light gray overlay
                                  /*outlineColor=*/{});
             }
+
+            canvas->DrawPixmap(icon.pixmap, x - (int)icon.pixmap->width / 2,
+                               y - (int)icon.pixmap->height / 2);
         } else {
             const int boxhw = 16;
             if(mx < (x + boxhw) && mx > (x - boxhw) && my < (y + boxhw) && my > (y - boxhw)) {
