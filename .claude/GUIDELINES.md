@@ -62,6 +62,10 @@ Summary:
 - `SPEC.md` - Update implementation status
 - Task files - Check off completed items
 
+### 6. Stop Doing List
+1. ❌ **Avoid changing any code for geometry engine**
+2. ❌ **Keep the same interaction**
+
 ---
 
 ## Task & Bug Management

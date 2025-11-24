@@ -30,3 +30,4 @@ node_modules/
 
 # Embedded repositories
 07.orth_paas_web_react/
+.env

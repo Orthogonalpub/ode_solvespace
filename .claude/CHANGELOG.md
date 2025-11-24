@@ -6,6 +6,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.1.0-alpha] - 2025-01-23
+
+#### Added - WASM Geometry Engine
+- WASM API: 13 core geometry functions exported via Embind
+  - `Initialize()`, `Reset()`, `GetVersion()` - System management
+  - `LoadModelFromBuffer()`, `SaveModel()` - File I/O
+  - `GetGroupCount()`, `GetGroupInfo()` - Group hierarchy
+  - `GetTriangleCount()`, `GetTriangleVertices()`, `GetTriangleNormals()`, `GetTriangleIndices()` - Mesh data export
+  - `GetEdgeCount()`, `GetEdgeVertices()` - Wireframe data (stubs)
+  - `GetBoundingBox()` - Spatial queries
+- Created `/src/wasm/geometry_api.h` and `/src/wasm/geometry_api.cpp` - API implementation
+- Added Embind bindings to expose C++ functions to JavaScript
+
+#### Added - Frontend Infrastructure
+- React 18 + Vite frontend project structure
+- Three.js integration with @react-three/fiber and @react-three/drei
+- TypeScript type definitions for WASM API
+- Zustand state management with Immer
+- WASM module loader with async initialization
+- Component architecture matching Figma design:
+  - `Viewport` - Three.js 3D canvas with grid, lighting, and orbit controls
+  - `GeometryMesh` - Dynamic mesh rendering from WASM data
+  - `LeftSidebar` - Task/project navigation
+  - `LeftToolbar` - Tool palette with SHAPE, CONSTR, FORM, VIEW sections
+  - `TopBar` - View controls and share button
+  - `App` - Main layout coordinator
+
+#### Changed - Build System
+- CMakeLists.txt: Added `ENABLE_HEADLESS` build flag
+- src/CMakeLists.txt: Conditional compilation for headless mode
+  - Excludes UI files: draw.cpp, graphicswin.cpp, mouse.cpp, textwin.cpp, toolbar.cpp, etc.
+  - Includes core: entity.cpp, generate.cpp, group.cpp, mesh.cpp, constraint.cpp, system.cpp
+  - Uses `platform/guinone.cpp` instead of GUI platform files
+- src/slvs/CMakeLists.txt: Linked geometry_api.cpp to WASM build
+- Emscripten builds automatically use HEADLESS mode
+
+#### Documentation
+- Created API_EXPORTS.md - Tracking 13/56 functions (23% complete)
+- Updated project structure documentation
+
+#### Technical Notes
+- Phase 1 Core Infrastructure: ✅ COMPLETED
+- WASM module compiles with HEADLESS flag
+- Frontend renders 3D grid and UI layout
+- Mesh data pipeline: C++ → Embind → TypeScript → Three.js BufferGeometry
+
+---
+
 ### Planning Phase - 2025-01-XX
 - Initial project setup
 - Architecture design completed
