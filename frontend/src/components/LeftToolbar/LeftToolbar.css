@@ -1,0 +1,123 @@
+.left-toolbar {
+  position: fixed;
+  left: 9px;
+  top: 95px;
+  width: 76px;
+  max-height: calc(100vh - 111px);
+  background: #f4f6f7;
+  border: 1px solid rgba(149, 183, 208, 0.16);
+  border-radius: 12px;
+  padding: 4px;
+  overflow-y: auto;
+  z-index: 50;
+  box-shadow: 16px 0px 32px -16px rgba(47, 81, 106, 0.16);
+}
+
+.toolbar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.section-header {
+  height: 16px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+
+.section-header:hover {
+  opacity: 1;
+}
+
+.section-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  color: rgba(6, 7, 8, 0.6);
+  text-transform: uppercase;
+  line-height: 16px;
+}
+
+.section-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.section-toggle.expanded {
+  transform: rotate(180deg);
+}
+
+.section-toggle svg {
+  width: 12px;
+  height: 12px;
+  color: #203646;
+}
+
+.section-tools {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  opacity: 1;
+}
+
+.section-tools.collapsed {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.2s ease, opacity 0.15s ease;
+}
+
+.tool-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tool-btn svg {
+  opacity: 0.7;
+  color: #203646;
+}
+
+.tool-btn:hover {
+  background: rgba(149, 183, 208, 0.08);
+}
+
+.tool-btn:hover svg {
+  opacity: 1;
+}
+
+.tool-btn.active {
+  border: 1px solid #1b5d8d;
+  background: transparent;
+}
+
+.tool-btn.active svg {
+  opacity: 0.8;
+  color: #203646;
+}
+
+.toolbar-divider {
+  height: 2px;
+  background: rgba(149, 183, 208, 0.16);
+  border-radius: 1px;
+  margin: 0;
+}

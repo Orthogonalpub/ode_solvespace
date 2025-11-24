@@ -1,0 +1,84 @@
+.floating-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: transparent;
+}
+
+.floating-menu {
+  position: fixed;
+  z-index: 1000;
+  background: #f9fafb;
+  border: 1px solid rgba(149, 183, 208, 0.16);
+  border-radius: 8px;
+  min-width: 160px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 8px;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.menu-item:hover {
+  background: rgba(149, 183, 208, 0.12);
+}
+
+.menu-item.highlighted {
+  background: linear-gradient(90deg, rgba(149, 183, 208, 0.24) 0%, rgba(149, 183, 208, 0.24) 100%),
+              linear-gradient(90deg, rgba(249, 250, 251, 1) 0%, rgba(249, 250, 251, 1) 100%);
+}
+
+.menu-item-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 6px;
+}
+
+.menu-item-label {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 10.5px;
+  line-height: 16px;
+  color: #203646;
+  white-space: nowrap;
+}
+
+.menu-item-shortcut {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: #1b5d8d;
+  text-align: center;
+  margin-left: auto;
+}
+
+.menu-item-arrow {
+  color: #203646;
+  margin-left: 4px;
+  flex-shrink: 0;
+}
+
+.menu-divider {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  height: 1px;
+  margin: 4px 0;
+}
+
+.menu-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(149, 183, 208, 0.16);
+  border-radius: 1px;
+}

@@ -24,7 +24,12 @@ target_include_directories(slvs_deps SYSTEM INTERFACE
     ${FREETYPE_INCLUDE_DIRS}
     ${CAIRO_INCLUDE_DIRS}
     ${MIMALLOC_INCLUDE_DIR}
-    ${EIGEN3_INCLUDE_DIRS})
+    ${EIGEN3_INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}/extlib/libdxfrw
+    ${CMAKE_SOURCE_DIR}/extlib/cairo/src
+    ${CMAKE_BINARY_DIR}/extlib/cairo/src
+    ${CMAKE_SOURCE_DIR}/extlib/freetype/include)
+message(STATUS "DEBUG: CMAKE_BINARY_DIR is ${CMAKE_BINARY_DIR}")
 target_link_libraries(slvs_deps INTERFACE
     dxfrw
     ${ZLIB_LIBRARY}
@@ -87,7 +92,51 @@ VERSION_PATCH=0\n\
 VERSION_GIT_HASH=${solvespace_GIT_HASH}\n\
 ")
 
-if(ENABLE_GUI OR ENABLE_CLI)
+if(ENABLE_HEADLESS)
+    # Headless WASM geometry engine - no GUI, no rendering
+    add_library(solvespace-core STATIC
+        dsc.h
+        expr.h
+        polygon.h
+        sketch.h
+        srf/surface.h
+
+        bsp.cpp
+        constraint.cpp
+        export.cpp
+        exportstep.cpp
+        exportvector.cpp
+        file.cpp
+        generate.cpp
+        group.cpp
+        groupmesh.cpp
+        importdxf.cpp
+        importidf.cpp
+        importmesh.cpp
+        mesh.cpp
+        modify.cpp
+        polyline.cpp
+        polygon.cpp
+        request.cpp
+        style.cpp
+        ttf.cpp
+        undoredo.cpp
+        platform/platformbase.cpp
+        platform/platform.cpp
+        platform/guinone.cpp
+        srf/boolean.cpp
+        srf/curve.cpp
+        srf/merge.cpp
+        srf/ratpoly.cpp
+        srf/raycast.cpp
+        srf/shell.cpp
+        srf/surface.cpp
+        srf/surfinter.cpp
+        srf/triangulate.cpp)
+
+    target_compile_definitions(solvespace-core PUBLIC HEADLESS)
+
+elseif(ENABLE_GUI OR ENABLE_CLI)
     set(every_platform_SOURCES
         platform/guiwin.cpp
         platform/guigtk.cpp
@@ -154,12 +203,13 @@ if(ENABLE_GUI OR ENABLE_CLI)
         srf/surface.cpp
         srf/surfinter.cpp
         srf/triangulate.cpp)
+endif()
 
-    target_include_directories(solvespace-core PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}
-        ${CMAKE_CURRENT_BINARY_DIR})
-    target_link_libraries(solvespace-core PRIVATE slvs-solver)
-    target_link_libraries(solvespace-core PUBLIC slvs_deps)
+target_include_directories(solvespace-core PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_BINARY_DIR})
+target_link_libraries(solvespace-core PRIVATE slvs-solver)
+target_link_libraries(solvespace-core PUBLIC slvs_deps)
 
     # solvespace translations
 
@@ -243,7 +293,7 @@ if(ENABLE_GUI OR ENABLE_CLI)
         add_custom_target(translate_solvespace
             DEPENDS ${gen_output_pot} ${gen_output_po} ${gen_locale_pos})
     endif()
-endif()
+
 
 # solvespace graphical executable
 

@@ -52,10 +52,14 @@ if(EMSCRIPTEN)
     endif()
 
     set(INCLUDE_NATIVE_COMPONENTS OFF)
+    set(ENABLE_HEADLESS ON)
+    set(ENABLE_GUI OFF)
 else()
     set(INCLUDE_NATIVE_COMPONENTS ON)
 endif()
 
+set(ENABLE_HEADLESS   OFF CACHE BOOL
+    "Whether to build as headless WASM geometry engine (no GUI, no rendering)")
 set(ENABLE_GUI        ON CACHE BOOL
     "Whether the graphical interface is enabled")
 set(ENABLE_CLI        ${INCLUDE_NATIVE_COMPONENTS} CACHE BOOL
@@ -201,7 +205,7 @@ if(APPLE)
     set(CMAKE_FIND_FRAMEWORK FIRST)
 endif()
 
-if(ENABLE_GUI OR ENABLE_CLI)
+if(ENABLE_GUI OR ENABLE_CLI OR ENABLE_HEADLESS)
     message(STATUS "Using in-tree libdxfrw")
     add_subdirectory(extlib/libdxfrw)
 endif()
@@ -229,7 +233,7 @@ if(NOT EXISTS "${EIGEN3_INCLUDE_DIRS}")
 endif()
 
 
-if(ENABLE_GUI OR ENABLE_CLI)
+if(ENABLE_GUI OR ENABLE_CLI OR ENABLE_HEADLESS)
     if(WIN32 OR APPLE OR EMSCRIPTEN)
         # On Win32 and macOS we use vendored packages, since there is little to no benefit
         # to trying to find system versions. In particular, trying to link to libraries from

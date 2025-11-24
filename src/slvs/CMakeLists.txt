@@ -44,8 +44,9 @@ if(ENABLE_PYTHON_LIB)
 endif()
 
 if(EMSCRIPTEN)
-    add_executable(slvs-wasm jslib.cpp)
-    target_link_libraries(slvs-wasm PRIVATE slvs-interface embind)
+    add_executable(slvs-wasm jslib.cpp lib.cpp ../wasm/geometry_api.cpp ../wasm/exposed_textwin.cpp)
+    target_link_libraries(slvs-wasm PRIVATE solvespace-core embind)
+    target_include_directories(slvs-wasm PRIVATE ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/include)
     target_link_options(slvs-wasm PRIVATE
         "SHELL:-s MODULARIZE=1"
         "SHELL:-s EXPORT_NAME=solvespace"
@@ -55,6 +56,7 @@ if(EMSCRIPTEN)
         -O3
         -flto
         --closure 0)
+    target_compile_definitions(slvs-wasm PRIVATE WITH_FULL_CORE)
     set_target_properties(slvs-wasm PROPERTIES OUTPUT_NAME "slvs" SUFFIX ".js")
 endif()
 

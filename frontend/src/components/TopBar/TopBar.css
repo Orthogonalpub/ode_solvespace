@@ -1,0 +1,151 @@
+.top-bar {
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 48px;
+  background: #f4f6f7;
+  border: 1px solid rgba(149, 183, 208, 0.08);
+  border-radius: 12px;
+  box-shadow: 0px 16px 32px -16px rgba(47, 81, 106, 0.16);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px 0 12px;
+  z-index: 100;
+}
+
+.top-bar-left,
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cursor-status-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: 32px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cursor-status-btn svg {
+  opacity: 0.7;
+}
+
+.cursor-status-btn:hover {
+  background: rgba(149, 183, 208, 0.08);
+}
+
+.cursor-status-btn:hover svg {
+  opacity: 1;
+}
+
+.view-controls {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.icon-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #203646;
+  opacity: 0.7;
+}
+
+.icon-btn:hover {
+  background: rgba(149, 183, 208, 0.08);
+  opacity: 1;
+}
+
+.divider {
+  width: 2px;
+  height: 16px;
+  background: rgba(149, 183, 208, 0.16);
+  border-radius: 1px;
+  margin: 0 4px;
+}
+
+.collab-container {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  background: #1b5d8d;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.collab-container:hover {
+  background: #164d75;
+}
+
+.share-btn {
+  height: 36px;
+  padding: 0 12px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.share-btn svg {
+  flex-shrink: 0;
+}
+
+.collab-divider {
+  width: 2px;
+  height: 16px;
+  background: rgba(149, 183, 208, 0.08);
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  height: 36px;
+  padding: 0 12px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.avatar-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  margin-right: -4px;
+}
+
+.avatar-arrow {
+  color: white;
+  flex-shrink: 0;
+}

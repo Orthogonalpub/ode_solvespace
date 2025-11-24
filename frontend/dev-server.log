@@ -1,0 +1,65 @@
+
+> ode-geometry-frontend@0.1.0 dev /Users/dennis/Project/ode_solvespace/frontend
+> vite
+
+
+  VITE v5.4.21  ready in 483 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: use --host to expose
+8:52:41 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.tsx
+8:54:33 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.css
+9:09:17 PM [vite] hmr update /src/components/LeftToolbar/ToolIcons.tsx
+9:09:17 PM [vite] hmr invalidate /src/components/LeftToolbar/ToolIcons.tsx Could not Fast Refresh (export removed)
+9:09:17 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.tsx
+9:10:13 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.tsx
+9:10:41 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.tsx
+9:14:44 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.tsx
+9:15:10 PM [vite] hmr update /src/components/FloatingMenu/FloatingMenu.tsx
+9:15:15 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.tsx
+9:18:28 PM [vite] hmr update /src/App.tsx
+9:18:35 PM [vite] hmr update /src/App.css
+9:18:41 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.css
+9:18:47 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.css
+9:18:54 PM [vite] hmr update /src/components/TopBar/TopBar.css
+9:19:11 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.css
+9:19:21 PM [vite] hmr update /src/components/StatusBar/StatusBar.css
+9:19:32 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.css
+9:24:48 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.tsx
+9:25:06 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.css
+9:25:25 PM [vite] hmr update /src/components/TopBar/TopBar.tsx
+9:25:48 PM [vite] hmr update /src/components/TopBar/TopBar.css
+9:27:59 PM [vite] hmr update /src/components/TopBar/TopBar.tsx
+9:28:19 PM [vite] hmr update /src/components/TopBar/TopBar.css
+9:29:08 PM [vite] hmr update /src/components/TopBar/TopBar.css
+9:32:27 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.tsx
+9:32:38 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.css
+9:36:07 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.tsx
+9:40:03 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.css
+9:40:09 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.tsx
+9:40:16 PM [vite] hmr update /src/components/LeftSidebar/LeftSidebar.css
+9:40:31 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.css
+9:41:53 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.css
+9:42:06 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.tsx
+9:42:11 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.tsx
+9:42:19 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.tsx
+9:42:27 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.tsx
+9:42:34 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.tsx
+9:42:43 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.css
+9:47:10 PM [vite] hmr update /src/components/Viewport/Viewport.tsx
+9:47:49 PM [vite] hmr update /src/App.tsx
+9:47:50 PM [vite] hmr update /src/App.tsx
+9:49:38 PM [vite] hmr update /src/App.tsx
+9:49:38 PM [vite] hmr update /src/App.tsx
+9:52:57 PM [vite] hmr update /src/components/LeftToolbar/LeftToolbar.css
+9:52:58 PM [vite] hmr update /src/components/ViewControls/ViewControls.css
+9:52:59 PM [vite] hmr update /src/components/TextWindow/TextWindow.css
+9:53:00 PM [vite] hmr update /src/components/TextWindow/TextWindow.css
+9:54:54 PM [vite] hmr update /src/components/ViewControls/ViewControls.tsx
+9:54:55 PM [vite] hmr update /src/components/ViewControls/ViewControls.css
+9:59:11 PM [vite] hmr update /src/components/TextWindow/TextWindow.tsx
+9:59:12 PM [vite] hmr update /src/components/TextWindow/TextWindow.css
+9:59:12 PM [vite] hmr update /src/components/TextWindow/TextWindow.css
+9:59:13 PM [vite] hmr update /src/components/TextWindow/TextWindow.css
+10:01:56 PM [vite] hmr update /src/components/TextWindow/TextWindow.tsx
+10:01:57 PM [vite] hmr update /src/components/TextWindow/TextWindow.css
