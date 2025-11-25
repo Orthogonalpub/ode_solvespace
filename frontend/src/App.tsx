@@ -6,7 +6,6 @@ import { LeftToolbar } from '@/components/LeftToolbar/LeftToolbar';
 import { TopBar } from '@/components/TopBar/TopBar';
 import { Viewport } from '@/components/Viewport/Viewport';
 import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
-import { StatusBar } from '@/components/StatusBar/StatusBar';
 import { PropertyBrowser } from '@/components/PropertyBrowser/PropertyBrowser';
 import './App.css';
 
@@ -60,7 +59,6 @@ function App() {
       {/* Floating UI elements */}
       <LeftSidebar />
       <TopBar />
-      <StatusBar />
       <PropertyBrowser />
     </div>
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { useGeometryStore } from '@/store/useGeometryStore';
 import './PropertyBrowser.css';
 
@@ -32,24 +32,23 @@ export function PropertyBrowser() {
   const [isVisible, setIsVisible] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>('main');
   const groups = useGeometryStore((state) => state.groups);
-  const activeTool = useGeometryStore((state) => state.activeTool);
 
   const [lineStyles] = useState<LineStyle[]>([
-    { id: 's001', name: '#def-active-grp', color: '#00ff00' },
-    { id: 's002', name: '#def-construction', color: '#00ff00' },
+    { id: 's001', name: '#def-active-grp', color: '#d4d4d4' },
+    { id: 's002', name: '#def-construction', color: '#2e8b57' },
     { id: 's003', name: '#def-inactive-grp', color: '#8b6914' },
-    { id: 's004', name: '#def-datum', color: '#00ff00' },
+    { id: 's004', name: '#def-datum', color: '#2e8b57' },
     { id: 's005', name: '#def-solid-edge', color: '#c0c0c0' },
-    { id: 's006', name: '#def-constraint', color: '#ff00ff' },
-    { id: 's007', name: '#def-selected', color: '#ff0000' },
-    { id: 's008', name: '#def-hovered', color: '#ffff00' },
-    { id: 's009', name: '#def-contour-fill', color: '#000000' },
-    { id: 's00a', name: '#def-normals', color: '#008080' },
-    { id: 's00b', name: '#def-analyze', color: '#00ffff' },
-    { id: 's00c', name: '#def-draw-error', color: '#ff0000' },
-    { id: 's00d', name: '#def-dim-solid', color: '#000000' },
-    { id: 's00e', name: '#def-hidden-edge', color: '#c0c0c0' },
-    { id: 's00f', name: '#def-outline', color: '#c0c0c0' },
+    { id: 's006', name: '#def-constraint', color: '#d946ef' },
+    { id: 's007', name: '#def-selected', color: '#ef4444' },
+    { id: 's008', name: '#def-hovered', color: '#facc15' },
+    { id: 's009', name: '#def-contour-fill', color: '#1e293b' },
+    { id: 's00a', name: '#def-normals', color: '#22d3ee' },
+    { id: 's00b', name: '#def-analyze', color: '#67e8f9' },
+    { id: 's00c', name: '#def-draw-error', color: '#ef4444' },
+    { id: 's00d', name: '#def-dim-solid', color: '#1e293b' },
+    { id: 's00e', name: '#def-hidden-edge', color: '#94a3b8' },
+    { id: 's00f', name: '#def-outline', color: '#e2e8f0' },
   ]);
 
   const [viewSettings] = useState<ViewSettings>({
@@ -94,62 +93,85 @@ export function PropertyBrowser() {
 
   const renderToolbarIcons = () => (
     <div className="property-browser-toolbar">
-      <button className="toolbar-icon" title="Link/Unlink">
+      {/* Workplanes - stacked diamond layers */}
+      <button className="toolbar-icon" title="Workplanes">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M7 4L4 7L7 10M9 4L12 7L9 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 10L8 13L14 10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 7L8 10L14 7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 4L8 7L14 4L8 1L2 4Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Check/Uncheck">
+      {/* Normals - L-shaped arrow */}
+      <button className="toolbar-icon" title="Normals">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8L6 11L13 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M4 4L12 4L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Circle">
+      {/* Point */}
+      <button className="toolbar-icon" title="Point">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <circle cx="8" cy="8" r="5" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="8" cy="8" r="2" fill="currentColor"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Reference">
+      {/* Toggle construction - play with dashed line */}
+      <button className="toolbar-icon" title="Toggle construction">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <rect x="3" y="3" width="10" height="10" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M7 7L11 11" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M11 3V13" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="2 2"/>
+          <path d="M4 4L4 12L9 8L4 4Z" fill="currentColor"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Edit">
+      {/* Constraint angle */}
+      <button className="toolbar-icon" title="Constraint angle">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M11.5 2.5L13.5 4.5L5 13H3V11L11.5 2.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M3 13L13 13" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M3 13L10 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M6 13C6 10.5 7 9 8.5 7.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" fill="none"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Copy">
+      {/* Cube front view - isometric cube with front face highlighted */}
+      <button className="toolbar-icon" title="Faces selectable">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <rect x="5" y="5" width="8" height="8" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M3 11V3H11" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+          <path d="M8 8V14" stroke="currentColor" strokeWidth="1.2"/>
+          <path d="M2 5L8 8L14 5" stroke="currentColor" strokeWidth="1.2"/>
+          <path d="M2 5V11L8 14V8L2 5Z" fill="currentColor" fillOpacity="0.3"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Paste">
+      {/* Shaded view */}
+      <button className="toolbar-icon" title="Shaded view of solid model">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <rect x="3" y="5" width="10" height="8" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M6 3H10V5" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+          <path d="M8 8V14" stroke="currentColor" strokeWidth="1.2"/>
+          <path d="M2 5L8 8L14 5" stroke="currentColor" strokeWidth="1.2"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Box">
+      {/* Cube solid - fully filled */}
+      <button className="toolbar-icon" title="Hide edges of solid model">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 6L8 3L14 6V10L8 13L2 10V6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" fill="currentColor" fillOpacity="0.7"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Solid">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <rect x="3" y="3" width="10" height="10" fill="currentColor"/>
+      {/* Cube outline */}
+      <button className="toolbar-icon" title="Hide outlines of solid model">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+          <path d="M8 8V14" stroke="currentColor" strokeWidth="1.2"/>
+          <path d="M2 5L8 8L14 5" stroke="currentColor" strokeWidth="1.2"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Wireframe">
+      {/* Triangle mesh */}
+      <button className="toolbar-icon" title="Triangle mesh of solid model">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <rect x="3" y="3" width="10" height="10" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+          <path d="M8 8V14M2 5L8 8L14 5M5 6.5L8 12M11 6.5L8 12" stroke="currentColor" strokeWidth="0.8"/>
         </svg>
       </button>
-      <button className="toolbar-icon" title="Hidden Line">
+      {/* Don't draw occluded lines */}
+      <button className="toolbar-icon" title="Don't draw occluded lines">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <rect x="3" y="3" width="10" height="10" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 2"/>
+          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+          <path d="M8 8V14" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 1"/>
+          <path d="M2 5L8 8L14 5" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 1"/>
         </svg>
       </button>
     </div>
@@ -213,7 +235,9 @@ export function PropertyBrowser() {
       <div className="property-section">
         <div className="filter-links">
           <a href="#" className="filter-link">show all</a>
+          <span className="filter-divider" />
           <a href="#" className="filter-link">only unconstrained</a>
+          <span className="filter-divider" />
           <a href="#" className="filter-link">hide all</a>
         </div>
       </div>
@@ -222,9 +246,11 @@ export function PropertyBrowser() {
         <button className="section-button" onClick={() => setViewMode('lineStyles')}>
           line styles
         </button>
+        <span className="filter-divider" />
         <button className="section-button" onClick={() => setViewMode('view')}>
           view
         </button>
+        <span className="filter-divider" />
         <button className="section-button" onClick={() => setViewMode('configuration')}>
           configuration
         </button>
@@ -466,28 +492,28 @@ export function PropertyBrowser() {
     <div className="property-browser">
       <div className="property-browser-header">
         {renderToolbarIcons()}
-        <button
-          className="property-browser-close"
-          onClick={() => setIsVisible(false)}
-          title="Hide Property Browser (Tab)"
-        >
-          <X size={16} />
-        </button>
       </div>
 
-      <div className="property-browser-tabs">
-        <button
-          className={`tab-button ${viewMode === 'main' ? 'active' : ''}`}
-          onClick={() => setViewMode('main')}
-        >
-          home
-        </button>
-      </div>
+      <div className="property-browser-divider" />
 
-      {viewMode === 'main' && renderMainView()}
-      {viewMode === 'lineStyles' && renderLineStylesView()}
-      {viewMode === 'view' && renderViewSettings()}
-      {viewMode === 'configuration' && renderConfigurationView()}
+      <div className="property-browser-body">
+        <div className="property-browser-tabs">
+          <button
+            className="tab-button"
+            onClick={() => setViewMode('main')}
+          >
+            home
+          </button>
+          {viewMode !== 'main' && (
+            <span className="breadcrumb-current">In plane: g002-sketch-in-plane</span>
+          )}
+        </div>
+
+        {viewMode === 'main' && renderMainView()}
+        {viewMode === 'lineStyles' && renderLineStylesView()}
+        {viewMode === 'view' && renderViewSettings()}
+        {viewMode === 'configuration' && renderConfigurationView()}
+      </div>
     </div>
   );
 }

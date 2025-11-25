@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased] - 2025-11-25
+
+### Changed
+- **Left Toolbar UI**: Updated toolbar icons to use exact Figma assets from design node 90:12952
+  - All 35 toolbar icons now match the Figma design exactly
+  - Icons are guaranteed to be square with `aspect-ratio: 1/1` and `object-fit: contain`
+  - Toolbar is now vertically centered on the page
+- **PropertyBrowser**: Improved right sidebar styling and layout
+- **LeftSidebar**: Removed unnecessary border from header
+
+### Removed
+- **StatusBar**: Removed bottom status bar component from App.tsx
+
 ## [Unreleased] - 2025-11-24
 
 ### Fixed

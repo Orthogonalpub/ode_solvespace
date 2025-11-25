@@ -54,7 +54,7 @@ export function LeftToolbar() {
                       onClick={() => setActiveTool(tool.type as any)}
                       aria-label={tool.name}
                     >
-                      <Icon size={20} />
+                      <Icon size={16} />
                     </button>
                   );
                 })}

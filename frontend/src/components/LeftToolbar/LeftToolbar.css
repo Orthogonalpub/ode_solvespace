@@ -1,16 +1,19 @@
 .left-toolbar {
   position: fixed;
   left: 9px;
-  top: 95px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 76px;
-  max-height: calc(100vh - 111px);
+  max-height: calc(100vh - 72px);
   background: #f4f6f7;
-  border: 1px solid rgba(149, 183, 208, 0.16);
   border-radius: 12px;
   padding: 4px;
   overflow-y: auto;
   z-index: 50;
   box-shadow: 16px 0px 32px -16px rgba(47, 81, 106, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .toolbar-section {
@@ -35,12 +38,13 @@
 }
 
 .section-title {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 8px;
   font-weight: 700;
   color: rgba(6, 7, 8, 0.6);
   text-transform: uppercase;
   line-height: 16px;
+  letter-spacing: 0.02em;
 }
 
 .section-toggle {
@@ -65,8 +69,9 @@
 
 .section-tools {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 32px);
   gap: 2px;
+  width: 68px;
   max-height: 1000px;
   overflow: hidden;
   transition: max-height 0.3s ease, opacity 0.2s ease;
@@ -90,19 +95,23 @@
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.15s ease;
+  padding: 0;
 }
 
-.tool-btn svg {
-  opacity: 0.7;
-  color: #203646;
+.tool-btn img {
+  display: block;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  aspect-ratio: 1 / 1;
 }
 
 .tool-btn:hover {
   background: rgba(149, 183, 208, 0.08);
 }
 
-.tool-btn:hover svg {
-  opacity: 1;
+.tool-btn:hover img {
+  opacity: 1 !important;
 }
 
 .tool-btn.active {
@@ -110,9 +119,8 @@
   background: transparent;
 }
 
-.tool-btn.active svg {
-  opacity: 0.8;
-  color: #203646;
+.tool-btn.active img {
+  opacity: 0.8 !important;
 }
 
 .toolbar-divider {
@@ -120,4 +128,24 @@
   background: rgba(149, 183, 208, 0.16);
   border-radius: 1px;
   margin: 0;
+  flex-shrink: 0;
+}
+
+/* Custom scrollbar */
+.left-toolbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.left-toolbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.left-toolbar::-webkit-scrollbar-thumb {
+  background: rgba(185, 207, 223, 0.8);
+  border-radius: 4px;
+}
+
+.left-toolbar::-webkit-scrollbar-thumb:hover {
+  background: #1b5d8d;
+  opacity: 0.5;
 }
