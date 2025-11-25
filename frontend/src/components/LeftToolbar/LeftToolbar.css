@@ -1,10 +1,10 @@
 .left-toolbar {
   position: fixed;
-  left: 9px;
+  left: 8px;
   top: 50%;
   transform: translateY(-50%);
   width: 76px;
-  max-height: calc(100vh - 72px);
+  max-height: calc(100vh - 80px);
   background: #f4f6f7;
   border-radius: 12px;
   padding: 4px;

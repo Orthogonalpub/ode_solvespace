@@ -8,49 +8,49 @@ interface IconProps {
   color?: string;
 }
 
-// Exact Figma icon assets from node 1:7139
+// Exact Figma icon assets from node 1:7139 (refreshed 2025-11-25)
 const figmaIcons = {
   // SHAPE section (1:7145)
-  line: 'https://www.figma.com/api/mcp/asset/b5bd6509-aa50-483f-8260-15998613099b',           // img1 - Line
-  rectangle: 'https://www.figma.com/api/mcp/asset/6f1d65b0-3874-42e6-82ac-6d15f16ee570',     // img2 - Rectangle
-  circle: 'https://www.figma.com/api/mcp/asset/782f6da5-8799-490a-b517-c15c1cd7cbcd',        // img3 - Circle
-  arc: 'https://www.figma.com/api/mcp/asset/08ae1954-31a7-48cb-84f9-64913ce31938',           // img4 - Arc
-  text: 'https://www.figma.com/api/mcp/asset/cf58f950-8c90-4b92-b679-c6503a2199da',          // img5 - Text
-  image: 'https://www.figma.com/api/mcp/asset/e68c0c36-7203-4cd6-95b1-d70e86957f87',         // img6 - Image
-  tangent: 'https://www.figma.com/api/mcp/asset/c5be36df-4657-41eb-8d65-b8ed7e22fbfa',       // img7 - Tangent
-  connect: 'https://www.figma.com/api/mcp/asset/e69210d2-9d32-4b29-8d6f-3675528ff1be',       // img9 - Connect
-  point: 'https://www.figma.com/api/mcp/asset/21c8de98-e851-4fca-8ee3-60c69550de42',         // img10 - Point
-  toggleConstruction: 'https://www.figma.com/api/mcp/asset/d1289609-dfa0-410f-9b1a-7c4967a056fc', // img12 - Toggle Construction
-  intersect: 'https://www.figma.com/api/mcp/asset/45133d13-6684-48bc-a176-d8f8479b5bfc',     // img13 - Intersect
+  line: 'https://www.figma.com/api/mcp/asset/e6d192cf-0e6b-41c2-ad87-b7f852b8a731',           // img1 - Line
+  rectangle: 'https://www.figma.com/api/mcp/asset/75de61e9-dbfe-45c2-9fe8-2fb5cdbafbd9',     // img2 - Rectangle
+  circle: 'https://www.figma.com/api/mcp/asset/9196e568-ad05-4a2e-b2f6-eca06d5cab18',        // img3 - Circle
+  arc: 'https://www.figma.com/api/mcp/asset/b84199e1-56dd-49ce-87ab-0d6199698e07',           // img4 - Arc
+  text: 'https://www.figma.com/api/mcp/asset/b8587909-96ab-40b0-b789-e909b2811528',          // img5 - Text
+  image: 'https://www.figma.com/api/mcp/asset/24b40669-ec22-4534-b6cc-b170d58fe5bd',         // img6 - Image
+  tangent: 'https://www.figma.com/api/mcp/asset/2e5f961d-9847-4c8f-a42a-951b29a3ad23',       // img7 - Tangent
+  connect: 'https://www.figma.com/api/mcp/asset/db144182-7ab7-4790-9929-47a3365c303e',       // img9 - Connect
+  point: 'https://www.figma.com/api/mcp/asset/4c9cf74a-0f59-4be8-acfd-504a97e8c157',         // img10 - Point
+  toggleConstruction: 'https://www.figma.com/api/mcp/asset/9186f0b6-4d11-456c-8e24-613ac05ddab0', // img12 - Toggle Construction
+  intersect: 'https://www.figma.com/api/mcp/asset/ef1369a2-e7a3-4bfc-9f18-11944d4d07c6',     // img13 - Intersect
 
   // CONSTR section (1:7159) - from node 1:7164
-  distance: 'https://www.figma.com/api/mcp/asset/a9be17ec-0281-4657-bcb4-7415ba9a34e6',      // img2 - Distance
-  angle: 'https://www.figma.com/api/mcp/asset/289e26ff-7a2b-4b50-b2ec-89c4438f7e8d',         // img4 - Angle
-  horizontal: 'https://www.figma.com/api/mcp/asset/5d14aa4a-9296-4b85-8a32-b5cc9b608ca8',    // img5 - Horizontal
-  vertical: 'https://www.figma.com/api/mcp/asset/4d4c8566-a781-4dcf-b365-3836aa0a19e4',      // img6 - Vertical
-  parallel: 'https://www.figma.com/api/mcp/asset/f331f510-fb5b-4caa-8ab4-9eca20d8e530',      // img7 - Parallel
-  perpendicular: 'https://www.figma.com/api/mcp/asset/911f4067-f840-4812-b870-8f42774f8e5b', // img9 - Perpendicular
-  pointOnLine: 'https://www.figma.com/api/mcp/asset/faf44643-adea-48e6-9bac-7b0dcf591ddd',   // img10 - Point on Line
-  mirror: 'https://www.figma.com/api/mcp/asset/b8319847-6d7d-4dcd-867e-6cbaca010997',        // img11 - Mirror
-  equal: 'https://www.figma.com/api/mcp/asset/5e57bcdd-f698-458e-8ea6-164b10305284',         // img12 - Equal
-  normals: 'https://www.figma.com/api/mcp/asset/9e78e7c6-107d-4dcd-bb29-e51438a6160f',       // img13 - Normals
-  supplementaryAngle: 'https://www.figma.com/api/mcp/asset/164655cd-edab-46dd-9835-871c19305908', // img16 - Supplementary Angle
-  ref: 'https://www.figma.com/api/mcp/asset/f1c5b2c0-795d-4c84-9e86-16e5f924e324',           // img17 - Ref
+  distance: 'https://www.figma.com/api/mcp/asset/008f5300-aa88-471f-baa2-549c31e0d11d',      // img16 - Distance
+  angle: 'https://www.figma.com/api/mcp/asset/f034c5fb-e16a-4d5c-ba99-87fa492a5435',         // img18 - Angle
+  horizontal: 'https://www.figma.com/api/mcp/asset/f82346a4-ba67-44dc-a8fe-4bcc84c7d4a8',    // img19 - Horizontal
+  vertical: 'https://www.figma.com/api/mcp/asset/1ecc3363-605c-4436-b59b-43a4500f81a6',      // img20 - Vertical
+  parallel: 'https://www.figma.com/api/mcp/asset/b57c0a9b-eba7-4ff9-8d4c-9df731d11ed1',      // img21 - Parallel
+  perpendicular: 'https://www.figma.com/api/mcp/asset/4365099c-4b59-48aa-86a9-e12b355c8842', // img23 - Perpendicular
+  pointOnLine: 'https://www.figma.com/api/mcp/asset/4a2850de-b342-48fc-9a81-bc783028cb67',   // img24 - Point on Line
+  mirror: 'https://www.figma.com/api/mcp/asset/e1620ebf-c582-4dbd-81ba-96c4de5cad2d',        // img25 - Mirror
+  equal: 'https://www.figma.com/api/mcp/asset/1632e398-6472-4c89-9b46-e3af5c09170e',         // img26 - Equal
+  normals: 'https://www.figma.com/api/mcp/asset/8d0a531f-7f04-4e2d-b448-a5ed11611fef',       // img27 - Normals
+  supplementaryAngle: 'https://www.figma.com/api/mcp/asset/1a0b3236-dce7-452c-8e2b-2203c0c62097', // img30 - Supplementary Angle
+  ref: 'https://www.figma.com/api/mcp/asset/02bf4d57-e0c3-4c42-ba2d-4eb8737239a8',           // img31 - Ref
 
   // FORM section (1:7184)
-  extrude: 'https://www.figma.com/api/mcp/asset/5ab4eccc-37e1-43c9-9fa3-bcf2d8200fbf',       // img32 - Extrude
-  rotateComponent: 'https://www.figma.com/api/mcp/asset/5dbf4f29-0a69-4a65-b8c0-dc73d44ace0e', // img33 - Rotate Component
-  helix: 'https://www.figma.com/api/mcp/asset/8c03d271-9573-4935-93d9-30ac7aee6632',         // img34 - Helix
-  revolve: 'https://www.figma.com/api/mcp/asset/61059605-9fa8-46b0-9991-60f3acfb3359',       // img37 - Revolve
-  rotate: 'https://www.figma.com/api/mcp/asset/e97f4f83-d94f-4cab-8033-ae51b6e68809',        // img39 - Rotate Pattern
-  translate: 'https://www.figma.com/api/mcp/asset/a86fd149-8475-498a-afd7-4ff1b1456610',     // img45 - Translate
-  newWorkplane: 'https://www.figma.com/api/mcp/asset/b1e2d214-915d-4d0e-918a-a86da9d31c02',  // img48 - New Workplane
-  newGroup3D: 'https://www.figma.com/api/mcp/asset/53287994-7af1-4b18-bcf3-629d34400aeb',    // img49 - New Group 3D
-  assembly: 'https://www.figma.com/api/mcp/asset/95ededaf-be1a-4791-b8cc-a79458a4ee16',      // img47 - Assembly
+  extrude: 'https://www.figma.com/api/mcp/asset/bc768cb0-4fa0-43ff-90a2-c901e8a8ca99',       // img32 - Extrude
+  rotateComponent: 'https://www.figma.com/api/mcp/asset/5e5ffdaf-466b-4c24-b4ea-bdb8f9aed99a', // img33 - Rotate Component
+  helix: 'https://www.figma.com/api/mcp/asset/e89ce95a-58a7-43b2-8106-ba8631a51fa8',         // img34 - Helix
+  revolve: 'https://www.figma.com/api/mcp/asset/b9d2857a-2f37-4315-86ef-9a898c861c60',       // img37 - Revolve
+  rotate: 'https://www.figma.com/api/mcp/asset/88973dac-58c4-4c3e-a3e8-773f10c882aa',        // img39 - Rotate Pattern
+  translate: 'https://www.figma.com/api/mcp/asset/32fa9df4-86d7-41d7-85c0-04cd8744f831',     // img45 - Translate
+  newWorkplane: 'https://www.figma.com/api/mcp/asset/60c751a5-569b-424d-ad3f-b78574d600ef',  // img48 - New Workplane
+  newGroup3D: 'https://www.figma.com/api/mcp/asset/46fe003d-82ba-47e4-851a-617b77d30100',    // img49 - New Group 3D
+  assembly: 'https://www.figma.com/api/mcp/asset/faa71fb0-e891-4641-8e3d-02002bd72acd',      // img47 - Assembly
 
   // VIEW section (1:7199)
-  isometric: 'https://www.figma.com/api/mcp/asset/f4f27d7b-f517-44fe-9cea-8a047d860952',     // img50 - Isometric
-  alignView: 'https://www.figma.com/api/mcp/asset/5cf27e49-85db-422e-b7b5-31b5f7fb34b7',     // img51 - Align View
+  isometric: 'https://www.figma.com/api/mcp/asset/fd38848f-6b27-4916-a15a-753c9c05e821',     // img50 - Isometric
+  alignView: 'https://www.figma.com/api/mcp/asset/dd32195d-ac81-40ac-bb46-12892450c8f9',     // img51 - Align View
 };
 
 // Helper component for Figma image icons - ensures square aspect ratio
