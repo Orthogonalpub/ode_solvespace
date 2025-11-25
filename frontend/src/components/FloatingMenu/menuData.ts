@@ -30,7 +30,7 @@ export const viewSubmenu: MenuItem[] = [
   { label: 'Dimensions in Inches' },
   { label: 'Dimensions in Millimeters' },
   { divider: true },
-  { label: 'Show Text Window', shortcut: 'Tab' },
+  { label: 'Show Property Browser', shortcut: 'Tab' },
   { label: 'Show Snap Grid' },
   { label: 'Darken Inactive Solids' },
   { label: 'Use Perspective Projection' },

@@ -6,6 +6,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.2.0-alpha] - 2025-11-25
+
+#### Added - PropertyBrowser Component
+- New `PropertyBrowser` component replacing old TextWindow
+  - Modern design matching Figma specifications
+  - 4 view modes: Main, Line Styles, View Settings, Configuration
+  - 380px width with clean #f8f9fa background
+  - Toolbar with 11 icon buttons for quick actions
+  - Tab key toggle functionality (same as old SolveSpace)
+  - Smooth transitions and hover states
+  - Custom scrollbar styling
+- Main view features:
+  - Active plane display
+  - Group status with checkboxes (ok/err/DOF count)
+  - Filter links (show all/only unconstrained/hide all)
+  - Navigation buttons to sub-views
+- Line Styles view:
+  - 15 predefined color styles with swatches
+  - Background color editor
+  - Create custom style and load defaults options
+- View Settings:
+  - 3D view parameters configuration
+  - Scale factor, origin, and projection settings
+  - Light direction and ambient lighting controls
+  - Perspective factor and explode distance
+- Configuration view:
+  - User color settings with color swatches
+  - Export options with checkboxes
+  - Distance settings and SI prefix toggle
+  - Canvas size selection (fixed/auto)
+
+#### Changed - UI Components
+- Updated color scheme to modern palette:
+  - Primary blue: #0969da (from #0066cc)
+  - Background: #f8f9fa (from #ffffff)
+  - Borders: #dee2e6 (from #e0e0e0)
+  - Text colors: #212529, #495057, #6c757d
+- Improved typography:
+  - Base font size: 14px (from 13px)
+  - System font stack for better cross-platform support
+  - Better line-height (1.5) for readability
+- Enhanced interactions:
+  - Smoother transitions (0.2s ease)
+  - Active button states with translateY effect
+  - Refined hover states with background changes
+
+#### Removed
+- `TextWindow` component - Replaced by PropertyBrowser
+- `ViewControls` component - Old horizontal toolbar with icon buttons
+- All references to old text-window styling
+
+#### Fixed
+- Menu text updated from "Show Text Window" to "Show Property Browser"
+- Removed duplicate dev server instances
+- Cleared all Vite cache issues
+
 ### [0.1.0-alpha] - 2025-01-23
 
 #### Added - WASM Geometry Engine

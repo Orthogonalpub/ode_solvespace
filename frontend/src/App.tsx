@@ -7,8 +7,7 @@ import { TopBar } from '@/components/TopBar/TopBar';
 import { Viewport } from '@/components/Viewport/Viewport';
 import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
 import { StatusBar } from '@/components/StatusBar/StatusBar';
-import { ViewControls } from '@/components/ViewControls/ViewControls';
-import { TextWindow } from '@/components/TextWindow/TextWindow';
+import { PropertyBrowser } from '@/components/PropertyBrowser/PropertyBrowser';
 import './App.css';
 
 function App() {
@@ -62,8 +61,7 @@ function App() {
       <LeftSidebar />
       <TopBar />
       <StatusBar />
-      <ViewControls />
-      <TextWindow />
+      <PropertyBrowser />
     </div>
   );
 }
