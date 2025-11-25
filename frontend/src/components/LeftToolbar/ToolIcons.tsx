@@ -22,107 +22,222 @@ interface IconProps {
 // --- 1. Line Icon ---
 // Figma node: 1:7146
 export const LineIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M8 24L24 8" stroke="#203646" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      stroke="#1B5D8D"
+      d="M4 .5h24A3.5 3.5 0 0 1 31.5 4v24a3.5 3.5 0 0 1-3.5 3.5H4A3.5 3.5 0 0 1 .5 28V4A3.5 3.5 0 0 1 4 .5Z"
+    ></path>
+    <path
+      fill="#203646"
+      d="M11.457 21.686a1.144 1.144 0 1 0-2.287 0 1.144 1.144 0 0 0 2.287 0M22.83 10.313a1.144 1.144 0 1 0-2.288.001 1.144 1.144 0 0 0 2.288 0m1.503 0a2.648 2.648 0 0 1-3.89 2.337l-7.797 7.783a2.648 2.648 0 1 1-1.059-1.068l7.783-7.769a2.647 2.647 0 1 1 4.963-1.283"
+      opacity="0.8"
+    ></path>
   </svg>
 );
 
 // --- 2. Rectangle Icon ---
 // Figma node: 1:7147
 export const RectangleIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <rect x="8" y="10" width="16" height="12" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      fillRule="evenodd"
+      d="M8.266 10.844a2.58 2.58 0 0 1 2.578-2.578h10.312a2.58 2.58 0 0 1 2.578 2.578v10.312a2.58 2.58 0 0 1-2.578 2.578H10.844a2.58 2.58 0 0 1-2.578-2.578zm2.578-1.172c-.647 0-1.172.524-1.172 1.172v10.312c0 .648.524 1.172 1.172 1.172h10.312c.648 0 1.172-.524 1.172-1.172V10.844c0-.647-.524-1.172-1.172-1.172z"
+      clipRule="evenodd"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
 // --- 3. Circle Icon ---
 // Figma node: 1:7148
 export const CircleIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <circle cx="16" cy="16" r="7" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      d="M16 23.5a7.2 7.2 0 0 1-2.898-.59 7.6 7.6 0 0 1-2.395-1.619 7.7 7.7 0 0 1-1.625-2.388 7.3 7.3 0 0 1-.582-2.907q0-1.539.582-2.892A7.7 7.7 0 0 1 10.7 10.71a7.6 7.6 0 0 1 2.395-1.62 7.2 7.2 0 0 1 2.898-.589 7.2 7.2 0 0 1 2.898.59q1.366.582 2.394 1.619 1.035 1.035 1.626 2.395.59 1.353.59 2.892 0 1.547-.59 2.907a7.7 7.7 0 0 1-1.626 2.388 7.5 7.5 0 0 1-2.387 1.62A7.2 7.2 0 0 1 16 23.5m0-1.648q1.216 0 2.272-.453a5.9 5.9 0 0 0 1.87-1.251 5.782 5.782 0 0 0 1.712-4.151q0-1.217-.46-2.274a5.9 5.9 0 0 0-1.26-1.87 5.78 5.78 0 0 0-4.141-1.713q-1.215 0-2.28.454a5.9 5.9 0 0 0-1.862 1.258 5.793 5.793 0 0 0-1.697 4.144q0 1.224.445 2.288a5.9 5.9 0 0 0 1.259 1.864 6 6 0 0 0 1.862 1.251q1.065.453 2.28.453"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
 // --- 4. Arc Icon ---
 // Figma node: 1:7149
 export const ArcIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M10 22C10 15.373 15.373 10 22 10" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      d="M11.293 21.94a1.233 1.233 0 1 0-2.466 0 1.233 1.233 0 0 0 2.466 0M23.17 10.06a1.233 1.233 0 1 0-2.465.001 1.233 1.233 0 0 0 2.465 0m1.495 0a2.727 2.727 0 0 1-5.35.752 8.65 8.65 0 0 0-5.972 2.532 8.66 8.66 0 0 0-2.533 5.973 2.728 2.728 0 1 1-1.495-.002 10.15 10.15 0 0 1 2.97-7.029 10.15 10.15 0 0 1 7.029-2.97 2.728 2.728 0 0 1 5.351.745"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
 // --- 5. Text Icon ---
 // Figma node: 1:7150
 export const TextIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M10 12H22M16 12V22M13 22H19" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      d="M20.731 9.167c1.166 0 2.102.975 2.102 2.167v1.333a.823.823 0 0 1-.812.833.823.823 0 0 1-.811-.833v-1.333a.49.49 0 0 0-.479-.5h-3.919v10.333h1.769c.453 0 .812.378.812.833a.823.823 0 0 1-.812.834h-5.162a.823.823 0 0 1-.812-.834c0-.455.359-.833.812-.833h1.769V10.833h-3.92a.49.49 0 0 0-.478.5v1.334a.823.823 0 0 1-.811.833.823.823 0 0 1-.812-.833v-1.333c0-1.192.936-2.167 2.102-2.168z"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
 // --- 6. Image Icon ---
 // Figma node: 1:7151
 export const ImageIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <rect x="8" y="10" width="16" height="12" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <circle cx="12" cy="14" r="1.5" fill="#203646" opacity="0.7" />
-    <path d="M8 20L12 16L16 19L20 15L24 19" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g fill="#203646" opacity="0.7">
+      <path
+        fillRule="evenodd"
+        d="M11 10.167a.833.833 0 0 0-.833.833v10c0 .46.373.833.833.833h10c.46 0 .833-.373.833-.833V11a.833.833 0 0 0-.833-.833zM8.5 11A2.5 2.5 0 0 1 11 8.5h10a2.5 2.5 0 0 1 2.5 2.5v10a2.5 2.5 0 0 1-2.5 2.5H11A2.5 2.5 0 0 1 8.5 21z"
+        clipRule="evenodd"
+      ></path>
+      <path
+        fillRule="evenodd"
+        d="M14.506 15.684a.833.833 0 0 0-1.178 0L9.923 19.09l-1.179-1.178 3.405-3.405a2.5 2.5 0 0 1 3.536 0l7.154 7.155-1.178 1.178z"
+        clipRule="evenodd"
+      ></path>
+      <path d="M20.167 13.083a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0"></path>
+    </g>
   </svg>
 );
 
 // --- 7. Tangent Icon ---
 // Figma node: 1:7152
 export const TangentIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <circle cx="16" cy="18" r="6" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M8 12H24" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#203646"
+        d="M16 11.795c.357 0 .683.126.941.333h6.642a.75.75 0 0 1 0 1.5h-3.509a8.32 8.32 0 0 1 3.618 4.071c.323.779.524 1.6.6 2.438.037.412-.302.748-.716.749-.414 0-.745-.337-.79-.748a6.84 6.84 0 0 0-4.174-5.56 6.8 6.8 0 0 0-1.37-.402 1.513 1.513 0 0 1-2.485-.001 6.81 6.81 0 0 0-5.541 5.962c-.046.411-.377.748-.791.749-.414 0-.754-.337-.717-.75a8.326 8.326 0 0 1 4.218-6.509H8.417a.75.75 0 0 1 0-1.5h6.64c.26-.206.586-.332.943-.332"
+      ></path>
+      <path
+        fill="#EFF1F4"
+        d="M17.364 13.158c0-.706-.537-1.286-1.224-1.356l-.14-.008c-.752 0-1.363.611-1.363 1.364l.007.14a1.364 1.364 0 0 0 1.217 1.217l.14.006c.706 0 1.287-.536 1.356-1.224zm.682 0a2.045 2.045 0 1 1-4.09 0 2.045 2.045 0 0 1 4.09 0"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 8. Connect Icon ---
 // Figma node: 1:7153
 export const ConnectIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <circle cx="10" cy="12" r="3" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <circle cx="22" cy="20" r="3" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M13 14L19 18" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      fillRule="evenodd"
+      d="M11.216 8.083a2.14 2.14 0 0 1 2.047 1.512h5.603c2.194 0 4.055 1.554 4.055 3.577s-1.861 3.577-4.055 3.577H13.13c-1.51 0-2.637 1.02-2.637 2.159s1.127 2.159 2.637 2.159h5.616a2.14 2.14 0 1 1 0 1.418H13.13c-2.193 0-4.055-1.554-4.055-3.577s1.862-3.577 4.055-3.577h5.736c1.51 0 2.637-1.02 2.637-2.16 0-1.138-1.127-2.158-2.637-2.158h-5.66a2.14 2.14 0 0 1-3.503.725 2.14 2.14 0 0 1 1.513-3.655m0 1.394a.747.747 0 1 0 0 1.494.747.747 0 0 0 0-1.494m9.021 11.77a.747.747 0 1 1 1.057 1.058.747.747 0 0 1-1.057-1.058"
+      clipRule="evenodd"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
 // --- 9. Point Icon ---
 // Figma node: 1:7154
 export const PointIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <circle cx="16" cy="16" r="3" fill="#203646" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      d="M17.128 16a1.129 1.129 0 1 0-2.258 0 1.129 1.129 0 0 0 2.258 0m1.372 0a2.5 2.5 0 1 1-5.001 0 2.5 2.5 0 0 1 5.001 0"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
 // --- 10. Toggle Construction Icon ---
 // Figma node: 1:7155
 export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M10 10L10 22L18 16L10 10Z" fill="#203646" opacity="0.7" />
-    <path d="M22 10V22" stroke="#203646" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g fill="#203646" opacity="0.7">
+      <path d="M21 20.962c0-.488.373-.884.833-.884s.834.396.834.884v1.654c0 .488-.373.884-.834.884S21 23.104 21 22.616zm0-6.616c0-.488.373-.884.833-.884s.834.396.834.884v3.308c0 .488-.373.884-.834.884S21 18.142 21 17.654zm0-4.962c0-.488.373-.884.833-.884s.834.396.834.884v1.654c0 .488-.373.884-.834.884S21 11.526 21 11.038zM15.165 17.655a.656.656 0 0 1 .919 0 .64.64 0 0 1 0 .914l-1.389 1.37h4.188c.357 0 .65.286.65.645a.65.65 0 0 1-.65.644h-4.189l1.39 1.37a.64.64 0 0 1 0 .914.656.656 0 0 1-.919 0l-2.507-2.471q-.021-.024-.039-.048-.021-.025-.04-.052-.016-.023-.028-.048-.02-.031-.035-.065-.016-.042-.026-.085-.004-.015-.01-.031a.64.64 0 0 1 .038-.377q.016-.038.039-.074.01-.018.021-.037a.7.7 0 0 1 .08-.097zM10.167 8.5c.46 0 .833.396.833.883v13.233c0 .488-.373.883-.833.884-.46 0-.834-.396-.834-.884V9.383c0-.487.374-.883.834-.883m5.776 14.87a.5.5 0 0 1-.07.056zm3.39-2.7870000000000004q0 .018-.003.034l.004-.033zm-6.575-.267-.008.01a.4.4 0 0 1 .049-.057zm6.232-.164-.016-.005-.014-.002zM15.917 8.488a.656.656 0 0 1 .919 0l2.506 2.472a.7.7 0 0 1 .08.097l.015.027a.6.6 0 0 1 .083.207.64.64 0 0 1-.08.452q-.008.015-.017.031a.7.7 0 0 1-.081.1l-2.506 2.471a.656.656 0 0 1-.919 0 .64.64 0 0 1 0-.914l1.39-1.37h-4.189a.65.65 0 0 1-.651-.644.65.65 0 0 1 .651-.646h4.188l-1.389-1.369a.64.64 0 0 1 0-.914m.045 5.223-.004.008a.4.4 0 0 1 .041-.076zm.037-5.011a.4.4 0 0 0 .059-.07z"></path>
+    </g>
   </svg>
 );
 
 // --- 11. Intersect Icon ---
 // Figma node: 1:7156
 export const IntersectIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M8 24L24 8" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M8 8L24 24" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <circle cx="16" cy="16" r="2" fill="#203646" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g fill="#203646" opacity="0.7">
+      <path d="M23.616 11.083a.751.751 0 0 1 .686 1.335l-6.978 3.581 6.9 3.632a.75.75 0 0 1-.698 1.328l-7.833-4.122-7.308 3.751a.751.751 0 0 1-.686-1.334l6.371-3.272-6.377-3.356a.75.75 0 0 1 .698-1.328l7.31 3.848z"></path>
+      <circle
+        cx="15.572"
+        cy="15.826"
+        r="1.773"
+        stroke="#E4E6E7"
+        strokeWidth="0.818"
+      ></circle>
+    </g>
   </svg>
 );
 
@@ -133,125 +248,292 @@ export const IntersectIcon: React.FC<IconProps> = ({ size = 16 }) => (
 // --- 12. Distance Icon ---
 // Figma node: 1:7165
 export const DistanceIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M10 20H22" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M10 16V24M22 16V24" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M14 12H18L16 8L14 12Z" fill="#203646" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M10.917 12.667h10.167v-.834h1.5V16h-1.5v-1.834H10.917V16h-1.5v-4.167h1.5z"
+      ></path>
+      <path
+        fill="#203646"
+        fillRule="evenodd"
+        d="M21.833 15.167a2.5 2.5 0 1 1-2.355 3.333h-6.956a2.499 2.499 0 0 1-4.855-.833 2.5 2.5 0 0 1 4.855-.834h6.956a2.5 2.5 0 0 1 2.355-1.666m-11.666 1.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m11.666 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"
+        clipRule="evenodd"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 13. Angle Icon ---
 // Figma node: 1:7166
 export const AngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M8 24H24" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
-    <path d="M8 24L20 10" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
-    <path d="M12 24C12 21 13 19 15 17" stroke="#203646" strokeWidth="1.2" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    fill="none"
+    viewBox="0 0 20 20"
+  >
+    <g opacity="0.7">
+      <path
+        stroke="#060708"
+        strokeLinejoin="round"
+        strokeOpacity="0.6"
+        strokeWidth="1.887"
+        d="M5.204 10.833c1.18.393 3.931 1.572 3.145 4.717"
+      ></path>
+      <path
+        fill="#203646"
+        d="M8.82 2.5a2.358 2.358 0 1 1-.217 4.705l-4.424 7.963 9.504-1.187a2.358 2.358 0 1 1 .333 1.859L2.569 17.27a.95.95 0 0 1-.9-.407.95.95 0 0 1-.041-.986l5.324-9.585a2.35 2.35 0 0 1-.49-1.435A2.36 2.36 0 0 1 8.82 2.5m7.155 11.367a.66.66 0 1 0 0 1.321.66.66 0 0 0 0-1.32M8.82 4.198a.66.66 0 1 0 0 1.32.66.66 0 0 0 0-1.32"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 14. Horizontal Icon ---
 // Figma node: 1:7167
 export const HorizontalIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M8 16H24" stroke="#203646" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-    <path d="M12 12L8 16L12 20" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
-    <path d="M20 12L24 16L20 20" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    fill="none"
+    viewBox="0 0 20 20"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#203646"
+        d="M16.616 7.083c.489 0 .884.374.884.834s-.395.833-.884.833H3.384c-.488 0-.884-.373-.884-.833s.396-.834.884-.834z"
+      ></path>
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M5.038 11.25c.488 0 .884.373.884.834s-.396.833-.884.833H3.384c-.488 0-.884-.373-.884-.833s.396-.834.884-.834zm6.616 0c.488 0 .884.373.884.834s-.396.833-.884.833H8.346c-.488 0-.883-.373-.883-.833s.395-.834.883-.834zm4.962 0c.489 0 .884.373.884.834s-.395.833-.884.833h-1.653c-.489 0-.884-.373-.884-.833s.395-.834.884-.834z"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 15. Vertical Icon ---
 // Figma node: 1:7168
 export const VerticalIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M16 8V24" stroke="#203646" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-    <path d="M12 12L16 8L20 12" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
-    <path d="M12 20L16 24L20 20" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    fill="none"
+    viewBox="0 0 20 20"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#203646"
+        d="M7.5 3.384c0-.488.373-.884.833-.884s.834.396.834.884v13.232c0 .488-.373.884-.834.884s-.833-.396-.833-.884z"
+      ></path>
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M11.667 14.962c0-.488.373-.884.833-.884s.833.396.833.884v1.654c0 .488-.373.884-.833.884s-.833-.396-.833-.884zm0-6.616c0-.488.373-.884.833-.884s.833.396.833.884v3.308c0 .488-.373.884-.833.884s-.833-.396-.833-.884zm0-4.962c0-.488.373-.884.833-.884s.833.396.833.884v1.654c0 .488-.373.884-.833.884s-.833-.396-.833-.884z"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 16. Parallel Icon ---
 // Figma node: 1:7169
 export const ParallelIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M10 10L22 22" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M10 16L22 28" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#203646"
+        d="M9.723 20.818a.773.773 0 0 1-1.093-1.093l8.179-8.179A.773.773 0 0 1 17.9 12.64z"
+      ></path>
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M15.191 20.818a.773.773 0 0 1-1.093-1.093l8.18-8.179a.773.773 0 0 1 1.092 1.093z"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 17. Perpendicular Icon ---
 // Figma node: 1:7170
 export const PerpendicularIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M10 22V10H22" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
-    <rect x="10" y="16" width="4" height="4" stroke="#203646" strokeWidth="1" opacity="0.5" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        stroke="#060708"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeOpacity="0.6"
+        strokeWidth="2"
+        d="M10.167 17.667h4.166v4.583"
+      ></path>
+      <path
+        fill="#203646"
+        d="M8.5 9.333a.833.833 0 0 1 1.667 0v12.5h12.5a.833.833 0 0 1 0 1.667H9.333a.833.833 0 0 1-.833-.833z"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 18. Point On Line Icon ---
 // Figma node: 1:7171
 export const PointOnLineIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M8 24L24 8" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <circle cx="16" cy="16" r="3" fill="#203646" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#203646"
+        d="M16.54 14.115c.306-.307.819-.292 1.144.033.325.326.34.838.034 1.145L9.4 23.61c-.307.307-.82.292-1.145-.034s-.34-.838-.034-1.144z"
+      ></path>
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M23.54 17.648c.346.345.362.89.037 1.215-.326.325-.87.309-1.215-.036L13.006 9.47c-.345-.345-.361-.889-.036-1.214.325-.326.87-.31 1.214.036z"
+      ></path>
+      <path
+        fill="#203646"
+        d="m18.39 11.32 2.122 2.121-2.121 2.122-2.121-2.122z"
+      ></path>
+      <circle
+        cx="18.391"
+        cy="13.441"
+        r="1.95"
+        fill="#203646"
+        stroke="#E4E6E7"
+        strokeWidth="0.9"
+        transform="rotate(45 18.39 13.441)"
+      ></circle>
+    </g>
   </svg>
 );
 
 // --- 19. Mirror Icon ---
 // Figma node: 1:7172
 export const MirrorIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M16 8V24" stroke="#203646" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.7" />
-    <path d="M8 12L12 16L8 20" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M24 12L20 16L24 20" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g fill="#203646" fillRule="evenodd" clipRule="evenodd" opacity="0.7">
+      <path d="M23.841 10.661c.296.11.492.394.492.71v9.259a.758.758 0 0 1-1.306.522l-4.21-4.429a.76.76 0 0 1-.021-1.02l4.209-4.83a.76.76 0 0 1 .836-.212m-3.45 5.518 2.427 2.554v-5.34zM8.158 10.661a.76.76 0 0 0-.491.71v9.259a.757.757 0 0 0 1.306.522l4.209-4.429a.757.757 0 0 0 .022-1.02l-4.209-4.83a.76.76 0 0 0-.837-.212m3.45 5.518-2.426 2.554v-5.34zM16 24.333a.76.76 0 0 1-.758-.757V8.424a.758.758 0 0 1 1.515 0v15.152c0 .418-.339.757-.757.757"></path>
+    </g>
   </svg>
 );
 
 // --- 20. Equal Icon ---
 // Figma node: 1:7173
 export const EqualIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M10 13H22" stroke="#203646" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-    <path d="M10 19H22" stroke="#203646" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      d="M9.459 13.762a.9.9 0 0 1-.474-.13 1.2 1.2 0 0 1-.356-.355.9.9 0 0 1-.129-.485q0-.258.13-.474.14-.226.355-.355a.9.9 0 0 1 .474-.13h13.082q.258 0 .474.13a.96.96 0 0 1 .345.355q.14.216.14.474a.87.87 0 0 1-.14.485 1.1 1.1 0 0 1-.345.356.9.9 0 0 1-.474.13zm0 6.81a.9.9 0 0 1-.474-.129 1.1 1.1 0 0 1-.356-.345.96.96 0 0 1-.129-.485q0-.269.13-.484.14-.216.355-.345a.85.85 0 0 1 .474-.14h13.082q.258 0 .474.14a1 1 0 0 1 .345.345.905.905 0 0 1 0 .97 1 1 0 0 1-.345.344.9.9 0 0 1-.474.13z"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
 // --- 21. Normals Icon ---
 // Figma node: 1:7174
 export const NormalsIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <circle cx="18" cy="18" r="6" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M14 14L8 8" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
-    <path d="M8 8L11 9M8 8L9 11" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M16.922 22.88a7.2 7.2 0 0 0-7.198-7.198.9.9 0 0 1 0-1.8 9 9 0 0 1 8.313 5.555 9 9 0 0 1 .685 3.443.9.9 0 1 1-1.8 0"
+      ></path>
+      <path
+        fill="#000"
+        d="M20.853 9.382a.81.81 0 0 1 1.204 1.084l-5.72 6.352-1.204-1.084z"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 22. Supplementary Angle Icon ---
 // Figma node: 1:7175
 export const SupplementaryAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M8 20L16 12L24 20" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
-    <path d="M12 20C12 17 14 15 16 14" stroke="#203646" strokeWidth="1" opacity="0.5" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g clipPath="url(#clip0_90_12988)" opacity="0.7">
+      <path
+        fill="#696F74"
+        d="M15.012 11.973c.979-.051 2.2.111 3.221.81 1.058.723 1.795 1.95 1.892 3.795a.742.742 0 0 1-1.48.078c-.077-1.45-.624-2.222-1.249-2.65-.661-.452-1.522-.594-2.308-.552a.74.74 0 1 1-.076-1.48m-1.945-1.816c.541-.09 1.124-.066 1.598.141l-.594 1.36c-.13-.056-.4-.098-.763-.038-.35.057-.72.199-1.024.422-.3.219-.53.51-.646.876-.115.365-.135.868.088 1.544l-1.408.464c-.302-.917-.32-1.742-.095-2.455a3.2 3.2 0 0 1 1.188-1.628 3.9 3.9 0 0 1 1.656-.686"
+      ></path>
+      <path
+        fill="#203646"
+        d="M12.74 6.689a.75.75 0 0 1 .964.444l3.019 8.185 8.476 2.244a.751.751 0 0 1-.384 1.451l-7.458-1.975 2.538 6.882a.751.751 0 0 1-1.408.52l-2.902-7.87-8.066-2.136a.75.75 0 0 1 .383-1.45l7.05 1.865-2.655-7.196a.75.75 0 0 1 .444-.964"
+      ></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_90_12988">
+        <path fill="#fff" d="M6 6h20v20H6z"></path>
+      </clipPath>
+    </defs>
   </svg>
 );
 
 // --- 23. Ref Icon ---
 // Figma node: 1:7176
 export const RefIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <text x="10" y="20" fill="#203646" fontSize="10" fontWeight="bold" opacity="0.7">66</text>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      d="M21.496 20.1q.345-.375.548-.886.203-.51.203-1.036 0-1.08-.61-1.84a2.44 2.44 0 0 0-1.585-.908l-.226-.015-.195-.03q-.45-.06-.451-.346 0-.3.601-.946.633-.69 2-1.397.573-.3.572-.75a.63.63 0 0 0-.195-.474.69.69 0 0 0-.496-.187q-.75 0-2.072.87-1.561 1.023-2.492 2.486-.932 1.465-.932 2.891 0 .676.256 1.345.255.668.69 1.134.916 1.006 2.207 1.006 1.321 0 2.177-.916m-7.172 0q.345-.375.547-.893a2.8 2.8 0 0 0 .202-1.029q0-1.081-.599-1.847a2.33 2.33 0 0 0-1.572-.901l-.24-.015-.18-.03q-.449-.06-.449-.346 0-.3.585-.946.614-.66 1.992-1.397.57-.3.57-.75a.63.63 0 0 0-.195-.474.69.69 0 0 0-.495-.188q-.748 0-2.068.872-1.56 1.02-2.48 2.485-.922 1.465-.922 2.891 0 .676.255 1.345t.689 1.134q.914 1.005 2.187 1.005 1.335 0 2.173-.915"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
@@ -262,99 +544,275 @@ export const RefIcon: React.FC<IconProps> = ({ size = 16 }) => (
 // --- 24. Extrude Icon ---
 // Figma node: 1:7185
 export const ExtrudeIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <rect x="10" y="14" width="12" height="10" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M10 14L14 8H22L22 14" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M22 14L22 8" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#203646"
+        stroke="#203646"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="0.176"
+        d="M13.494 11.45a.49.49 0 0 1 0-.686l2.179-2.21a.48.48 0 0 1 .56-.087q.023.012.047.028a.5.5 0 0 1 .073.06l2.179 2.21a.49.49 0 0 1 0 .685.476.476 0 0 1-.68 0l-1.358-1.377v3.906a.483.483 0 0 1-.48.486.483.483 0 0 1-.481-.486v-3.906l-1.358 1.377a.477.477 0 0 1-.681 0"
+      ></path>
+      <path
+        fill="#203646"
+        d="M20.047 12.483c1.85.46 2.977 1.212 3.086 2.059q.009.07.008.139l-.039 6.027q-.001.113-.026.224c-.388 1.15-1.656 1.53-2.601 1.88-2.31.703-4.755.796-7.125.486-1.408-.254-3.424-.563-4.326-1.926-.26-.047-.075-5.756-.096-6.491-.052-.878 1.024-1.719 2.9-2.261l-.006 4.313c1.267.343 2.855.525 4.551.476 1.346-.038 2.586-.217 3.626-.495l.047-4.377v-.055zm.746 4.442-.001.006v.028a.79.79 0 0 1-.594.75q-.206.054-.42.102a1 1 0 0 1-.19.017 17.4 17.4 0 0 1-3.071.37.8.8 0 0 1-.181.027q-.383.01-.68.006h-.042l-.178-.003h-.031a.8.8 0 0 1-.185-.028 17 17 0 0 1-2.873-.33.8.8 0 0 1-.193-.017l-.008-.001-.014-.004a13 13 0 0 1-.505-.12.8.8 0 0 1-.599-.785v-.015l.005-3.184a4.2 4.2 0 0 0-.888.507c-.3.233-.39.408-.416.51l-.008.075v.027c.011.383-.03 2.045-.041 3.53-.006.76-.004 1.487.015 2.023q.014.394.036.586c.32.439.843.76 1.527 1 .714.252 1.491.381 2.213.512 2.269.294 4.582.2 6.751-.455.503-.187.96-.338 1.36-.573.37-.215.605-.456.724-.765l.004-.027h-.002l.04-6.022q0-.015-.002-.032l-.009-.043c-.031-.11-.15-.314-.532-.57a4.8 4.8 0 0 0-.977-.477zm-5.343.51.17.004-.199-.005zm-3.628-.475q.245.064.494.118-.255-.057-.494-.122zm7.782.075q.2-.043.396-.095v-.002q-.195.05-.396.098"
+      ></path>
+      <path
+        fill="#E4E6E7"
+        d="M20.367 18.632c.941.316 2.57.773 2.693 2.077-.067-.393.167-6.095-.13-6.615-.682-.993-1.871-1.295-2.902-1.59l-.038 6.026q.19.048.378.102zm-8.64-.034.038-6.027c-.986.324-2.137.665-2.75 1.666-.172.396-.043 6.357-.087 6.542.015-1.378 1.9-1.876 2.798-2.18z"
+      ></path>
+      <path
+        fill="#203646"
+        stroke="#203646"
+        strokeWidth="0.1"
+        d="m20.15 11.904-.1-.028a.367.367 0 0 0-.468.35l-.041 6.443v.04l.038.009.304.076q.18.045.36.097c.49.165 1.069.34 1.553.625.483.283.779.62.82 1.064l.007.073.002-.002v.01l.052-.007.784-.101.048-.007-.004-.047-.003-.027a8 8 0 0 1-.007-.308c0-.19 0-.444.005-.743.007-.594.022-1.366.028-2.137s.006-1.552-.015-2.175a17 17 0 0 0-.02-.44l-.03-.373-.045-.305a1 1 0 0 0-.063-.213l-.036-.074-.008-.014-.003-.005-.01-.014c-.783-1.136-2.13-1.476-3.112-1.756zm0 0-.013.048.008-.028zm-8.42.039c.239-.079.484.1.483.351l-.041 6.423v.035l-.035.012-.265.089c-.478.161-1.115.345-1.652.652-.502.286-.797.613-.84 1.019l-.003.083a1 1 0 0 1-.016.108l-.01.044-.045-.006-.78-.1-.045-.006v-.044q0-.072.007-.139l.003-.176-.002-.721c-.003-.59-.01-1.367-.012-2.149a96 96 0 0 1 .012-2.197c.006-.31.016-.585.03-.796q.01-.16.025-.278a1 1 0 0 1 .061-.256l.001-.004.046.021-.045-.021.012-.025.002-.004.014-.024.141-.21c.739-1.005 1.968-1.357 2.849-1.646zm8.707 6.075.06.017.004.001.008.003c.392.131.976.31 1.511.583l.227.123.226.145q.07.05.138.103c.008-.52.02-1.117.023-1.72l.004-1.069a54 54 0 0 0-.017-1.07q-.01-.374-.046-.746a2 2 0 0 0-.031-.219l-.008-.03c-.474-.657-1.224-.957-2.065-1.21zm-9.124-4.993c-.778.272-1.467.59-1.882 1.225l-.002.016a4 4 0 0 0-.02.22c-.012.192-.02.45-.026.756a93 93 0 0 0-.013 2.175c.001.548.006 1.092.009 1.572q.193-.146.395-.261c.503-.287 1.081-.484 1.508-.623z"
+      ></path>
+      <path
+        fill="#949A9E"
+        d="M23.077 20.933q.025-.11.027-.224l-.054-6.022c-.333 2.404-5.843 2.815-7.598 2.75-1.574-.033-6.237-.437-6.488-2.617.042.28-.211 6.505.06 6.551.903 1.363 2.919 1.674 4.328 1.928 2.37.31 4.815.217 7.124-.485.946-.35 2.214-.731 2.6-1.88"
+      ></path>
+      <path
+        fill="#203646"
+        stroke="#203646"
+        strokeWidth="0.1"
+        d="M22.616 16.047q-.191.162-.406.3c-.65.413-1.477.703-2.32.906-1.678.405-3.528.492-4.443.46l-.01.002v-.002c-.808-.017-2.402-.129-3.84-.518-.63-.17-1.254-.401-1.773-.715l-.216-.14a3 3 0 0 1-.217-.168c-.013.556-.027 1.206-.037 1.851a58 58 0 0 0 0 2.165c.007.294.018.527.036.683l.013.095c.375.56.996.932 1.742 1.196.745.261 1.552.396 2.264.524 2.315.304 4.689.211 6.922-.465.492-.182.99-.348 1.428-.603l.153-.096c.346-.23.602-.51.733-.885a1 1 0 0 0 .011-.104zm.934 4.49v.01a1.6 1.6 0 0 1-.037.317v.002l-.006.02-.001.003-.006.019c-.24.712-.75 1.167-1.288 1.481-.526.308-1.13.509-1.58.675l-.01.004-.004.001-.012.002h.001c-2.383.725-4.893.817-7.311.5h-.018v-.002l-.007-.002c-.692-.124-1.587-.27-2.42-.564-.817-.29-1.634-.738-2.164-1.505v-.001a.55.55 0 0 1-.14-.26 2 2 0 0 1-.046-.272 10 10 0 0 1-.041-.757l-.01-1.028c.001-.375.005-.774.01-1.174.013-.8.033-1.608.046-2.231l.015-.771v-.301l-.01-.052.052-.007.787-.1.056-.007v.056l.001.008c.043.373.275.705.71 1.006.436.303 1.036.543 1.71.726 1.344.364 2.863.471 3.632.487h.007c.845.032 2.62-.052 4.212-.435.797-.193 1.518-.454 2.05-.792.533-.338.822-.717.88-1.138l.005-.046.047.003.79.053.046.003v.047z"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 25. Rotate Component Icon ---
 // Figma node: 1:7186
 export const RotateIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M22 12C22 8.686 19.314 6 16 6C12.686 6 10 8.686 10 12" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M10 20C10 23.314 12.686 26 16 26C19.314 26 22 23.314 22 20" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M22 12L24 10M22 12L20 10" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M10 20L8 22M10 20L12 22" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g fill="#203646" opacity="0.7">
+      <path d="M15.521 8.167a.75.75 0 0 0 0 1.5h.417a5.917 5.917 0 0 1 5.916 5.916v1.523l-.803-.803a.75.75 0 0 0-1.06 1.06l2.083 2.084a.75.75 0 0 0 1.06 0l2.084-2.083a.75.75 0 1 0-1.06-1.061l-.804.803v-1.523a7.417 7.417 0 0 0-7.416-7.416z"></path>
+      <path
+        fillRule="evenodd"
+        d="M11.544 23.391a1.5 1.5 0 0 0 2.121 0l4.605-4.604a1.5 1.5 0 0 0 0-2.122l-4.605-4.604a1.5 1.5 0 0 0-2.121 0l-4.605 4.604a1.5 1.5 0 0 0 0 2.122zm1.06-1.06 4.605-4.605-4.605-4.605L8 17.726z"
+        clipRule="evenodd"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 26. Helix Icon ---
 // Figma node: 1:7187
 export const HelixIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M12 24C12 22 14 20 16 20C18 20 20 18 20 16C20 14 18 12 16 12C14 12 12 10 12 8" stroke="#203646" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      d="M9.519 7.61c.944.004 1.88.195 2.982.533.373.114.638.46.638.86v3.66h8.892l.177.005a3.565 3.565 0 0 1 3.392 3.556v6.843a.9.9 0 0 1-.523.817c-1.112.515-2.075.837-3.073.846-1.01.01-1.961-.298-3.057-.859a.9.9 0 0 1-.49-.8v-2.685a.6.6 0 0 0-.6-.6H9.568A3.566 3.566 0 0 1 6 16.226V9a.9.9 0 0 1 .611-.852L7 8.022c.889-.273 1.689-.415 2.52-.412m2.02 3.276c-.95.453-1.852.554-2.675.426a4.7 4.7 0 0 1-1.264-.395v5.307a1.966 1.966 0 0 0 1.967 1.963h9.59a.9.9 0 0 1 .9.899v3.546c.781.362 1.37.505 1.931.499.57-.006 1.182-.164 2.012-.519v-6.386l-.01-.195a1.966 1.966 0 0 0-1.958-1.767H12.44a.9.9 0 0 1-.9-.9zM9.512 9.6c-.25-.001-.5.015-.758.05.115.033.233.063.355.082.343.053.736.047 1.178-.077a6 6 0 0 0-.775-.055"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
 // --- 27. Revolve Icon ---
 // Figma node: 1:7188
 export const RevolveIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <ellipse cx="16" cy="16" rx="8" ry="4" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M16 12V20" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M8 16H24" stroke="#203646" strokeWidth="1.5" strokeDasharray="2 2" opacity="0.5" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#949A9E"
+        d="M23.125 18.438c0-2.59-3.19-4.688-7.125-4.688s-7.125 2.098-7.125 4.688v-4.875c0-2.59 3.19-4.688 7.125-4.688s7.125 2.098 7.125 4.688z"
+      ></path>
+      <path
+        fill="#E4E6E7"
+        d="M8.875 18.438v-4.875c0 2.071 2.042 3.829 4.875 4.449v4.875c-2.833-.62-4.875-2.378-4.875-4.45m9.375 4.449c2.832-.62 4.875-2.378 4.875-4.45v-4.875c0 2.072-2.043 3.83-4.875 4.45z"
+      ></path>
+      <path
+        fill="#203646"
+        stroke="#203646"
+        strokeWidth="0.2"
+        d="M8.4 13.562c0-1.505.928-2.807 2.301-3.71C12.078 8.943 13.953 8.4 16 8.4s3.921.544 5.299 1.451c1.373.904 2.3 2.206 2.3 3.711v4.875c0 1.203-.595 2.281-1.533 3.123-.936.841-2.234 1.467-3.714 1.79a.475.475 0 0 1-.577-.463V17.87a.3.3 0 0 1 .236-.293l.137-.03c1.338-.293 2.467-.847 3.258-1.547q-.285-.254-.629-.482c-1.1-.724-2.607-1.206-4.302-1.283v1.014a.475.475 0 1 1-.95 0v-1.013c-1.587.072-3.01.5-4.087 1.147l-.215.136a5.5 5.5 0 0 0-.63.48c.79.701 1.92 1.255 3.259 1.548l.137.03a.3.3 0 0 1 .236.293v5.016c0 .303-.28.528-.577.463-1.48-.323-2.777-.949-3.714-1.79-.938-.842-1.534-1.92-1.534-3.123zm.95 0c0 .607.209 1.196.602 1.739q.345-.31.75-.575c1.27-.835 2.962-1.363 4.823-1.44V12.25a.475.475 0 1 1 .95 0v1.036c1.86.077 3.554.605 4.824 1.44q.402.267.748.574c.394-.542.603-1.131.603-1.738 0-1.083-.668-2.125-1.873-2.918-1.1-.724-2.607-1.206-4.302-1.283V10a.475.475 0 1 1-.95 0v-.638c-1.695.076-3.203.56-4.302 1.283-1.205.792-1.873 1.833-1.873 2.917Zm9.375 8.712c1.1-.317 2.03-.813 2.708-1.42.79-.71 1.217-1.548 1.217-2.417v-2.363a5 5 0 0 1-.584.611c-.857.77-2.017 1.357-3.341 1.7zM9.35 18.437c0 .869.427 1.706 1.217 2.416.677.608 1.608 1.103 2.708 1.421v-3.89c-1.324-.342-2.484-.93-3.341-1.699a5 5 0 0 1-.584-.611z"
+      ></path>
+      <path
+        fill="#203646"
+        d="M16 23.5a.375.375 0 0 0 .375-.375v-2.25a.375.375 0 1 0-.75 0v2.25c0 .207.168.375.375.375m0-4.5a.375.375 0 0 0 .375-.375V17.5a.375.375 0 1 0-.75 0v1.125c0 .207.168.375.375.375"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 28. Rotate Pattern Icon ---
 // Figma node: 1:7189
 export const RotatePatternIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <circle cx="16" cy="16" r="6" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <circle cx="16" cy="8" r="2" fill="#203646" opacity="0.7" />
-    <circle cx="22" cy="20" r="2" fill="#203646" opacity="0.7" />
-    <circle cx="10" cy="20" r="2" fill="#203646" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M12.557 20.489c.39.3.819.55 1.278.74l-.424 1.02a6.8 6.8 0 0 1-1.528-.884zm7.224.439.336.437a6.8 6.8 0 0 1-1.528.885l-.423-1.021c.46-.19.888-.44 1.278-.74zm-9.01-2.763c.191.46.44.889.74 1.278l-.44.337-.345.267-.091.07a6.8 6.8 0 0 1-.885-1.528zm11.479.424a6.8 6.8 0 0 1-.885 1.528l-.437-.336-.439-.338c.3-.39.55-.818.74-1.278zm-11.178-6.37.44.338c-.3.39-.55.818-.74 1.277l-1.022-.423c.228-.55.527-1.063.885-1.528zm10.293-.336c.358.465.657.978.885 1.528l-1.02.423a5.7 5.7 0 0 0-.74-1.277zm-7.53-1.112c-.46.19-.889.44-1.278.74l-.674-.877a6.8 6.8 0 0 1 1.528-.884zm4.754-1.021c.55.228 1.063.527 1.528.884l-.154.202-.52.675c-.389-.3-.818-.55-1.277-.74z"
+      ></path>
+      <circle
+        cx="16"
+        cy="9.75"
+        r="1.333"
+        stroke="#203646"
+        strokeWidth="1.5"
+      ></circle>
+      <circle
+        cx="9.75"
+        cy="16"
+        r="1.333"
+        stroke="#203646"
+        strokeWidth="1.5"
+      ></circle>
+      <circle
+        cx="16"
+        cy="22.25"
+        r="1.333"
+        stroke="#203646"
+        strokeWidth="1.5"
+      ></circle>
+      <circle
+        cx="22.25"
+        cy="16"
+        r="1.333"
+        stroke="#203646"
+        strokeWidth="1.5"
+      ></circle>
+    </g>
   </svg>
 );
 
 // --- 29. Translate Icon ---
 // Figma node: 1:7190
 export const TranslateIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <rect x="8" y="8" width="6" height="6" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <rect x="14" y="14" width="6" height="6" stroke="#203646" strokeWidth="1.5" opacity="0.5" />
-    <rect x="20" y="20" width="6" height="6" stroke="#203646" strokeWidth="1.5" opacity="0.3" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g fill="#E4E6E7" stroke="#203646" strokeWidth="1.5" opacity="0.7">
+      <circle cx="23.083" cy="11" r="1.333"></circle>
+      <circle cx="16.417" cy="15.583" r="1.333"></circle>
+      <circle cx="9.75" cy="20.583" r="1.333"></circle>
+    </g>
   </svg>
 );
 
 // --- 30. New Workplane Icon ---
 // Figma node: 25:1182
 export const NewWorkplaneIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M8 20L16 24L24 20L16 16L8 20Z" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M16 10V16" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M13 13H19" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="m19.388 18.445-.942.943-5.834-5.834.943-.942z"
+      ></path>
+      <path
+        fill="#203646"
+        fillRule="evenodd"
+        d="M20.025 17.667a2.358 2.358 0 1 1 0 4.716 2.358 2.358 0 0 1 0-4.716m0 1.415a.943.943 0 1 0 0 1.886.943.943 0 0 0 0-1.886M12.026 9.667a2.358 2.358 0 1 1 0 4.717 2.358 2.358 0 0 1 0-4.717m0 1.415a.943.943 0 1 0 0 1.886.943.943 0 0 0 0-1.886"
+        clipRule="evenodd"
+      ></path>
+      <path
+        fill="#203646"
+        fillRule="evenodd"
+        d="M22.837 7.676c.84.085 1.496.794 1.496 1.657v13.334l-.008.17a1.67 1.67 0 0 1-1.488 1.487l-.17.01H9.333a1.667 1.667 0 0 1-1.657-1.497l-.01-.17V9.333c0-.92.747-1.666 1.667-1.666h13.334zM9.333 9.083a.25.25 0 0 0-.25.25v13.334c0 .138.112.25.25.25h13.334a.25.25 0 0 0 .25-.25V9.333a.25.25 0 0 0-.25-.25z"
+        clipRule="evenodd"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 31. New Group 3D Icon ---
 // Figma node: 25:1188
 export const NewGroup3DIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M16 8L24 12V20L16 24L8 20V12L16 8Z" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M16 16V24" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M8 12L16 16L24 12" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M16.227 19.333v2.5h-1.333v-2.5z"
+      ></path>
+      <path
+        fill="#203646"
+        fillRule="evenodd"
+        d="M15.56 21a2.084 2.084 0 1 1 0 4.167 2.084 2.084 0 0 1 0-4.167m0 1.25a.833.833 0 1 0 0 1.667.833.833 0 0 0 0-1.667M23.284 12c1.187 0 1.783 1.437.943 2.276l-4.917 4.917c-.25.25-.59.39-.943.39H8.17c-1.188 0-1.784-1.436-.944-2.276l4.917-4.916c.25-.25.59-.39.943-.39zM8.17 18.25h10.197l4.916-4.917H13.087zM15.56 6.833a2.084 2.084 0 1 1 0 4.168 2.084 2.084 0 0 1 0-4.168m0 1.25a.833.833 0 1 0 0 1.667.833.833 0 0 0 0-1.667"
+        clipRule="evenodd"
+      ></path>
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M16.227 15.167a.666.666 0 1 1-1.333 0v-4.278c.21.071.433.111.666.111s.457-.04.667-.111z"
+      ></path>
+    </g>
   </svg>
 );
 
 // --- 32. Assembly Icon ---
 // Figma node: 1:7191
 export const AssemblyIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <rect x="8" y="8" width="8" height="8" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <rect x="16" y="16" width="8" height="8" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M16 12H20V16" stroke="#203646" strokeWidth="1.5" strokeDasharray="2 2" opacity="0.5" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <g opacity="0.7">
+      <path
+        fill="#203646"
+        d="M15.194 8.096c.356 0 .644.289.644.645v1.371h.727V8.741c0-.356.288-.645.645-.645h3.629c.356 0 .645.289.645.645v1.371h1.371c.356 0 .645.289.645.645v4.032a.645.645 0 0 1-.645.645H9.145a.645.645 0 0 1-.645-.645v-4.032c0-.356.289-.645.645-.645h1.371V8.741c0-.356.289-.645.645-.645zm-3.388 2.661a.645.645 0 0 1-.645.645H9.79v2.742h12.42v-2.742h-1.371a.645.645 0 0 1-.645-.645V9.386h-2.34v1.371a.645.645 0 0 1-.644.645h-2.017a.645.645 0 0 1-.644-.645V9.386h-2.743z"
+      ></path>
+      <path
+        fill="#E4E6E7"
+        d="M9.145 19.225h2.016v-2.016h4.033v2.016h2.016v-2.016h3.63v2.016h2.015v4.032H9.145z"
+      ></path>
+      <path
+        fill="#203646"
+        d="M15.194 16.564c.356 0 .644.288.644.645v1.37h.727v-1.37c0-.357.288-.645.645-.645h3.629c.356 0 .645.288.645.645v1.37h1.371c.356 0 .645.29.645.646v4.032a.645.645 0 0 1-.645.645H9.145a.645.645 0 0 1-.645-.645v-4.032c0-.356.289-.645.645-.645h1.371v-1.371c0-.357.289-.645.645-.645zm-3.388 2.66a.645.645 0 0 1-.645.646H9.79v2.742h12.42V19.87h-1.371a.645.645 0 0 1-.645-.645v-1.371h-2.34v1.37a.645.645 0 0 1-.644.646h-2.017a.645.645 0 0 1-.644-.645v-1.371h-2.743z"
+      ></path>
+    </g>
   </svg>
 );
 
@@ -365,20 +823,35 @@ export const AssemblyIcon: React.FC<IconProps> = ({ size = 16 }) => (
 // --- 33. Isometric Icon ---
 // Figma node: 1:7200
 export const IsometricIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <path d="M16 8L24 12V20L16 24L8 20V12L16 8Z" stroke="#203646" strokeWidth="1.5" strokeLinejoin="round" opacity="0.7" />
-    <path d="M16 16V24" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M8 12L16 16L24 12" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      d="M13.19 6.984a.65.65 0 0 1 .541.02l5.121 2.56a.65.65 0 0 1 .36.566l.088 3.61 4.644 2.029c.237.103.39.338.39.596v5.122a.65.65 0 0 1-.328.565l-5.122 2.927-.018.007a1 1 0 0 1-.095.042l-.013.005a.6.6 0 0 1-.244.028h-.005a1 1 0 0 1-.115-.02l-.006-.001a1 1 0 0 1-.101-.036L8.044 20.248a.65.65 0 0 1-.377-.59v-9.146l.002-.034q0-.014.002-.029a.7.7 0 0 1 .056-.21l.015-.029a1 1 0 0 1 .057-.09l.007-.01a1 1 0 0 1 .07-.075l.018-.017a1 1 0 0 1 .082-.06l.008-.005.01-.007 5.123-2.926zM8.97 19.241l8.939 4.152v-3.676l-4.632-2.024a.65.65 0 0 1-.39-.58l-.09-3.633-3.828-1.915zm10.242.428v3.622l3.819-2.183v-3.62zm-4.23-2.652 3.54 1.547 3.711-2.122-3.536-1.544zm-.884-3.572.063 2.542 3.837-2.19-.062-2.544zm-4.401-2.971 3.722 1.86 3.762-2.15-3.72-1.86z"
+      opacity="0.7"
+    ></path>
   </svg>
 );
 
 // --- 34. Align View Icon ---
 // Figma node: 1:7201
 export const AlignViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={{ display: 'block' }}>
-    {/* TODO: Paste SVG content from Figma here */}
-    <rect x="10" y="10" width="12" height="12" stroke="#203646" strokeWidth="1.5" opacity="0.7" />
-    <path d="M16 6V10M16 22V26M6 16H10M22 16H26" stroke="#203646" strokeWidth="1.5" opacity="0.5" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="none"
+    viewBox="0 0 32 32"
+  >
+    <path
+      fill="#203646"
+      d="M13.19 6.984a.65.65 0 0 1 .541.02l5.121 2.56a.65.65 0 0 1 .36.566l.088 3.61 4.644 2.029a.65.65 0 0 1 .39.596v5.122a.65.65 0 0 1-.328.565l-5.122 2.927-.018.007a1 1 0 0 1-.095.042l-.013.005a.6.6 0 0 1-.244.028h-.005a1 1 0 0 1-.115-.02l-.006-.001a1 1 0 0 1-.101-.036L8.044 20.248a.65.65 0 0 1-.377-.59v-9.146l.002-.034.002-.029a.7.7 0 0 1 .056-.21l.015-.029a1 1 0 0 1 .057-.09l.007-.01a1 1 0 0 1 .07-.075l.018-.017a1 1 0 0 1 .082-.06l.008-.005.01-.007 5.123-2.926zM8.97 19.241l8.939 4.152v-3.676l-4.632-2.024a.65.65 0 0 1-.39-.58l-.09-3.633-3.828-1.915zm10.242.428v3.622l3.819-2.183v-3.62zm-4.23-2.652 3.54 1.547 3.711-2.122-3.536-1.544zm-.884-3.572.063 2.542 3.837-2.19-.062-2.544zm-4.401-2.971 3.722 1.86 3.762-2.15-3.72-1.86z"
+      opacity="0.7"
+    ></path>
   </svg>
 );
