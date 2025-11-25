@@ -78,11 +78,33 @@ export const PointIcon: React.FC<IconProps> = ({ size = 16 }) => (
   </svg>
 );
 
+// Toggle Construction icon - play triangle with dashed vertical line (4th icon)
+// Based on Figma node 90:10816 screenshot
 export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <FigmaIcon src={figmaIcons.toggleConstruction} size={size} alt="Toggle Construction" />
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 20 20"
+    fill="none"
+    style={{ opacity: 0.7, display: 'block' }}
+  >
+    {/* Play triangle pointing right */}
+    <path
+      d="M4 5L4 15L11 10L4 5Z"
+      fill="#203646"
+    />
+    {/* Vertical dashed line on right */}
+    <path
+      d="M15 4V16"
+      stroke="#203646"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeDasharray="2.5 2.5"
+    />
+  </svg>
 );
 
-// Constraint Angle icon - angle indicator with arc (5th icon)
+// Constraint Angle icon - two lines with angle arc (5th icon)
 // Based on Figma node 90:10817 screenshot
 export const ConstraintAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
   <svg
@@ -94,21 +116,21 @@ export const ConstraintAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
   >
     {/* Horizontal base line */}
     <path
-      d="M2 15H18"
+      d="M2 16H18"
       stroke="#203646"
       strokeWidth="1.5"
       strokeLinecap="round"
     />
-    {/* Angled line going up-right */}
+    {/* Angled line going up-right from bottom-left */}
     <path
-      d="M2 15L14 4"
+      d="M2 16L15 5"
       stroke="#203646"
       strokeWidth="1.5"
       strokeLinecap="round"
     />
-    {/* Small angle arc indicator */}
+    {/* Small angle arc at the corner */}
     <path
-      d="M6 15A4 4 0 0 1 8.5 12"
+      d="M7 16C7 14 8 12.5 9.5 11"
       stroke="#060708"
       strokeWidth="1.2"
       strokeLinecap="round"
@@ -117,7 +139,7 @@ export const ConstraintAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
   </svg>
 );
 
-// Cube Front View icon - isometric cube with highlighted RIGHT face (6th icon)
+// Cube Front View icon - isometric cube with RIGHT face shaded (6th icon)
 // Based on Figma node 90:10818 screenshot
 export const CubeFrontViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
   <svg
@@ -127,30 +149,27 @@ export const CubeFrontViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     style={{ opacity: 0.7, display: 'block' }}
   >
-    {/* Cube outline */}
+    {/* Back edges first */}
+    <path d="M10 4L16 7" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M10 4L4 7" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M4 7V13" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M4 13L10 16" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M10 10V16" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M4 7L10 10" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
+    {/* Highlighted RIGHT face with gray fill */}
     <path
-      d="M10 3L17 7V13L10 17L3 13V7L10 3Z"
-      stroke="#203646"
-      strokeWidth="1.3"
-      strokeLinejoin="round"
-      fill="none"
-    />
-    {/* Center vertical line */}
-    <path d="M10 10V17" stroke="#203646" strokeWidth="1.3" />
-    {/* Top internal lines */}
-    <path d="M3 7L10 10L17 7" stroke="#203646" strokeWidth="1.3" />
-    {/* Highlighted RIGHT face */}
-    <path
-      d="M10 10L17 7V13L10 17V10Z"
+      d="M10 10L16 7V13L10 16V10Z"
       fill="#949A9E"
       stroke="#203646"
-      strokeWidth="1"
+      strokeWidth="1.2"
       strokeLinejoin="round"
     />
+    {/* Top edge of right face */}
+    <path d="M10 10L16 7" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
   </svg>
 );
 
-// Shaded View icon - isometric cube with highlighted TOP face (7th icon)
+// Shaded View icon - isometric cube with TOP face shaded (7th icon)
 // Based on Figma node 90:10819 screenshot
 export const ShadedViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
   <svg
@@ -160,24 +179,16 @@ export const ShadedViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     style={{ opacity: 0.7, display: 'block' }}
   >
-    {/* Cube outline */}
+    {/* Bottom/side edges first */}
+    <path d="M4 7V13L10 16V10" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M10 16L16 13V7" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M10 10V16" stroke="#203646" strokeWidth="1.2" strokeLinejoin="round" />
+    {/* Highlighted TOP face with gray fill */}
     <path
-      d="M10 3L17 7V13L10 17L3 13V7L10 3Z"
-      stroke="#203646"
-      strokeWidth="1.3"
-      strokeLinejoin="round"
-      fill="none"
-    />
-    {/* Center vertical line */}
-    <path d="M10 10V17" stroke="#203646" strokeWidth="1.3" />
-    {/* Top internal lines */}
-    <path d="M3 7L10 10L17 7" stroke="#203646" strokeWidth="1.3" />
-    {/* Highlighted TOP face */}
-    <path
-      d="M10 3L17 7L10 10L3 7L10 3Z"
+      d="M10 4L16 7L10 10L4 7L10 4Z"
       fill="#949A9E"
       stroke="#203646"
-      strokeWidth="1"
+      strokeWidth="1.2"
       strokeLinejoin="round"
     />
   </svg>
