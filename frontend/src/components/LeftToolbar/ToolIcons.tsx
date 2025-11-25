@@ -1,6 +1,6 @@
 // SVG icons extracted from Figma design
 // Figma file: jh5Xm4JLImD0NEnB9oyl2Z
-// Toolbar node: 90:12952
+// Toolbar node: 1:7139
 import React from 'react';
 
 interface IconProps {
@@ -8,49 +8,49 @@ interface IconProps {
   color?: string;
 }
 
-// Exact Figma icon assets from node 90:12952
+// Exact Figma icon assets from node 1:7139
 const figmaIcons = {
-  // SHAPE section
-  line: 'https://www.figma.com/api/mcp/asset/4f3fa958-e99b-46cc-9458-e89014aaba69',
-  rectangle: 'https://www.figma.com/api/mcp/asset/6d113786-6982-4f30-a04c-1495d6371456',
-  circle: 'https://www.figma.com/api/mcp/asset/25bba374-6e78-45d5-a351-8312a21d36c7',
-  arc: 'https://www.figma.com/api/mcp/asset/57198827-6e37-47a2-a6c5-522eb0bee2e9',
-  text: 'https://www.figma.com/api/mcp/asset/de898656-8025-4723-9671-8200950be654',
-  image: 'https://www.figma.com/api/mcp/asset/7cdfb5eb-5360-46eb-a92f-43df8af464a0',
-  tangent: 'https://www.figma.com/api/mcp/asset/1d118f91-73ff-4a01-ba36-6fd7ff137648',
-  connect: 'https://www.figma.com/api/mcp/asset/a3f73253-bf8b-41b7-9936-df74c1cb4b8c',
-  point: 'https://www.figma.com/api/mcp/asset/8817b607-fdbc-44c7-8f01-6ec68c936bc0',
-  toggleConstruction: 'https://www.figma.com/api/mcp/asset/374c873b-64c9-48ed-88a7-c038cb432bc7',
-  intersect: 'https://www.figma.com/api/mcp/asset/098326ca-1bdf-4b66-8cc2-bccbd9354fa4',
+  // SHAPE section (1:7145)
+  line: 'https://www.figma.com/api/mcp/asset/b5bd6509-aa50-483f-8260-15998613099b',           // img1 - Line
+  rectangle: 'https://www.figma.com/api/mcp/asset/6f1d65b0-3874-42e6-82ac-6d15f16ee570',     // img2 - Rectangle
+  circle: 'https://www.figma.com/api/mcp/asset/782f6da5-8799-490a-b517-c15c1cd7cbcd',        // img3 - Circle
+  arc: 'https://www.figma.com/api/mcp/asset/08ae1954-31a7-48cb-84f9-64913ce31938',           // img4 - Arc
+  text: 'https://www.figma.com/api/mcp/asset/cf58f950-8c90-4b92-b679-c6503a2199da',          // img5 - Text
+  image: 'https://www.figma.com/api/mcp/asset/e68c0c36-7203-4cd6-95b1-d70e86957f87',         // img6 - Image
+  tangent: 'https://www.figma.com/api/mcp/asset/c5be36df-4657-41eb-8d65-b8ed7e22fbfa',       // img7 - Tangent
+  connect: 'https://www.figma.com/api/mcp/asset/e69210d2-9d32-4b29-8d6f-3675528ff1be',       // img9 - Connect
+  point: 'https://www.figma.com/api/mcp/asset/21c8de98-e851-4fca-8ee3-60c69550de42',         // img10 - Point
+  toggleConstruction: 'https://www.figma.com/api/mcp/asset/d1289609-dfa0-410f-9b1a-7c4967a056fc', // img12 - Toggle Construction
+  intersect: 'https://www.figma.com/api/mcp/asset/45133d13-6684-48bc-a176-d8f8479b5bfc',     // img13 - Intersect
 
-  // CONSTR section
-  distance: 'https://www.figma.com/api/mcp/asset/a00b6601-0e19-46d7-b515-4d8c5d304da4',
-  angle: 'https://www.figma.com/api/mcp/asset/4ea85329-1e18-4871-8477-688391592f4a',
-  horizontal: 'https://www.figma.com/api/mcp/asset/720b81a1-b2e2-41a4-8bc5-b4fd8e692c1f',
-  vertical: 'https://www.figma.com/api/mcp/asset/c53d989c-18bd-4503-a72c-396f6ac07e4f',
-  parallel: 'https://www.figma.com/api/mcp/asset/4f4f890a-403c-4d3f-8e15-13c9bd6554b8',
-  perpendicular: 'https://www.figma.com/api/mcp/asset/5b3df82b-3b8a-4e26-b2ca-d98b3a8de3c8',
-  pointOnLine: 'https://www.figma.com/api/mcp/asset/0b99cc77-1baa-4bae-b864-d2257437603f',
-  mirror: 'https://www.figma.com/api/mcp/asset/40937fbe-4b7a-42e6-ab60-c9c900b35b48',
-  equal: 'https://www.figma.com/api/mcp/asset/68f86de7-8656-47ff-9962-c962f375b560',
-  normals: 'https://www.figma.com/api/mcp/asset/a629dcf1-300a-4b06-84ec-b1656de2e08a',
-  supplementaryAngle: 'https://www.figma.com/api/mcp/asset/c42cdf13-0511-4a25-9be8-75be0dfe90e8',
-  ref: 'https://www.figma.com/api/mcp/asset/fdd8ae3a-bbe6-4a34-8520-861f463f0b6a',
+  // CONSTR section (1:7164)
+  distance: 'https://www.figma.com/api/mcp/asset/1cd457e0-661c-416f-955f-695aee6b5798',      // img16 - Distance
+  angle: 'https://www.figma.com/api/mcp/asset/2244856e-ecfe-4981-af88-71517b23b73b',         // img18 - Angle
+  horizontal: 'https://www.figma.com/api/mcp/asset/a35d043a-26f0-44a9-a803-71ff1800ba33',    // img19 - Horizontal
+  vertical: 'https://www.figma.com/api/mcp/asset/bd6cf13a-bb3e-4a64-b7be-5478f921961a',      // img20 - Vertical
+  parallel: 'https://www.figma.com/api/mcp/asset/0a012605-f72f-469b-8ddb-2149d0a8da18',      // img21 - Parallel
+  perpendicular: 'https://www.figma.com/api/mcp/asset/e6ff116a-837c-446e-889a-789eafd81900', // img23 - Perpendicular
+  pointOnLine: 'https://www.figma.com/api/mcp/asset/5b6ec6d2-cad6-46f3-86cd-5f456d090f32',   // img24 - Point on Line
+  mirror: 'https://www.figma.com/api/mcp/asset/ae007442-3e0b-45a2-bbd7-ff06a4685247',        // img25 - Mirror
+  equal: 'https://www.figma.com/api/mcp/asset/ae026660-bd3b-4f5d-9da9-bb4024f4e322',         // img26 - Equal
+  normals: 'https://www.figma.com/api/mcp/asset/f76c070b-3a90-4979-9689-5efa27e63a0d',       // img27 - Normals
+  supplementaryAngle: 'https://www.figma.com/api/mcp/asset/87d1012e-d2d6-4cce-b55a-09eeebcc908f', // img30 - Supplementary Angle
+  ref: 'https://www.figma.com/api/mcp/asset/7caf143f-5f72-40b9-832e-2c253da0a7d5',           // img31 - Ref
 
-  // FORM section
-  extrude: 'https://www.figma.com/api/mcp/asset/dd0acd45-a3a6-4417-9382-f0d799f92151',
-  rotateComponent: 'https://www.figma.com/api/mcp/asset/0881915b-f20b-4ebb-9f0d-35c05c6b99af',
-  helix: 'https://www.figma.com/api/mcp/asset/99634ee9-68f8-470c-8853-4f89f97c4147',
-  revolve: 'https://www.figma.com/api/mcp/asset/108c3543-ecda-4224-ae9a-50726d7acf6a',
-  rotate: 'https://www.figma.com/api/mcp/asset/488090b4-cf45-4f83-a1a0-123949f5c3be',
-  translate: 'https://www.figma.com/api/mcp/asset/3cdc4ab3-5f3a-4407-9589-72a499c8ee0b',
-  newWorkplane: 'https://www.figma.com/api/mcp/asset/6ca01404-b07d-4e5c-94d6-b1ec5f1180e5',
-  newGroup3D: 'https://www.figma.com/api/mcp/asset/f4f5eb9d-f1f3-4926-8aaf-e89262b4f983',
-  assembly: 'https://www.figma.com/api/mcp/asset/137e88a0-0376-4f20-b4a9-8bd33d71e492',
+  // FORM section (1:7184)
+  extrude: 'https://www.figma.com/api/mcp/asset/5ab4eccc-37e1-43c9-9fa3-bcf2d8200fbf',       // img32 - Extrude
+  rotateComponent: 'https://www.figma.com/api/mcp/asset/5dbf4f29-0a69-4a65-b8c0-dc73d44ace0e', // img33 - Rotate Component
+  helix: 'https://www.figma.com/api/mcp/asset/8c03d271-9573-4935-93d9-30ac7aee6632',         // img34 - Helix
+  revolve: 'https://www.figma.com/api/mcp/asset/61059605-9fa8-46b0-9991-60f3acfb3359',       // img37 - Revolve
+  rotate: 'https://www.figma.com/api/mcp/asset/e97f4f83-d94f-4cab-8033-ae51b6e68809',        // img39 - Rotate Pattern
+  translate: 'https://www.figma.com/api/mcp/asset/a86fd149-8475-498a-afd7-4ff1b1456610',     // img45 - Translate
+  newWorkplane: 'https://www.figma.com/api/mcp/asset/b1e2d214-915d-4d0e-918a-a86da9d31c02',  // img48 - New Workplane
+  newGroup3D: 'https://www.figma.com/api/mcp/asset/53287994-7af1-4b18-bcf3-629d34400aeb',    // img49 - New Group 3D
+  assembly: 'https://www.figma.com/api/mcp/asset/95ededaf-be1a-4791-b8cc-a79458a4ee16',      // img47 - Assembly
 
-  // VIEW section
-  isometric: 'https://www.figma.com/api/mcp/asset/471824ed-8a2b-40a9-9add-58c44b2e1a92',
-  alignView: 'https://www.figma.com/api/mcp/asset/86ac22ac-d3a3-4d88-ba04-2944f679b4a9',
+  // VIEW section (1:7199)
+  isometric: 'https://www.figma.com/api/mcp/asset/f4f27d7b-f517-44fe-9cea-8a047d860952',     // img50 - Isometric
+  alignView: 'https://www.figma.com/api/mcp/asset/5cf27e49-85db-422e-b7b5-31b5f7fb34b7',     // img51 - Align View
 };
 
 // Helper component for Figma image icons - ensures square aspect ratio
