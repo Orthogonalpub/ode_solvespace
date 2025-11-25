@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-const FIGMA_ACCESS_TOKEN = "REDACTED_FIGMA_TOKEN";
+const FIGMA_ACCESS_TOKEN = process.env.FIGMA_ACCESS_TOKEN || "YOUR_FIGMA_TOKEN_HERE";
 const FILE_KEY = "jh5Xm4JLImD0NEnB9oyl2Z";
 const NODE_ID = "1-7139";
 
