@@ -23,19 +23,19 @@ const figmaIcons = {
   toggleConstruction: 'https://www.figma.com/api/mcp/asset/d1289609-dfa0-410f-9b1a-7c4967a056fc', // img12 - Toggle Construction
   intersect: 'https://www.figma.com/api/mcp/asset/45133d13-6684-48bc-a176-d8f8479b5bfc',     // img13 - Intersect
 
-  // CONSTR section (1:7164)
-  distance: 'https://www.figma.com/api/mcp/asset/1cd457e0-661c-416f-955f-695aee6b5798',      // img16 - Distance
-  angle: 'https://www.figma.com/api/mcp/asset/2244856e-ecfe-4981-af88-71517b23b73b',         // img18 - Angle
-  horizontal: 'https://www.figma.com/api/mcp/asset/a35d043a-26f0-44a9-a803-71ff1800ba33',    // img19 - Horizontal
-  vertical: 'https://www.figma.com/api/mcp/asset/bd6cf13a-bb3e-4a64-b7be-5478f921961a',      // img20 - Vertical
-  parallel: 'https://www.figma.com/api/mcp/asset/0a012605-f72f-469b-8ddb-2149d0a8da18',      // img21 - Parallel
-  perpendicular: 'https://www.figma.com/api/mcp/asset/e6ff116a-837c-446e-889a-789eafd81900', // img23 - Perpendicular
-  pointOnLine: 'https://www.figma.com/api/mcp/asset/5b6ec6d2-cad6-46f3-86cd-5f456d090f32',   // img24 - Point on Line
-  mirror: 'https://www.figma.com/api/mcp/asset/ae007442-3e0b-45a2-bbd7-ff06a4685247',        // img25 - Mirror
-  equal: 'https://www.figma.com/api/mcp/asset/ae026660-bd3b-4f5d-9da9-bb4024f4e322',         // img26 - Equal
-  normals: 'https://www.figma.com/api/mcp/asset/f76c070b-3a90-4979-9689-5efa27e63a0d',       // img27 - Normals
-  supplementaryAngle: 'https://www.figma.com/api/mcp/asset/87d1012e-d2d6-4cce-b55a-09eeebcc908f', // img30 - Supplementary Angle
-  ref: 'https://www.figma.com/api/mcp/asset/7caf143f-5f72-40b9-832e-2c253da0a7d5',           // img31 - Ref
+  // CONSTR section (1:7159) - from node 1:7164
+  distance: 'https://www.figma.com/api/mcp/asset/a9be17ec-0281-4657-bcb4-7415ba9a34e6',      // img2 - Distance
+  angle: 'https://www.figma.com/api/mcp/asset/289e26ff-7a2b-4b50-b2ec-89c4438f7e8d',         // img4 - Angle
+  horizontal: 'https://www.figma.com/api/mcp/asset/5d14aa4a-9296-4b85-8a32-b5cc9b608ca8',    // img5 - Horizontal
+  vertical: 'https://www.figma.com/api/mcp/asset/4d4c8566-a781-4dcf-b365-3836aa0a19e4',      // img6 - Vertical
+  parallel: 'https://www.figma.com/api/mcp/asset/f331f510-fb5b-4caa-8ab4-9eca20d8e530',      // img7 - Parallel
+  perpendicular: 'https://www.figma.com/api/mcp/asset/911f4067-f840-4812-b870-8f42774f8e5b', // img9 - Perpendicular
+  pointOnLine: 'https://www.figma.com/api/mcp/asset/faf44643-adea-48e6-9bac-7b0dcf591ddd',   // img10 - Point on Line
+  mirror: 'https://www.figma.com/api/mcp/asset/b8319847-6d7d-4dcd-867e-6cbaca010997',        // img11 - Mirror
+  equal: 'https://www.figma.com/api/mcp/asset/5e57bcdd-f698-458e-8ea6-164b10305284',         // img12 - Equal
+  normals: 'https://www.figma.com/api/mcp/asset/9e78e7c6-107d-4dcd-bb29-e51438a6160f',       // img13 - Normals
+  supplementaryAngle: 'https://www.figma.com/api/mcp/asset/164655cd-edab-46dd-9835-871c19305908', // img16 - Supplementary Angle
+  ref: 'https://www.figma.com/api/mcp/asset/f1c5b2c0-795d-4c84-9e86-16e5f924e324',           // img17 - Ref
 
   // FORM section (1:7184)
   extrude: 'https://www.figma.com/api/mcp/asset/5ab4eccc-37e1-43c9-9fa3-bcf2d8200fbf',       // img32 - Extrude
