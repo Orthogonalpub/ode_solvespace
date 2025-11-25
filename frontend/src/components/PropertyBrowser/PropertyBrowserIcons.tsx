@@ -39,30 +39,45 @@ const FigmaIcon: React.FC<{ src: string; size?: number; alt: string }> = ({ src,
   />
 );
 
+// Workplanes icon - stacked diamond layers (1st icon)
+// SVG copied from Figma
 export const WorkplanesIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <FigmaIcon src={figmaIcons.workplanes} size={size} alt="Workplanes" />
+  <svg
+    width={size}
+    height={size}
+    fill="none"
+    viewBox="0 0 32 32"
+    style={{ display: 'block' }}
+  >
+    <path
+      fill="#203646"
+      d="m23.42 14.87-6.384-3.702c-.393-.228-.711-.335-1.036-.335-.334 0-.645.107-1.035.334L8.58 14.868c-.652.384-.913.687-.913 1.127 0 .45.261.75.913 1.133l6.383 3.7c.394.23.702.337 1.037.337.325 0 .643-.107 1.035-.335l6.385-3.702c.651-.383.913-.685.913-1.133 0-.44-.261-.743-.913-1.125m-.857 1.207-6.205 3.555a.73.73 0 0 1-.358.113.73.73 0 0 1-.358-.113l-6.214-3.555c-.033-.017-.058-.042-.058-.084 0-.031.025-.056.058-.071l6.214-3.557a.74.74 0 0 1 .358-.113.73.73 0 0 1 .358.115l6.207 3.553c.04.017.065.042.065.073 0 .042-.025.067-.067.084"
+      opacity="0.7"
+    />
+  </svg>
 );
 
 // Normals icon - Y-shaped arrow matching Figma design (larger, more prominent)
 export const NormalsIcon: React.FC<IconProps> = ({ size = 16 }) => (
   <svg
-    width={size}
-    height={size}
-    viewBox="0 0 16 16"
-    fill="none"
-    style={{ opacity: 0.7, display: 'block' }}
-  >
-    {/* Main Y-shaped lines */}
+  xmlns="http://www.w3.org/2000/svg"
+  width="32"
+  height="32"
+  fill="none"
+  viewBox="0 0 32 32"
+>
+  <g opacity="0.7">
     <path
-      d="M8 14V8M8 8L3 3M8 8L13 3"
-      stroke="#203646"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    {/* Small circle at intersection */}
-    <circle cx="8" cy="8" r="1.5" fill="#203646" />
-  </svg>
+      fill="#060708"
+      fillOpacity="0.6"
+      d="M16.922 22.88a7.2 7.2 0 0 0-7.198-7.198.9.9 0 0 1 0-1.8 9 9 0 0 1 8.313 5.555 9 9 0 0 1 .685 3.443.9.9 0 1 1-1.8 0"
+    ></path>
+    <path
+      fill="#000"
+      d="M20.853 9.382a.81.81 0 0 1 1.203 1.084l-5.719 6.352-1.204-1.084z"
+    ></path>
+  </g>
+</svg>
 );
 
 // Point icon - small centered dot matching Figma design (inset 37.5% = small dot)
@@ -82,25 +97,23 @@ export const PointIcon: React.FC<IconProps> = ({ size = 16 }) => (
 // Based on Figma node 90:10816 screenshot
 export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
   <svg
-    width={size}
-    height={size}
-    viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
     fill="none"
-    style={{ opacity: 0.7, display: 'block' }}
+    viewBox="0 0 32 32"
   >
-    {/* Play triangle pointing right */}
-    <path
-      d="M4 5L4 15L11 10L4 5Z"
-      fill="#203646"
-    />
-    {/* Vertical dashed line on right */}
-    <path
-      d="M15 4V16"
-      stroke="#203646"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeDasharray="2.5 2.5"
-    />
+    <g opacity="0.7">
+      <path
+        fill="#060708"
+        fillOpacity="0.6"
+        d="M21 20.962c0-.488.373-.884.833-.884s.834.396.834.884v1.654c0 .488-.373.884-.834.884S21 23.104 21 22.616zm0-6.616c0-.488.373-.884.833-.884s.834.396.834.884v3.308c0 .488-.373.884-.834.884S21 18.142 21 17.654zm0-4.962c0-.488.373-.884.833-.884s.834.396.834.884v1.654c0 .488-.373.884-.834.884S21 11.526 21 11.038z"
+      ></path>
+      <path
+        fill="#203646"
+        d="M15.832 18.154a.656.656 0 0 1 .919 0 .64.64 0 0 1 0 .914l-1.389 1.37h4.188c.357 0 .65.286.65.645a.65.65 0 0 1-.65.644H15.36l1.39 1.37a.64.64 0 0 1 0 .915.656.656 0 0 1-.919 0l-2.507-2.472q-.021-.023-.039-.048-.021-.025-.04-.052-.016-.023-.028-.048-.02-.031-.035-.065-.016-.042-.026-.085-.004-.015-.01-.031a.64.64 0 0 1 .038-.377q.017-.039.039-.073.01-.02.021-.037a.6.6 0 0 1 .08-.098zM10.834 9c.46 0 .833.396.833.884v13.232c0 .488-.373.884-.833.884S10 23.603 10 23.115V9.883c0-.488.374-.884.834-.884m5.776 14.87a.5.5 0 0 1-.07.057zM20 21.082q0 .018-.003.034l.004-.033zm-6.575-.267a.4.4 0 0 0 .04-.047zm6.232-.164-.016-.005q-.008 0-.014-.002zM16.584 8.987a.656.656 0 0 1 .919 0l2.506 2.472q.045.044.08.098.009.012.016.026a.6.6 0 0 1 .082.207.64.64 0 0 1-.08.452q-.008.016-.017.031a.7.7 0 0 1-.081.1l-2.506 2.472a.656.656 0 0 1-.919 0 .64.64 0 0 1 0-.915l1.39-1.37h-4.189a.65.65 0 0 1-.651-.644.65.65 0 0 1 .651-.646h4.188l-1.389-1.369a.64.64 0 0 1 0-.914m.045 5.223-.004.009a.4.4 0 0 1 .041-.076zm.037-5.01a.4.4 0 0 0 .059-.071z"
+      ></path>
+    </g>
   </svg>
 );
 
@@ -108,34 +121,25 @@ export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
 // Based on Figma node 90:10817 screenshot
 export const ConstraintAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
   <svg
-    width={size}
-    height={size}
-    viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
     fill="none"
-    style={{ opacity: 0.7, display: 'block' }}
+    viewBox="0 0 32 32"
   >
-    {/* Horizontal base line */}
-    <path
-      d="M2 16H18"
-      stroke="#203646"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-    />
-    {/* Angled line going up-right from bottom-left */}
-    <path
-      d="M2 16L15 5"
-      stroke="#203646"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-    />
-    {/* Small angle arc at the corner */}
-    <path
-      d="M7 16C7 14 8 12.5 9.5 11"
-      stroke="#060708"
-      strokeWidth="1.2"
-      strokeLinecap="round"
-      fill="none"
-    />
+    <g opacity="0.7">
+      <path
+        stroke="#060708"
+        strokeLinejoin="round"
+        strokeOpacity="0.6"
+        strokeWidth="1.887"
+        d="M11.204 16.833c1.18.393 3.93 1.572 3.145 4.717"
+      ></path>
+      <path
+        fill="#203646"
+        d="M15.31 9a2.358 2.358 0 1 1-.217 4.705l-4.424 7.963 9.504-1.187a2.358 2.358 0 1 1 .333 1.859L9.06 23.77a.95.95 0 0 1-.9-.407.94.94 0 0 1-.042-.986l5.323-9.585A2.359 2.359 0 0 1 15.311 9m7.155 11.367a.66.66 0 1 0 0 1.321.66.66 0 0 0 0-1.32m-7.155-9.669a.66.66 0 1 0 0 1.32.66.66 0 0 0 0-1.32"
+      ></path>
+    </g>
   </svg>
 );
 
