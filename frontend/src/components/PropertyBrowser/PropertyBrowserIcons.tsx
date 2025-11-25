@@ -43,12 +43,39 @@ export const WorkplanesIcon: React.FC<IconProps> = ({ size = 16 }) => (
   <FigmaIcon src={figmaIcons.workplanes} size={size} alt="Workplanes" />
 );
 
+// Normals icon - Y-shaped arrow matching Figma design (larger, more prominent)
 export const NormalsIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <FigmaIcon src={figmaIcons.normals} size={size} alt="Normals" />
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    fill="none"
+    style={{ opacity: 0.7, display: 'block' }}
+  >
+    {/* Main Y-shaped lines */}
+    <path
+      d="M8 14V8M8 8L3 3M8 8L13 3"
+      stroke="#203646"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Small circle at intersection */}
+    <circle cx="8" cy="8" r="1.5" fill="#203646" />
+  </svg>
 );
 
+// Point icon - small centered dot matching Figma design (inset 37.5% = small dot)
 export const PointIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <FigmaIcon src={figmaIcons.point} size={size} alt="Point" />
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    fill="none"
+    style={{ opacity: 0.7, display: 'block' }}
+  >
+    <circle cx="8" cy="8" r="2" fill="#203646" />
+  </svg>
 );
 
 export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
