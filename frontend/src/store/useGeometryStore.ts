@@ -3,7 +3,7 @@ import { immer } from 'zustand/middleware/immer';
 import type { GroupInfo, EntityID, WASMModule } from '@/types/geometry';
 
 interface Tool {
-  type: 'select' | 'point' | 'line' | 'circle' | 'arc' | 'rectangle';
+  type: string;
   active: boolean;
 }
 
@@ -17,7 +17,7 @@ interface GeometryState {
   loadGroups: () => void;
   selectEntity: (id: EntityID) => void;
   deselectAll: () => void;
-  setActiveTool: (type: Tool['type']) => void;
+  setActiveTool: (type: string) => void;
 }
 
 export const useGeometryStore = create<GeometryState>()(

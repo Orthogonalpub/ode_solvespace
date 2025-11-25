@@ -1,4 +1,3 @@
-import { useRef, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Grid, GizmoHelper, GizmoViewport } from '@react-three/drei';
 import { GeometryMesh } from './GeometryMesh';

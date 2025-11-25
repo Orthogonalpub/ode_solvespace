@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGeometryStore } from '@/store/useGeometryStore';
 import * as THREE from 'three';
 

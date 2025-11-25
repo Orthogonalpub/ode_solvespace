@@ -21,7 +21,7 @@ interface IconProps {
 
 // --- 1. Line Icon ---
 // Figma node: 1:7146
-export const LineIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const LineIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -29,10 +29,6 @@ export const LineIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <path
-      stroke="#1B5D8D"
-      d="M4 .5h24A3.5 3.5 0 0 1 31.5 4v24a3.5 3.5 0 0 1-3.5 3.5H4A3.5 3.5 0 0 1 .5 28V4A3.5 3.5 0 0 1 4 .5Z"
-    ></path>
     <path
       fill="#203646"
       d="M11.457 21.686a1.144 1.144 0 1 0-2.287 0 1.144 1.144 0 0 0 2.287 0M22.83 10.313a1.144 1.144 0 1 0-2.288.001 1.144 1.144 0 0 0 2.288 0m1.503 0a2.648 2.648 0 0 1-3.89 2.337l-7.797 7.783a2.648 2.648 0 1 1-1.059-1.068l7.783-7.769a2.647 2.647 0 1 1 4.963-1.283"
@@ -43,7 +39,7 @@ export const LineIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 2. Rectangle Icon ---
 // Figma node: 1:7147
-export const RectangleIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const RectangleIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -56,14 +52,14 @@ export const RectangleIcon: React.FC<IconProps> = ({ size = 16 }) => (
       fillRule="evenodd"
       d="M8.266 10.844a2.58 2.58 0 0 1 2.578-2.578h10.312a2.58 2.58 0 0 1 2.578 2.578v10.312a2.58 2.58 0 0 1-2.578 2.578H10.844a2.58 2.58 0 0 1-2.578-2.578zm2.578-1.172c-.647 0-1.172.524-1.172 1.172v10.312c0 .648.524 1.172 1.172 1.172h10.312c.648 0 1.172-.524 1.172-1.172V10.844c0-.647-.524-1.172-1.172-1.172z"
       clipRule="evenodd"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // --- 3. Circle Icon ---
 // Figma node: 1:7148
-export const CircleIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const CircleIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -74,14 +70,14 @@ export const CircleIcon: React.FC<IconProps> = ({ size = 16 }) => (
     <path
       fill="#203646"
       d="M16 23.5a7.2 7.2 0 0 1-2.898-.59 7.6 7.6 0 0 1-2.395-1.619 7.7 7.7 0 0 1-1.625-2.388 7.3 7.3 0 0 1-.582-2.907q0-1.539.582-2.892A7.7 7.7 0 0 1 10.7 10.71a7.6 7.6 0 0 1 2.395-1.62 7.2 7.2 0 0 1 2.898-.589 7.2 7.2 0 0 1 2.898.59q1.366.582 2.394 1.619 1.035 1.035 1.626 2.395.59 1.353.59 2.892 0 1.547-.59 2.907a7.7 7.7 0 0 1-1.626 2.388 7.5 7.5 0 0 1-2.387 1.62A7.2 7.2 0 0 1 16 23.5m0-1.648q1.216 0 2.272-.453a5.9 5.9 0 0 0 1.87-1.251 5.782 5.782 0 0 0 1.712-4.151q0-1.217-.46-2.274a5.9 5.9 0 0 0-1.26-1.87 5.78 5.78 0 0 0-4.141-1.713q-1.215 0-2.28.454a5.9 5.9 0 0 0-1.862 1.258 5.793 5.793 0 0 0-1.697 4.144q0 1.224.445 2.288a5.9 5.9 0 0 0 1.259 1.864 6 6 0 0 0 1.862 1.251q1.065.453 2.28.453"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // --- 4. Arc Icon ---
 // Figma node: 1:7149
-export const ArcIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const ArcIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -92,14 +88,14 @@ export const ArcIcon: React.FC<IconProps> = ({ size = 16 }) => (
     <path
       fill="#203646"
       d="M11.293 21.94a1.233 1.233 0 1 0-2.466 0 1.233 1.233 0 0 0 2.466 0M23.17 10.06a1.233 1.233 0 1 0-2.465.001 1.233 1.233 0 0 0 2.465 0m1.495 0a2.727 2.727 0 0 1-5.35.752 8.65 8.65 0 0 0-5.972 2.532 8.66 8.66 0 0 0-2.533 5.973 2.728 2.728 0 1 1-1.495-.002 10.15 10.15 0 0 1 2.97-7.029 10.15 10.15 0 0 1 7.029-2.97 2.728 2.728 0 0 1 5.351.745"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // --- 5. Text Icon ---
 // Figma node: 1:7150
-export const TextIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const TextIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -110,14 +106,14 @@ export const TextIcon: React.FC<IconProps> = ({ size = 16 }) => (
     <path
       fill="#203646"
       d="M20.731 9.167c1.166 0 2.102.975 2.102 2.167v1.333a.823.823 0 0 1-.812.833.823.823 0 0 1-.811-.833v-1.333a.49.49 0 0 0-.479-.5h-3.919v10.333h1.769c.453 0 .812.378.812.833a.823.823 0 0 1-.812.834h-5.162a.823.823 0 0 1-.812-.834c0-.455.359-.833.812-.833h1.769V10.833h-3.92a.49.49 0 0 0-.478.5v1.334a.823.823 0 0 1-.811.833.823.823 0 0 1-.812-.833v-1.333c0-1.192.936-2.167 2.102-2.168z"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // --- 6. Image Icon ---
 // Figma node: 1:7151
-export const ImageIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const ImageIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -125,7 +121,7 @@ export const ImageIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g fill="#203646" opacity="0.7">
+    <g fill="#203646" opacity="0.9">
       <path
         fillRule="evenodd"
         d="M11 10.167a.833.833 0 0 0-.833.833v10c0 .46.373.833.833.833h10c.46 0 .833-.373.833-.833V11a.833.833 0 0 0-.833-.833zM8.5 11A2.5 2.5 0 0 1 11 8.5h10a2.5 2.5 0 0 1 2.5 2.5v10a2.5 2.5 0 0 1-2.5 2.5H11A2.5 2.5 0 0 1 8.5 21z"
@@ -143,7 +139,7 @@ export const ImageIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 7. Tangent Icon ---
 // Figma node: 1:7152
-export const TangentIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const TangentIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -151,7 +147,7 @@ export const TangentIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#203646"
         d="M16 11.795c.357 0 .683.126.941.333h6.642a.75.75 0 0 1 0 1.5h-3.509a8.32 8.32 0 0 1 3.618 4.071c.323.779.524 1.6.6 2.438.037.412-.302.748-.716.749-.414 0-.745-.337-.79-.748a6.84 6.84 0 0 0-4.174-5.56 6.8 6.8 0 0 0-1.37-.402 1.513 1.513 0 0 1-2.485-.001 6.81 6.81 0 0 0-5.541 5.962c-.046.411-.377.748-.791.749-.414 0-.754-.337-.717-.75a8.326 8.326 0 0 1 4.218-6.509H8.417a.75.75 0 0 1 0-1.5h6.64c.26-.206.586-.332.943-.332"
@@ -166,7 +162,7 @@ export const TangentIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 8. Connect Icon ---
 // Figma node: 1:7153
-export const ConnectIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const ConnectIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -179,14 +175,14 @@ export const ConnectIcon: React.FC<IconProps> = ({ size = 16 }) => (
       fillRule="evenodd"
       d="M11.216 8.083a2.14 2.14 0 0 1 2.047 1.512h5.603c2.194 0 4.055 1.554 4.055 3.577s-1.861 3.577-4.055 3.577H13.13c-1.51 0-2.637 1.02-2.637 2.159s1.127 2.159 2.637 2.159h5.616a2.14 2.14 0 1 1 0 1.418H13.13c-2.193 0-4.055-1.554-4.055-3.577s1.862-3.577 4.055-3.577h5.736c1.51 0 2.637-1.02 2.637-2.16 0-1.138-1.127-2.158-2.637-2.158h-5.66a2.14 2.14 0 0 1-3.503.725 2.14 2.14 0 0 1 1.513-3.655m0 1.394a.747.747 0 1 0 0 1.494.747.747 0 0 0 0-1.494m9.021 11.77a.747.747 0 1 1 1.057 1.058.747.747 0 0 1-1.057-1.058"
       clipRule="evenodd"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // --- 9. Point Icon ---
 // Figma node: 1:7154
-export const PointIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const PointIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -197,14 +193,14 @@ export const PointIcon: React.FC<IconProps> = ({ size = 16 }) => (
     <path
       fill="#203646"
       d="M17.128 16a1.129 1.129 0 1 0-2.258 0 1.129 1.129 0 0 0 2.258 0m1.372 0a2.5 2.5 0 1 1-5.001 0 2.5 2.5 0 0 1 5.001 0"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // --- 10. Toggle Construction Icon ---
 // Figma node: 1:7155
-export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const ToggleConstructionIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -212,7 +208,7 @@ export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g fill="#203646" opacity="0.7">
+    <g fill="#203646" opacity="0.9">
       <path d="M21 20.962c0-.488.373-.884.833-.884s.834.396.834.884v1.654c0 .488-.373.884-.834.884S21 23.104 21 22.616zm0-6.616c0-.488.373-.884.833-.884s.834.396.834.884v3.308c0 .488-.373.884-.834.884S21 18.142 21 17.654zm0-4.962c0-.488.373-.884.833-.884s.834.396.834.884v1.654c0 .488-.373.884-.834.884S21 11.526 21 11.038zM15.165 17.655a.656.656 0 0 1 .919 0 .64.64 0 0 1 0 .914l-1.389 1.37h4.188c.357 0 .65.286.65.645a.65.65 0 0 1-.65.644h-4.189l1.39 1.37a.64.64 0 0 1 0 .914.656.656 0 0 1-.919 0l-2.507-2.471q-.021-.024-.039-.048-.021-.025-.04-.052-.016-.023-.028-.048-.02-.031-.035-.065-.016-.042-.026-.085-.004-.015-.01-.031a.64.64 0 0 1 .038-.377q.016-.038.039-.074.01-.018.021-.037a.7.7 0 0 1 .08-.097zM10.167 8.5c.46 0 .833.396.833.883v13.233c0 .488-.373.883-.833.884-.46 0-.834-.396-.834-.884V9.383c0-.487.374-.883.834-.883m5.776 14.87a.5.5 0 0 1-.07.056zm3.39-2.7870000000000004q0 .018-.003.034l.004-.033zm-6.575-.267-.008.01a.4.4 0 0 1 .049-.057zm6.232-.164-.016-.005-.014-.002zM15.917 8.488a.656.656 0 0 1 .919 0l2.506 2.472a.7.7 0 0 1 .08.097l.015.027a.6.6 0 0 1 .083.207.64.64 0 0 1-.08.452q-.008.015-.017.031a.7.7 0 0 1-.081.1l-2.506 2.471a.656.656 0 0 1-.919 0 .64.64 0 0 1 0-.914l1.39-1.37h-4.189a.65.65 0 0 1-.651-.644.65.65 0 0 1 .651-.646h4.188l-1.389-1.369a.64.64 0 0 1 0-.914m.045 5.223-.004.008a.4.4 0 0 1 .041-.076zm.037-5.011a.4.4 0 0 0 .059-.07z"></path>
     </g>
   </svg>
@@ -220,7 +216,7 @@ export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 11. Intersect Icon ---
 // Figma node: 1:7156
-export const IntersectIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const IntersectIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -228,7 +224,7 @@ export const IntersectIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g fill="#203646" opacity="0.7">
+    <g fill="#203646" opacity="0.9">
       <path d="M23.616 11.083a.751.751 0 0 1 .686 1.335l-6.978 3.581 6.9 3.632a.75.75 0 0 1-.698 1.328l-7.833-4.122-7.308 3.751a.751.751 0 0 1-.686-1.334l6.371-3.272-6.377-3.356a.75.75 0 0 1 .698-1.328l7.31 3.848z"></path>
       <circle
         cx="15.572"
@@ -247,7 +243,7 @@ export const IntersectIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 12. Distance Icon ---
 // Figma node: 1:7165
-export const DistanceIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const DistanceIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -255,7 +251,7 @@ export const DistanceIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#060708"
         fillOpacity="0.6"
@@ -273,7 +269,7 @@ export const DistanceIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 13. Angle Icon ---
 // Figma node: 1:7166
-export const AngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const AngleIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -281,7 +277,7 @@ export const AngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 20 20"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         stroke="#060708"
         strokeLinejoin="round"
@@ -299,7 +295,7 @@ export const AngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 14. Horizontal Icon ---
 // Figma node: 1:7167
-export const HorizontalIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const HorizontalIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -307,7 +303,7 @@ export const HorizontalIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 20 20"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#203646"
         d="M16.616 7.083c.489 0 .884.374.884.834s-.395.833-.884.833H3.384c-.488 0-.884-.373-.884-.833s.396-.834.884-.834z"
@@ -323,7 +319,7 @@ export const HorizontalIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 15. Vertical Icon ---
 // Figma node: 1:7168
-export const VerticalIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const VerticalIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -331,7 +327,7 @@ export const VerticalIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 20 20"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#203646"
         d="M7.5 3.384c0-.488.373-.884.833-.884s.834.396.834.884v13.232c0 .488-.373.884-.834.884s-.833-.396-.833-.884z"
@@ -347,7 +343,7 @@ export const VerticalIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 16. Parallel Icon ---
 // Figma node: 1:7169
-export const ParallelIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const ParallelIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -355,7 +351,7 @@ export const ParallelIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#203646"
         d="M9.723 20.818a.773.773 0 0 1-1.093-1.093l8.179-8.179A.773.773 0 0 1 17.9 12.64z"
@@ -371,7 +367,7 @@ export const ParallelIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 17. Perpendicular Icon ---
 // Figma node: 1:7170
-export const PerpendicularIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const PerpendicularIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -379,7 +375,7 @@ export const PerpendicularIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         stroke="#060708"
         strokeLinecap="round"
@@ -398,7 +394,7 @@ export const PerpendicularIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 18. Point On Line Icon ---
 // Figma node: 1:7171
-export const PointOnLineIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const PointOnLineIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -406,7 +402,7 @@ export const PointOnLineIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#203646"
         d="M16.54 14.115c.306-.307.819-.292 1.144.033.325.326.34.838.034 1.145L9.4 23.61c-.307.307-.82.292-1.145-.034s-.34-.838-.034-1.144z"
@@ -435,7 +431,7 @@ export const PointOnLineIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 19. Mirror Icon ---
 // Figma node: 1:7172
-export const MirrorIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const MirrorIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -443,7 +439,7 @@ export const MirrorIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g fill="#203646" fillRule="evenodd" clipRule="evenodd" opacity="0.7">
+    <g fill="#203646" fillRule="evenodd" clipRule="evenodd" opacity="0.9">
       <path d="M23.841 10.661c.296.11.492.394.492.71v9.259a.758.758 0 0 1-1.306.522l-4.21-4.429a.76.76 0 0 1-.021-1.02l4.209-4.83a.76.76 0 0 1 .836-.212m-3.45 5.518 2.427 2.554v-5.34zM8.158 10.661a.76.76 0 0 0-.491.71v9.259a.757.757 0 0 0 1.306.522l4.209-4.429a.757.757 0 0 0 .022-1.02l-4.209-4.83a.76.76 0 0 0-.837-.212m3.45 5.518-2.426 2.554v-5.34zM16 24.333a.76.76 0 0 1-.758-.757V8.424a.758.758 0 0 1 1.515 0v15.152c0 .418-.339.757-.757.757"></path>
     </g>
   </svg>
@@ -451,7 +447,7 @@ export const MirrorIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 20. Equal Icon ---
 // Figma node: 1:7173
-export const EqualIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const EqualIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -462,14 +458,14 @@ export const EqualIcon: React.FC<IconProps> = ({ size = 16 }) => (
     <path
       fill="#203646"
       d="M9.459 13.762a.9.9 0 0 1-.474-.13 1.2 1.2 0 0 1-.356-.355.9.9 0 0 1-.129-.485q0-.258.13-.474.14-.226.355-.355a.9.9 0 0 1 .474-.13h13.082q.258 0 .474.13a.96.96 0 0 1 .345.355q.14.216.14.474a.87.87 0 0 1-.14.485 1.1 1.1 0 0 1-.345.356.9.9 0 0 1-.474.13zm0 6.81a.9.9 0 0 1-.474-.129 1.1 1.1 0 0 1-.356-.345.96.96 0 0 1-.129-.485q0-.269.13-.484.14-.216.355-.345a.85.85 0 0 1 .474-.14h13.082q.258 0 .474.14a1 1 0 0 1 .345.345.905.905 0 0 1 0 .97 1 1 0 0 1-.345.344.9.9 0 0 1-.474.13z"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // --- 21. Normals Icon ---
 // Figma node: 1:7174
-export const NormalsIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const NormalsIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -477,7 +473,7 @@ export const NormalsIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#060708"
         fillOpacity="0.6"
@@ -493,7 +489,7 @@ export const NormalsIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 22. Supplementary Angle Icon ---
 // Figma node: 1:7175
-export const SupplementaryAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const SupplementaryAngleIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -501,7 +497,7 @@ export const SupplementaryAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g clipPath="url(#clip0_90_12988)" opacity="0.7">
+    <g clipPath="url(#clip0_90_12988)" opacity="0.9">
       <path
         fill="#696F74"
         d="M15.012 11.973c.979-.051 2.2.111 3.221.81 1.058.723 1.795 1.95 1.892 3.795a.742.742 0 0 1-1.48.078c-.077-1.45-.624-2.222-1.249-2.65-.661-.452-1.522-.594-2.308-.552a.74.74 0 1 1-.076-1.48m-1.945-1.816c.541-.09 1.124-.066 1.598.141l-.594 1.36c-.13-.056-.4-.098-.763-.038-.35.057-.72.199-1.024.422-.3.219-.53.51-.646.876-.115.365-.135.868.088 1.544l-1.408.464c-.302-.917-.32-1.742-.095-2.455a3.2 3.2 0 0 1 1.188-1.628 3.9 3.9 0 0 1 1.656-.686"
@@ -521,7 +517,7 @@ export const SupplementaryAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 23. Ref Icon ---
 // Figma node: 1:7176
-export const RefIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const RefIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -532,7 +528,7 @@ export const RefIcon: React.FC<IconProps> = ({ size = 16 }) => (
     <path
       fill="#203646"
       d="M21.496 20.1q.345-.375.548-.886.203-.51.203-1.036 0-1.08-.61-1.84a2.44 2.44 0 0 0-1.585-.908l-.226-.015-.195-.03q-.45-.06-.451-.346 0-.3.601-.946.633-.69 2-1.397.573-.3.572-.75a.63.63 0 0 0-.195-.474.69.69 0 0 0-.496-.187q-.75 0-2.072.87-1.561 1.023-2.492 2.486-.932 1.465-.932 2.891 0 .676.256 1.345.255.668.69 1.134.916 1.006 2.207 1.006 1.321 0 2.177-.916m-7.172 0q.345-.375.547-.893a2.8 2.8 0 0 0 .202-1.029q0-1.081-.599-1.847a2.33 2.33 0 0 0-1.572-.901l-.24-.015-.18-.03q-.449-.06-.449-.346 0-.3.585-.946.614-.66 1.992-1.397.57-.3.57-.75a.63.63 0 0 0-.195-.474.69.69 0 0 0-.495-.188q-.748 0-2.068.872-1.56 1.02-2.48 2.485-.922 1.465-.922 2.891 0 .676.255 1.345t.689 1.134q.914 1.005 2.187 1.005 1.335 0 2.173-.915"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
@@ -543,7 +539,7 @@ export const RefIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 24. Extrude Icon ---
 // Figma node: 1:7185
-export const ExtrudeIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const ExtrudeIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -551,7 +547,7 @@ export const ExtrudeIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#203646"
         stroke="#203646"
@@ -590,7 +586,7 @@ export const ExtrudeIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 25. Rotate Component Icon ---
 // Figma node: 1:7186
-export const RotateIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const RotateIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -598,7 +594,7 @@ export const RotateIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g fill="#203646" opacity="0.7">
+    <g fill="#203646" opacity="0.9">
       <path d="M15.521 8.167a.75.75 0 0 0 0 1.5h.417a5.917 5.917 0 0 1 5.916 5.916v1.523l-.803-.803a.75.75 0 0 0-1.06 1.06l2.083 2.084a.75.75 0 0 0 1.06 0l2.084-2.083a.75.75 0 1 0-1.06-1.061l-.804.803v-1.523a7.417 7.417 0 0 0-7.416-7.416z"></path>
       <path
         fillRule="evenodd"
@@ -611,7 +607,7 @@ export const RotateIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 26. Helix Icon ---
 // Figma node: 1:7187
-export const HelixIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const HelixIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -622,14 +618,14 @@ export const HelixIcon: React.FC<IconProps> = ({ size = 16 }) => (
     <path
       fill="#203646"
       d="M9.519 7.61c.944.004 1.88.195 2.982.533.373.114.638.46.638.86v3.66h8.892l.177.005a3.565 3.565 0 0 1 3.392 3.556v6.843a.9.9 0 0 1-.523.817c-1.112.515-2.075.837-3.073.846-1.01.01-1.961-.298-3.057-.859a.9.9 0 0 1-.49-.8v-2.685a.6.6 0 0 0-.6-.6H9.568A3.566 3.566 0 0 1 6 16.226V9a.9.9 0 0 1 .611-.852L7 8.022c.889-.273 1.689-.415 2.52-.412m2.02 3.276c-.95.453-1.852.554-2.675.426a4.7 4.7 0 0 1-1.264-.395v5.307a1.966 1.966 0 0 0 1.967 1.963h9.59a.9.9 0 0 1 .9.899v3.546c.781.362 1.37.505 1.931.499.57-.006 1.182-.164 2.012-.519v-6.386l-.01-.195a1.966 1.966 0 0 0-1.958-1.767H12.44a.9.9 0 0 1-.9-.9zM9.512 9.6c-.25-.001-.5.015-.758.05.115.033.233.063.355.082.343.053.736.047 1.178-.077a6 6 0 0 0-.775-.055"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // --- 27. Revolve Icon ---
 // Figma node: 1:7188
-export const RevolveIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const RevolveIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -637,7 +633,7 @@ export const RevolveIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#949A9E"
         d="M23.125 18.438c0-2.59-3.19-4.688-7.125-4.688s-7.125 2.098-7.125 4.688v-4.875c0-2.59 3.19-4.688 7.125-4.688s7.125 2.098 7.125 4.688z"
@@ -662,7 +658,7 @@ export const RevolveIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 28. Rotate Pattern Icon ---
 // Figma node: 1:7189
-export const RotatePatternIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const RotatePatternIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -670,7 +666,7 @@ export const RotatePatternIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#060708"
         fillOpacity="0.6"
@@ -710,7 +706,7 @@ export const RotatePatternIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 29. Translate Icon ---
 // Figma node: 1:7190
-export const TranslateIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const TranslateIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -718,7 +714,7 @@ export const TranslateIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g fill="#E4E6E7" stroke="#203646" strokeWidth="1.5" opacity="0.7">
+    <g fill="#E4E6E7" stroke="#203646" strokeWidth="1.5" opacity="0.9">
       <circle cx="23.083" cy="11" r="1.333"></circle>
       <circle cx="16.417" cy="15.583" r="1.333"></circle>
       <circle cx="9.75" cy="20.583" r="1.333"></circle>
@@ -728,7 +724,7 @@ export const TranslateIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 30. New Workplane Icon ---
 // Figma node: 25:1182
-export const NewWorkplaneIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const NewWorkplaneIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -736,7 +732,7 @@ export const NewWorkplaneIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#060708"
         fillOpacity="0.6"
@@ -760,7 +756,7 @@ export const NewWorkplaneIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 31. New Group 3D Icon ---
 // Figma node: 25:1188
-export const NewGroup3DIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const NewGroup3DIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -768,7 +764,7 @@ export const NewGroup3DIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#060708"
         fillOpacity="0.6"
@@ -791,7 +787,7 @@ export const NewGroup3DIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 32. Assembly Icon ---
 // Figma node: 1:7191
-export const AssemblyIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const AssemblyIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -799,7 +795,7 @@ export const AssemblyIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#203646"
         d="M15.194 8.096c.356 0 .644.289.644.645v1.371h.727V8.741c0-.356.288-.645.645-.645h3.629c.356 0 .645.289.645.645v1.371h1.371c.356 0 .645.289.645.645v4.032a.645.645 0 0 1-.645.645H9.145a.645.645 0 0 1-.645-.645v-4.032c0-.356.289-.645.645-.645h1.371V8.741c0-.356.289-.645.645-.645zm-3.388 2.661a.645.645 0 0 1-.645.645H9.79v2.742h12.42v-2.742h-1.371a.645.645 0 0 1-.645-.645V9.386h-2.34v1.371a.645.645 0 0 1-.644.645h-2.017a.645.645 0 0 1-.644-.645V9.386h-2.743z"
@@ -822,7 +818,7 @@ export const AssemblyIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // --- 33. Isometric Icon ---
 // Figma node: 1:7200
-export const IsometricIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const IsometricIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -833,14 +829,14 @@ export const IsometricIcon: React.FC<IconProps> = ({ size = 16 }) => (
     <path
       fill="#203646"
       d="M13.19 6.984a.65.65 0 0 1 .541.02l5.121 2.56a.65.65 0 0 1 .36.566l.088 3.61 4.644 2.029c.237.103.39.338.39.596v5.122a.65.65 0 0 1-.328.565l-5.122 2.927-.018.007a1 1 0 0 1-.095.042l-.013.005a.6.6 0 0 1-.244.028h-.005a1 1 0 0 1-.115-.02l-.006-.001a1 1 0 0 1-.101-.036L8.044 20.248a.65.65 0 0 1-.377-.59v-9.146l.002-.034q0-.014.002-.029a.7.7 0 0 1 .056-.21l.015-.029a1 1 0 0 1 .057-.09l.007-.01a1 1 0 0 1 .07-.075l.018-.017a1 1 0 0 1 .082-.06l.008-.005.01-.007 5.123-2.926zM8.97 19.241l8.939 4.152v-3.676l-4.632-2.024a.65.65 0 0 1-.39-.58l-.09-3.633-3.828-1.915zm10.242.428v3.622l3.819-2.183v-3.62zm-4.23-2.652 3.54 1.547 3.711-2.122-3.536-1.544zm-.884-3.572.063 2.542 3.837-2.19-.062-2.544zm-4.401-2.971 3.722 1.86 3.762-2.15-3.72-1.86z"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // --- 34. Align View Icon ---
 // Figma node: 1:7201
-export const AlignViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const AlignViewIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -850,8 +846,8 @@ export const AlignViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
   >
     <path
       fill="#203646"
-      d="M13.19 6.984a.65.65 0 0 1 .541.02l5.121 2.56a.65.65 0 0 1 .36.566l.088 3.61 4.644 2.029a.65.65 0 0 1 .39.596v5.122a.65.65 0 0 1-.328.565l-5.122 2.927-.018.007a1 1 0 0 1-.095.042l-.013.005a.6.6 0 0 1-.244.028h-.005a1 1 0 0 1-.115-.02l-.006-.001a1 1 0 0 1-.101-.036L8.044 20.248a.65.65 0 0 1-.377-.59v-9.146l.002-.034.002-.029a.7.7 0 0 1 .056-.21l.015-.029a1 1 0 0 1 .057-.09l.007-.01a1 1 0 0 1 .07-.075l.018-.017a1 1 0 0 1 .082-.06l.008-.005.01-.007 5.123-2.926zM8.97 19.241l8.939 4.152v-3.676l-4.632-2.024a.65.65 0 0 1-.39-.58l-.09-3.633-3.828-1.915zm10.242.428v3.622l3.819-2.183v-3.62zm-4.23-2.652 3.54 1.547 3.711-2.122-3.536-1.544zm-.884-3.572.063 2.542 3.837-2.19-.062-2.544zm-4.401-2.971 3.722 1.86 3.762-2.15-3.72-1.86z"
-      opacity="0.7"
+      d="M9.937 22.826h12.126V17.88h-5.026a1.357 1.357 0 0 1-1.356-1.357v-7.42H9.937zm7.18-6.383h5.026c.75 0 1.357.607 1.357 1.356v5.107c0 .749-.608 1.356-1.357 1.356H9.856A1.357 1.357 0 0 1 8.5 22.906V9.023c0-.749.608-1.356 1.356-1.356h5.905c.749 0 1.356.607 1.356 1.356z"
+      opacity="0.9"
     ></path>
   </svg>
 );

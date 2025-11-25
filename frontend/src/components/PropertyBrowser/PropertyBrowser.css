@@ -14,10 +14,6 @@
 
 .property-browser {
   position: fixed;
-  right: 8px;
-  top: 8px;
-  width: 416px;
-  height: calc(100vh - 16px);
   background: var(--pb-container-bg);
   border-radius: 12px;
   display: flex;
@@ -28,18 +24,24 @@
   font-weight: 600;
   color: var(--pb-content-main);
   box-shadow: -16px 0 32px -16px var(--pb-shadow);
-  overflow: hidden;
+  overflow: visible;
+  cursor: default;
+}
+
+.property-browser.dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .property-browser-toggle {
   position: fixed;
-  right: 8px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
   width: 32px;
   height: 48px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--pb-container-bg);
+  border: none;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -47,29 +49,93 @@
   cursor: pointer;
   transition: all 0.15s ease;
   z-index: 999;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: -8px 0 16px -8px var(--pb-shadow);
+  color: var(--pb-content-main);
 }
 
 .property-browser-toggle:hover {
-  background: #f9fafb;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  background: #eaeeef;
+  box-shadow: -12px 0 24px -12px var(--pb-shadow);
 }
 
 .property-browser-header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 4px;
+  gap: 8px;
   min-height: 48px;
   padding: 8px 12px;
   background: var(--pb-container-bg);
   border-radius: 12px 12px 0 0;
+  cursor: move;
+}
+
+/* macOS style resize button (green) */
+.property-browser-resize-btn {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  background: #28c940;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.property-browser-resize-btn:hover {
+  background: #28c940;
+  color: #006500;
+}
+
+.property-browser-resize-btn:active {
+  background: #1a9e2c;
+}
+
+/* Minimized state */
+.property-browser.minimized {
+  border-radius: 12px;
+}
+
+.property-browser.minimized .property-browser-header {
+  border-radius: 12px;
+}
+
+/* Resize handle at bottom */
+.property-browser-resize-handle {
+  height: 8px;
+  cursor: ns-resize;
+  background: transparent;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.property-browser-resize-handle::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 4px;
+  background: var(--pb-divider);
+  border-radius: 2px;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+.property-browser-resize-handle:hover::before {
+  opacity: 1;
+  background: var(--pb-content-main);
 }
 
 .property-browser-toolbar {
   display: flex;
-  gap: 4px;
-  flex: 1;
+  gap: 0;
 }
 
 .toolbar-icon {
@@ -85,6 +151,32 @@
   align-items: center;
   justify-content: center;
   transition: all 0.15s ease;
+  position: relative;
+}
+
+/* Custom tooltip for toolbar icons */
+.toolbar-icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #203646;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 99999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toolbar-icon:hover::after {
+  opacity: 1;
 }
 
 .toolbar-icon:hover {
@@ -140,7 +232,7 @@
   padding: 0;
   background: transparent;
   gap: 0;
-  min-height: 40px;
+  min-height: 32px;
 }
 
 .tab-button {
@@ -156,6 +248,7 @@
   position: relative;
   transition: all 0.15s ease;
   border-radius: var(--pb-button-corner);
+  flex-shrink: 0;
 }
 
 .tab-button:hover {
@@ -175,7 +268,11 @@
   color: var(--pb-content-main);
   font-size: 12px;
   font-weight: 600;
-  padding: 8px 0;
+  padding: 8px 16px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .property-browser-content {
@@ -200,6 +297,57 @@
   gap: 4px;
   min-height: 40px;
   padding: 0 16px;
+}
+
+/* View settings specific rows */
+.view-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.view-row-input {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+}
+
+/* Value field with border - matches Figma */
+.value-field {
+  flex: 1;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #e9eff4;
+  border-radius: 4px;
+  padding: 0 4px;
+  background: transparent;
+}
+
+.value-field-text {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.value-field-addon {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 6px;
+  border-left: 1px solid #e9eff4;
+  border-radius: 0 3px 3px 0;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--pb-content-main);
 }
 
 .property-label-primary {
@@ -276,7 +424,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 0 16px 0 32px;
+  padding: 0 16px;
   min-height: 40px;
   position: relative;
   transition: background 0.15s ease;
@@ -416,6 +564,167 @@
 
 .section-button:active {
   background: rgba(149, 183, 208, 0.12);
+}
+
+/* ============================================
+   History/Home Page Styles (matching Figma)
+   ============================================ */
+
+.history-row {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  position: relative;
+}
+
+.history-row.with-guideline {
+  padding-left: 36px;
+}
+
+.history-row.group-row {
+  padding-left: 32px;
+}
+
+.history-row.filter-row {
+  padding-left: 8px;
+}
+
+.history-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  line-height: 16px;
+}
+
+/* Guideline segment for "shown dof group-name" row */
+.guideline-segment {
+  position: absolute;
+  left: 18px;
+  top: 0;
+  width: 1px;
+  height: 40px;
+  background: rgba(220, 231, 239, 1);
+}
+
+/* Vertical guideline for list items (not last) */
+.guideline-vertical {
+  position: absolute;
+  left: 18px;
+  top: 0;
+  width: 1px;
+  height: 40px;
+  background: rgba(149, 183, 208, 1);
+}
+
+/* Corner guideline for last list item */
+.guideline-corner {
+  position: absolute;
+  left: 18px;
+  top: 0;
+  width: 1px;
+  height: 20px;
+  background: rgba(149, 183, 208, 1);
+}
+
+.guideline-corner::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 10px;
+  height: 1px;
+  background: var(--pb-content-focus);
+}
+
+/* Checkbox in group rows */
+.history-row .group-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.history-row .group-checkbox input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  accent-color: var(--pb-content-focus);
+  border-radius: 3px;
+  margin: 0;
+}
+
+/* Status labels (ok, err, number) */
+.status-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  min-width: 40px;
+  padding-right: 16px;
+}
+
+.status-label.ok {
+  color: var(--pb-hint-success);
+}
+
+.status-label.error {
+  color: var(--pb-hint-danger);
+}
+
+/* Group links */
+.group-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-focus);
+  text-decoration: none;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.group-link:hover {
+  opacity: 0.8;
+}
+
+/* Filter buttons row */
+.filter-button {
+  padding: 8px;
+  background: transparent;
+  border: none;
+  border-radius: var(--pb-button-corner);
+  color: var(--pb-content-focus);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.filter-button:hover {
+  background: rgba(149, 183, 208, 0.08);
+}
+
+/* Slash divider between filter buttons */
+.slash-divider {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.slash-divider::before {
+  content: '';
+  width: 1.5px;
+  height: 14px;
+  background: var(--pb-divider);
+  transform: rotate(12.5deg);
+  border-radius: 1px;
 }
 
 .style-list-header {
@@ -567,8 +876,93 @@
 }
 
 .property-subsection {
-  margin-left: 36px;
-  padding: 4px 0;
+  padding: 0;
+}
+
+/* View page label row - left padding 36px matching Figma */
+.view-label-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+/* View page labeled input row with label + divider + value */
+.view-labeled-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.view-label-fixed {
+  width: 80px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  flex-shrink: 0;
+}
+
+/* Light direction rows with two-column layout */
+.view-light-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 16px;
+}
+
+.view-light-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.view-light-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.view-light-label {
+  width: 40px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  flex-shrink: 0;
+}
+
+.view-light-value {
+  width: 54px;
+}
+
+/* Ambient lighting row alignment */
+.view-ambient-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 16px;
+}
+
+.view-ambient-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.view-ambient-label {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+}
+
+/* Action spacer for consistent 16px left side in rows */
+.action-spacer {
+  display: none;
 }
 
 .checkbox-row {
@@ -649,4 +1043,143 @@
   background: var(--pb-divider);
   border-radius: 2px;
   flex-shrink: 0;
+}
+
+/* Configuration page styles */
+.config-color-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.config-color-label {
+  width: 40px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  flex-shrink: 0;
+}
+
+.config-color-swatch {
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(149, 183, 208, 0.3);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.config-input-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+}
+
+.config-labeled-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.config-row-label {
+  width: 80px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  flex-shrink: 0;
+}
+
+.config-info-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  flex-shrink: 0;
+}
+
+.config-unit {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  opacity: 0.6;
+  flex-shrink: 0;
+  margin: 0 4px;
+}
+
+.config-hint {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  opacity: 0.6;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.config-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.config-checkbox {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  accent-color: var(--pb-content-focus);
+  flex-shrink: 0;
+}
+
+.config-checkbox-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  cursor: pointer;
+}
+
+.config-radio-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+}
+
+.config-radio-inline input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  accent-color: var(--pb-content-focus);
+}
+
+.config-radio-inline label {
+  cursor: pointer;
+}
+
+.config-sub-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-main);
+  opacity: 0.6;
+}
+
+.config-info-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.config-info-value {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pb-content-focus);
 }

@@ -41,7 +41,7 @@ const FigmaIcon: React.FC<{ src: string; size?: number; alt: string }> = ({ src,
 
 // Workplanes icon - stacked diamond layers (1st icon)
 // SVG copied from Figma
-export const WorkplanesIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const WorkplanesIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -52,13 +52,13 @@ export const WorkplanesIcon: React.FC<IconProps> = ({ size = 16 }) => (
     <path
       fill="#203646"
       d="m23.42 14.87-6.384-3.702c-.393-.228-.711-.335-1.036-.335-.334 0-.645.107-1.035.334L8.58 14.868c-.652.384-.913.687-.913 1.127 0 .45.261.75.913 1.133l6.383 3.7c.394.23.702.337 1.037.337.325 0 .643-.107 1.035-.335l6.385-3.702c.651-.383.913-.685.913-1.133 0-.44-.261-.743-.913-1.125m-.857 1.207-6.205 3.555a.73.73 0 0 1-.358.113.73.73 0 0 1-.358-.113l-6.214-3.555c-.033-.017-.058-.042-.058-.084 0-.031.025-.056.058-.071l6.214-3.557a.74.74 0 0 1 .358-.113.73.73 0 0 1 .358.115l6.207 3.553c.04.017.065.042.065.073 0 .042-.025.067-.067.084"
-      opacity="0.7"
+      opacity="0.9"
     ></path>
   </svg>
 );
 
 // Normals icon - Y-shaped arrow matching Figma design (larger, more prominent)
-export const NormalsIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const NormalsIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
   xmlns="http://www.w3.org/2000/svg"
   width="32"
@@ -66,7 +66,7 @@ export const NormalsIcon: React.FC<IconProps> = ({ size = 16 }) => (
   fill="none"
   viewBox="0 0 32 32"
 >
-  <g opacity="0.7">
+  <g opacity="0.9">
     <path
       fill="#060708"
       fillOpacity="0.6"
@@ -95,7 +95,7 @@ export const PointIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // Toggle Construction icon - play triangle with dashed vertical line (4th icon)
 // Based on Figma node 90:10816 screenshot
-export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const ToggleConstructionIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -103,7 +103,7 @@ export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#060708"
         fillOpacity="0.6"
@@ -119,7 +119,7 @@ export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // Constraint Angle icon - two lines with angle arc (5th icon)
 // Based on Figma node 90:10817 screenshot
-export const ConstraintAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const ConstraintAngleIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -127,7 +127,7 @@ export const ConstraintAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         stroke="#060708"
         strokeLinejoin="round"
@@ -145,7 +145,7 @@ export const ConstraintAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // Cube Front View icon - isometric cube with RIGHT face shaded (6th icon)
 // Based on Figma node 90:10818 screenshot
-export const CubeFrontViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const CubeFrontViewIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
 <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -153,7 +153,7 @@ export const CubeFrontViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#203646"
         fillRule="evenodd"
@@ -172,7 +172,7 @@ export const CubeFrontViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
 
 // Shaded View icon - isometric cube with TOP face shaded (7th icon)
 // Based on Figma node 90:10819 screenshot
-export const ShadedViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
+export const ShadedViewIcon: React.FC<IconProps> = ({ size: _size = 16 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -180,7 +180,7 @@ export const ShadedViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
     fill="none"
     viewBox="0 0 32 32"
   >
-    <g opacity="0.7">
+    <g opacity="0.9">
       <path
         fill="#203646"
         d="M22.517 8.508c.105.008.251.03.404.108.2.102.362.263.464.463.077.152.099.299.107.404.008.092.008.197.008.288v8.795c0 .146 0 .318-.04.487a1.4 1.4 0 0 1-.172.416c-.09.148-.212.27-.315.372l-.028.026-3.078 3.078-.026.027a2 2 0 0 1-.372.316 1.4 1.4 0 0 1-.416.172c-.17.04-.341.04-.487.04H9.771c-.09 0-.196 0-.288-.008a1.1 1.1 0 0 1-.404-.107 1.06 1.06 0 0 1-.463-.464 1.1 1.1 0 0 1-.108-.404 4 4 0 0 1-.008-.289v-8.795c0-.145 0-.317.04-.486q.053-.222.172-.416c.09-.148.213-.27.316-.372l3.131-3.13c.103-.104.224-.226.372-.317q.195-.12.416-.172c.17-.04.341-.04.487-.04h8.795c.09 0 .196 0 .288.008M10.828 22.137h7.52v-2.425h-5.096zm-.964-.965 2.424-2.424V13.65H9.864zm3.787-2.823h4.698V13.65H13.65z"

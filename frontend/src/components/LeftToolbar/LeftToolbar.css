@@ -8,7 +8,7 @@
   background: #f4f6f7;
   border-radius: 12px;
   padding: 4px;
-  overflow-y: auto;
+  overflow: visible;
   z-index: 50;
   box-shadow: 16px 0px 32px -16px rgba(47, 81, 106, 0.16);
   display: flex;
@@ -73,7 +73,7 @@
   gap: 2px;
   width: 68px;
   max-height: 1000px;
-  overflow: hidden;
+  overflow: visible;
   transition: max-height 0.3s ease, opacity 0.2s ease;
   opacity: 1;
 }
@@ -96,6 +96,41 @@
   cursor: pointer;
   transition: all 0.15s ease;
   padding: 0;
+  position: relative;
+  outline: none;
+  box-shadow: none;
+}
+
+.tool-btn:focus,
+.tool-btn:focus-visible {
+  outline: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
+/* Custom tooltip for tool buttons */
+.tool-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #203646;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 99999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tool-btn:hover::after {
+  opacity: 1;
 }
 
 .tool-btn img {
@@ -107,7 +142,7 @@
 }
 
 .tool-btn:hover {
-  background: rgba(149, 183, 208, 0.08);
+  background: rgba(149, 183, 208, 0.24);
 }
 
 .tool-btn:hover img {

@@ -43,16 +43,17 @@ export function LeftToolbar() {
                   const Icon = tool.icon;
                   const isActive = activeTool.type === tool.type;
                   const tooltipText = tool.shortcut
-                    ? `${tool.name} (${tool.shortcut})`
-                    : tool.name;
+                    ? `${tool.description} (${tool.shortcut})`
+                    : tool.description || tool.name;
 
                   return (
                     <button
                       key={toolIndex}
                       className={`tool-btn ${isActive ? 'active' : ''}`}
-                      title={tooltipText}
-                      onClick={() => setActiveTool(tool.type as any)}
+                      data-tooltip={tooltipText}
+                      onClick={() => setActiveTool(tool.type)}
                       aria-label={tool.name}
+                      tabIndex={-1}
                     >
                       <Icon size={16} />
                     </button>

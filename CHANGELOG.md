@@ -2,7 +2,37 @@
 
 ## [Unreleased] - 2025-11-25
 
+### Added
+- **ColorPicker Component**: New floating color picker UI for editing colors
+  - HSV color selection with gradient picker and hue slider
+  - RGB input field for explicit color values (comma-separated format: "255, 128, 64")
+  - Live color preview swatch
+  - Preset color swatches grid
+  - Click outside to close
+  - Integrated with PropertyBrowser configuration page (user colors) and line styles page (background color, style colors)
+- **Toolbar Tooltips**: Added hover tooltips for all icons in left toolbar and property browser
+  - Custom CSS tooltips using `data-tooltip` attribute with `::after` pseudo-element
+  - Shows tool description and keyboard shortcut
+  - High z-index (99999) to ensure visibility above all other layers
+
+### Fixed
+- **LineIcon SVG**: Removed erroneous border path that was baked into the SVG from Figma export
+  - The Line tool icon no longer shows a permanent border box
+  - Only the active/selected tool now displays a border
+- **ColorPicker Drag Interference**: Fixed bug where hovering over color picker would trigger PropertyBrowser panel dragging
+  - Added `stopPropagation()` on color picker panel mousedown events
+- **Tool Type System**: Fixed TypeScript type restriction that prevented all tool types from working correctly
+  - Changed `Tool.type` from limited union type to `string` to support all tools defined in toolDefinitions
+
 ### Changed
+- **Toolbar Hover Effect**: Made hover background darker (0.08 → 0.24 opacity) for better visibility
+- **Font Styling**:
+  - Changed "Default Task Name" font-weight from 600 to 400 (no bold)
+  - Changed FloatingMenu font-weight from 600 to 400 for all menu items
+- **History Page**: Refined PropertyBrowser home/history view to match Figma design
+  - Added tree view guidelines (vertical lines and corner connectors)
+  - Added group checkboxes and status labels (ok/err/dof count)
+  - Added filter buttons with slash dividers (show all / only unconstrained / hide all)
 - **Left Toolbar Icons**: Converted all 34 toolbar icons from Figma URLs to inline SVGs for reliability
   - Icons no longer depend on external Figma asset URLs (which expire after 7 days)
   - Organized into 4 sections with Figma node IDs documented for each icon:
