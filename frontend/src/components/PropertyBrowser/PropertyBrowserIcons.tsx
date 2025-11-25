@@ -82,16 +82,97 @@ export const ToggleConstructionIcon: React.FC<IconProps> = ({ size = 16 }) => (
   <FigmaIcon src={figmaIcons.toggleConstruction} size={size} alt="Toggle Construction" />
 );
 
+// Constraint Angle icon - angle indicator with arc (5th icon)
 export const ConstraintAngleIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <FigmaIcon src={figmaIcons.constraintAngle} size={size} alt="Constraint Angle" />
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    fill="none"
+    style={{ opacity: 0.7, display: 'block' }}
+  >
+    {/* Two lines forming angle */}
+    <path
+      d="M2 13H14"
+      stroke="#203646"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M2 13L10 3"
+      stroke="#203646"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    {/* Angle arc indicator */}
+    <path
+      d="M5.5 13C5.5 11 6.5 9.5 8 8"
+      stroke="#060708"
+      strokeWidth="1"
+      strokeLinecap="round"
+      fill="none"
+    />
+  </svg>
 );
 
+// Cube Front View icon - isometric cube with highlighted front face (6th icon)
 export const CubeFrontViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <FigmaIcon src={figmaIcons.cubeFrontView} size={size} alt="Faces Selectable" />
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    fill="none"
+    style={{ opacity: 0.7, display: 'block' }}
+  >
+    {/* Cube outline */}
+    <path
+      d="M8 2L14 5V11L8 14L2 11V5L8 2Z"
+      stroke="#203646"
+      strokeWidth="1.2"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    {/* Internal lines */}
+    <path d="M8 8V14" stroke="#203646" strokeWidth="1.2" />
+    <path d="M2 5L8 8L14 5" stroke="#203646" strokeWidth="1.2" />
+    {/* Highlighted front face (left side) */}
+    <path
+      d="M2 5L8 8V14L2 11V5Z"
+      fill="#949A9E"
+      stroke="#203646"
+      strokeWidth="1"
+    />
+  </svg>
 );
 
+// Shaded View icon - isometric cube with shaded appearance (7th icon)
 export const ShadedViewIcon: React.FC<IconProps> = ({ size = 16 }) => (
-  <FigmaIcon src={figmaIcons.shadedView} size={size} alt="Shaded View" />
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    fill="none"
+    style={{ opacity: 0.7, display: 'block' }}
+  >
+    {/* Full cube with outline */}
+    <path
+      d="M8 2L14 5V11L8 14L2 11V5L8 2Z"
+      stroke="#203646"
+      strokeWidth="1.2"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    {/* Internal lines */}
+    <path d="M8 8V14" stroke="#203646" strokeWidth="1.2" />
+    <path d="M2 5L8 8L14 5" stroke="#203646" strokeWidth="1.2" />
+    {/* Highlighted top-right face */}
+    <path
+      d="M8 2L14 5L8 8L2 5L8 2Z"
+      fill="#949A9E"
+      stroke="#203646"
+      strokeWidth="1"
+    />
+  </svg>
 );
 
 export const CubeSolidIcon: React.FC<IconProps> = ({ size = 16 }) => (
