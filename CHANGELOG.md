@@ -3,6 +3,10 @@
 ## [Unreleased] - 2025-11-25
 
 ### Changed
+- **Right Sidebar (PropertyBrowser)**: Updated toolbar icons to use Figma assets from design node 90:10812
+  - Added 11 icons: Workplanes, Normals, Point, Toggle Construction, Constraint Angle, Cube Front View, Shaded View, Cube Solid, Cube Outline, Triangle Mesh, Occluded Lines
+  - Created new PropertyBrowserIcons.tsx component for icon management
+  - Icons now match the exact Figma design with proper opacity and hover states
 - **Left Toolbar UI**: Refreshed all toolbar icons with latest Figma assets from design node 1:7139
   - All 35 toolbar icons now use correct asset URLs extracted directly from Figma
   - SHAPE section: 11 icons (Line, Rectangle, Circle, Arc, Text, Image, Tangent, Connect, Point, Toggle Construction, Intersect)

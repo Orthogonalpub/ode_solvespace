@@ -79,7 +79,6 @@
   border: none;
   background: transparent;
   color: var(--pb-content-main);
-  opacity: 0.7;
   cursor: pointer;
   border-radius: var(--pb-button-corner);
   display: flex;
@@ -89,8 +88,11 @@
 }
 
 .toolbar-icon:hover {
-  background: rgba(149, 183, 208, 0.12);
-  opacity: 1;
+  background: rgba(149, 183, 208, 0.08);
+}
+
+.toolbar-icon:hover img {
+  opacity: 1 !important;
 }
 
 .toolbar-icon:active {

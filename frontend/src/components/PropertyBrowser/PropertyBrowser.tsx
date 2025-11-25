@@ -2,6 +2,19 @@ import { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { useGeometryStore } from '@/store/useGeometryStore';
 import './PropertyBrowser.css';
+import {
+  WorkplanesIcon,
+  NormalsIcon,
+  PointIcon,
+  ToggleConstructionIcon,
+  ConstraintAngleIcon,
+  CubeFrontViewIcon,
+  ShadedViewIcon,
+  CubeSolidIcon,
+  CubeOutlineIcon,
+  TriangleMeshIcon,
+  OccludedLinesIcon,
+} from './PropertyBrowserIcons';
 
 type ViewMode = 'main' | 'lineStyles' | 'view' | 'configuration';
 
@@ -93,86 +106,38 @@ export function PropertyBrowser() {
 
   const renderToolbarIcons = () => (
     <div className="property-browser-toolbar">
-      {/* Workplanes - stacked diamond layers */}
       <button className="toolbar-icon" title="Workplanes">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 10L8 13L14 10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 7L8 10L14 7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 4L8 7L14 4L8 1L2 4Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <WorkplanesIcon size={16} />
       </button>
-      {/* Normals - L-shaped arrow */}
       <button className="toolbar-icon" title="Normals">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M4 4L12 4L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <NormalsIcon size={16} />
       </button>
-      {/* Point */}
       <button className="toolbar-icon" title="Point">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <circle cx="8" cy="8" r="2" fill="currentColor"/>
-        </svg>
+        <PointIcon size={16} />
       </button>
-      {/* Toggle construction - play with dashed line */}
       <button className="toolbar-icon" title="Toggle construction">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M11 3V13" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="2 2"/>
-          <path d="M4 4L4 12L9 8L4 4Z" fill="currentColor"/>
-        </svg>
+        <ToggleConstructionIcon size={16} />
       </button>
-      {/* Constraint angle */}
       <button className="toolbar-icon" title="Constraint angle">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 13L13 13" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-          <path d="M3 13L10 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-          <path d="M6 13C6 10.5 7 9 8.5 7.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" fill="none"/>
-        </svg>
+        <ConstraintAngleIcon size={16} />
       </button>
-      {/* Cube front view - isometric cube with front face highlighted */}
       <button className="toolbar-icon" title="Faces selectable">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
-          <path d="M8 8V14" stroke="currentColor" strokeWidth="1.2"/>
-          <path d="M2 5L8 8L14 5" stroke="currentColor" strokeWidth="1.2"/>
-          <path d="M2 5V11L8 14V8L2 5Z" fill="currentColor" fillOpacity="0.3"/>
-        </svg>
+        <CubeFrontViewIcon size={16} />
       </button>
-      {/* Shaded view */}
       <button className="toolbar-icon" title="Shaded view of solid model">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
-          <path d="M8 8V14" stroke="currentColor" strokeWidth="1.2"/>
-          <path d="M2 5L8 8L14 5" stroke="currentColor" strokeWidth="1.2"/>
-        </svg>
+        <ShadedViewIcon size={16} />
       </button>
-      {/* Cube solid - fully filled */}
       <button className="toolbar-icon" title="Hide edges of solid model">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" fill="currentColor" fillOpacity="0.7"/>
-        </svg>
+        <CubeSolidIcon size={16} />
       </button>
-      {/* Cube outline */}
       <button className="toolbar-icon" title="Hide outlines of solid model">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
-          <path d="M8 8V14" stroke="currentColor" strokeWidth="1.2"/>
-          <path d="M2 5L8 8L14 5" stroke="currentColor" strokeWidth="1.2"/>
-        </svg>
+        <CubeOutlineIcon size={16} />
       </button>
-      {/* Triangle mesh */}
       <button className="toolbar-icon" title="Triangle mesh of solid model">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
-          <path d="M8 8V14M2 5L8 8L14 5M5 6.5L8 12M11 6.5L8 12" stroke="currentColor" strokeWidth="0.8"/>
-        </svg>
+        <TriangleMeshIcon size={16} />
       </button>
-      {/* Don't draw occluded lines */}
       <button className="toolbar-icon" title="Don't draw occluded lines">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 5L8 2L14 5V11L8 14L2 11V5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
-          <path d="M8 8V14" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 1"/>
-          <path d="M2 5L8 8L14 5" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 1"/>
-        </svg>
+        <OccludedLinesIcon size={16} />
       </button>
     </div>
   );
