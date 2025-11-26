@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added `src/platform/platform.cpp` to the HEADLESS build configuration
 
 #### Changed
-- **Toolbar Hover Effect**: Made hover background darker (0.08 → 0.24 opacity) for better visibility
+- **Toolbar Hover Effect**: Made hover background darker (0.08 → 0.24 opacity) for better visibility on both left toolbar and PropertyBrowser toolbar icons
 - **Font Styling**:
   - Changed "Default Task Name" font-weight from 600 to 400 (no bold)
   - Changed FloatingMenu font-weight from 600 to 400 for all menu items
