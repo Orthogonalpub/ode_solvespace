@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useGeometryStore } from '@/store/useGeometryStore';
 import * as THREE from 'three';
+import { SolveSpaceColors, hexToThreeColor } from '@/rendering/colors';
 
 export function GeometryMesh() {
   const wasmModule = useGeometryStore((state) => state.wasmModule);
@@ -37,17 +38,21 @@ export function GeometryMesh() {
     };
   }, [wasmModule, groups]);
 
+  // Create mesh material matching SolveSpace style
+  const meshMaterial = useMemo(() => {
+    return new THREE.MeshStandardMaterial({
+      color: hexToThreeColor(SolveSpaceColors.MESH_FRONT),
+      metalness: 0.1,
+      roughness: 0.8,
+      side: THREE.DoubleSide,
+      flatShading: false,
+    });
+  }, []);
+
   return (
     <>
       {meshes.map((geometry, index) => (
-        <mesh key={index} geometry={geometry}>
-          <meshStandardMaterial
-            color="#4a90e2"
-            metalness={0.3}
-            roughness={0.7}
-            side={THREE.DoubleSide}
-          />
-        </mesh>
+        <mesh key={index} geometry={geometry} material={meshMaterial} />
       ))}
     </>
   );

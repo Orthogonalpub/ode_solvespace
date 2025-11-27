@@ -6,6 +6,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.2.2-alpha] - 2025-11-27
+
+#### Added - Three.js Rendering System
+- **SolveSpace Color System** (`frontend/src/rendering/colors.ts`):
+  - Complete color palette matching original SolveSpace `style.cpp`
+  - Colors: BACKGROUND, ACTIVE_GRP, CONSTRUCTION, SELECTED, HOVERED, SOLID_EDGE, etc.
+  - Line widths, stipple patterns (continuous, short dash, long dash, freehand)
+  - Z-index ordering for depth control
+  - Helper functions: `hexToThreeColor()`, `getColorForState()`
+
+- **Material System** (`frontend/src/rendering/materials.ts`):
+  - Reusable Three.js materials matching SolveSpace visual style
+  - `SolveMaterials` class with edge, point, face, selection, and construction materials
+  - Line dashed materials for workplane borders
+
+- **Viewport Components**:
+  - `SolveSpaceGrid.tsx` - Grid with minor/major lines on XZ plane, origin axes (red X, blue Z)
+  - `Workplane.tsx` - Workplane display with dashed borders, labels, and normal arrows
+  - `EdgeRenderer.tsx` - Renders wireframe edges from WASM geometry data
+  - `PointRenderer.tsx` - Renders construction points from WASM geometry data
+  - `InteractionManager.tsx` - Mouse interaction handler for selection and drawing tools
+
+- **Three Workplanes**: Added XY, YZ, and XZ workplanes matching SolveSpace defaults
+
+- **Mouse Interaction System**:
+  - Screen to NDC coordinate conversion
+  - Ray casting for entity hit detection
+  - Hover state tracking with visual feedback
+  - Left-click selection with shift-click multi-select
+  - Click on empty space clears selection
+  - Crosshair cursor when drawing tools are active
+
+- **Toolbar Command Integration**:
+  - Added `Command` enum matching SolveSpace's `ui.h` command IDs
+  - Each toolbar tool now maps to corresponding SolveSpace command
+  - Keyboard shortcuts: S=Line, C=Circle, R=Rectangle, A=Arc, T=Text, etc.
+  - ESC key cancels pending operations
+
+#### Changed
+- **Viewport.tsx**: Complete rewrite with proper Three.js/R3F structure
+  - Lighting setup matching SolveSpace (ambient + 2 directional lights)
+  - Camera at (5,5,5) with 50° FOV
+  - OrbitControls with SolveSpace-style mouse buttons (left=orbit, middle=pan, right=zoom)
+  - GizmoHelper in bottom-right corner
+- **useGeometryStore.ts**: Added tool activation, selection management, and command execution
+- **toolDefinitions.ts**: Added `command` property linking each tool to WASM command
+- **geometry.ts types**: Extended `WASMModule` interface with new API functions
+
+#### Technical
+- WASM API extended with edge/point data export functions
+- Stub implementations for headless build (ActivateCommand, SelectEntity, etc.)
+- Frontend builds successfully with all new components
+
 ### [0.2.1-alpha] - 2025-11-25
 
 #### Added

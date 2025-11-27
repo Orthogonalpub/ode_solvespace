@@ -163,11 +163,202 @@ namespace GeometryAPI {
     }
 
     int GetEdgeCount(int groupID) {
-        return 0;
+        Group* g = SK.GetGroup({(uint32_t)groupID});
+        if(!g) return 0;
+
+        SOutlineList* outlines = &g->displayOutlines;
+        return outlines->l.n;
     }
 
     val GetEdgeVertices(int groupID) {
-        return val::array();
+        Group* g = SK.GetGroup({(uint32_t)groupID});
+        if(!g) return val::array();
+
+        SOutlineList* outlines = &g->displayOutlines;
+        if(outlines->l.n == 0) return val::array();
+
+        int edgeCount = outlines->l.n;
+        val vertices = val::global("Float32Array").new_(edgeCount * 6);
+
+        std::vector<float> data;
+        data.reserve(edgeCount * 6);
+
+        for(int i = 0; i < edgeCount; i++) {
+            SOutline* e = &outlines->l[i];
+            data.push_back((float)e->a.x);
+            data.push_back((float)e->a.y);
+            data.push_back((float)e->a.z);
+            data.push_back((float)e->b.x);
+            data.push_back((float)e->b.y);
+            data.push_back((float)e->b.z);
+        }
+
+        vertices.call<void>("set", val(typed_memory_view(data.size(), data.data())));
+        return vertices;
+    }
+
+    int GetActiveGroup() {
+        return SS.GW.activeGroup.v;
+    }
+
+    void SetActiveGroup(int groupID) {
+        SS.GW.activeGroup.v = groupID;
+    }
+
+    int GetEntityCount() {
+        return SK.entity.n;
+    }
+
+    val GetEntityInfoByIndex(int entityIndex) {
+        if(entityIndex < 0 || entityIndex >= SK.entity.n) {
+            return val::object();
+        }
+
+        Entity* e = &SK.entity[entityIndex];
+        val info = val::object();
+
+        info.set("id", e->h.v);
+        info.set("type", (int)e->type);
+        info.set("groupID", e->group.v);
+        info.set("construction", e->construction);
+        info.set("visible", true); // Simplified - always visible for now
+
+        if(e->IsPoint()) {
+            Vector p = e->PointGetNum();
+            val pos = val::array();
+            pos.call<void>("push", p.x);
+            pos.call<void>("push", p.y);
+            pos.call<void>("push", p.z);
+            info.set("position", pos);
+        }
+
+        return info;
+    }
+
+    int GetPointCount(int groupID) {
+        int count = 0;
+        for(int i = 0; i < SK.entity.n; i++) {
+            Entity* e = &SK.entity[i];
+            if((int)e->group.v == groupID && e->IsPoint()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    val GetPointPositions(int groupID) {
+        std::vector<float> positions;
+
+        for(int i = 0; i < SK.entity.n; i++) {
+            Entity* e = &SK.entity[i];
+            if((int)e->group.v == groupID && e->IsPoint()) {
+                Vector p = e->PointGetNum();
+                positions.push_back((float)p.x);
+                positions.push_back((float)p.y);
+                positions.push_back((float)p.z);
+            }
+        }
+
+        if(positions.empty()) return val::array();
+
+        val result = val::global("Float32Array").new_(positions.size());
+        result.call<void>("set", val(typed_memory_view(positions.size(), positions.data())));
+        return result;
+    }
+
+    // Command execution - stub for now (not available in headless build)
+    void ActivateCommand(int commandID) {
+        // Not available in headless WASM build
+        // Commands need the full GraphicsWindow implementation
+        (void)commandID;
+    }
+
+    int GetPendingOperation() {
+        return 0; // NONE
+    }
+
+    void CancelPendingOperation() {
+        // No-op in headless build
+    }
+
+    // Selection - simplified for headless build
+    static std::vector<uint32_t> selectedEntities;
+
+    void SelectEntity(int entityID) {
+        selectedEntities.push_back((uint32_t)entityID);
+    }
+
+    void DeselectEntity(int entityID) {
+        selectedEntities.erase(
+            std::remove(selectedEntities.begin(), selectedEntities.end(), (uint32_t)entityID),
+            selectedEntities.end()
+        );
+    }
+
+    void ClearSelection() {
+        selectedEntities.clear();
+    }
+
+    val GetSelectedEntities() {
+        val result = val::array();
+        for(uint32_t id : selectedEntities) {
+            result.call<void>("push", (int)id);
+        }
+        return result;
+    }
+
+    val GetActiveWorkplane() {
+        val info = val::object();
+        // In headless mode, default to free in 3D
+        info.set("id", 0);
+        info.set("name", "Free in 3D");
+        info.set("freeIn3D", true);
+        return info;
+    }
+
+    val GetWorkplaneInfo(int workplaneID) {
+        val info = val::object();
+
+        Entity* e = SK.GetEntity({(uint32_t)workplaneID});
+        if(!e || !e->IsWorkplane()) {
+            return info;
+        }
+
+        info.set("id", workplaneID);
+        info.set("name", "workplane"); // Simplified
+
+        // Get workplane geometry
+        Vector origin = SK.GetEntity(e->point[0])->PointGetNum();
+        Quaternion q = e->Normal()->NormalGetNum();
+        Vector u = q.RotationU();
+        Vector v = q.RotationV();
+        Vector n = u.Cross(v);
+
+        val o = val::array();
+        o.call<void>("push", origin.x);
+        o.call<void>("push", origin.y);
+        o.call<void>("push", origin.z);
+        info.set("origin", o);
+
+        val norm = val::array();
+        norm.call<void>("push", n.x);
+        norm.call<void>("push", n.y);
+        norm.call<void>("push", n.z);
+        info.set("normal", norm);
+
+        val uAxis = val::array();
+        uAxis.call<void>("push", u.x);
+        uAxis.call<void>("push", u.y);
+        uAxis.call<void>("push", u.z);
+        info.set("u", uAxis);
+
+        val vAxis = val::array();
+        vAxis.call<void>("push", v.x);
+        vAxis.call<void>("push", v.y);
+        vAxis.call<void>("push", v.z);
+        info.set("v", vAxis);
+
+        return info;
     }
 
     val GetBoundingBox(int groupID) {
@@ -298,6 +489,8 @@ EMSCRIPTEN_BINDINGS(geometry_api) {
 
     function("GetGroupCount", &SolveSpace::GeometryAPI::GetGroupCount);
     function("GetGroupInfo", &SolveSpace::GeometryAPI::GetGroupInfo);
+    function("GetActiveGroup", &SolveSpace::GeometryAPI::GetActiveGroup);
+    function("SetActiveGroup", &SolveSpace::GeometryAPI::SetActiveGroup);
 
     function("GetTriangleCount", &SolveSpace::GeometryAPI::GetTriangleCount);
     function("GetTriangleVertices", &SolveSpace::GeometryAPI::GetTriangleVertices);
@@ -307,5 +500,25 @@ EMSCRIPTEN_BINDINGS(geometry_api) {
     function("GetEdgeCount", &SolveSpace::GeometryAPI::GetEdgeCount);
     function("GetEdgeVertices", &SolveSpace::GeometryAPI::GetEdgeVertices);
 
+    function("GetEntityCount", &SolveSpace::GeometryAPI::GetEntityCount);
+    function("GetEntityInfoByIndex", &SolveSpace::GeometryAPI::GetEntityInfoByIndex);
+    function("GetPointCount", &SolveSpace::GeometryAPI::GetPointCount);
+    function("GetPointPositions", &SolveSpace::GeometryAPI::GetPointPositions);
+
     function("GetBoundingBox", &SolveSpace::GeometryAPI::GetBoundingBox);
+
+    // Command execution
+    function("ActivateCommand", &SolveSpace::GeometryAPI::ActivateCommand);
+    function("GetPendingOperation", &SolveSpace::GeometryAPI::GetPendingOperation);
+    function("CancelPendingOperation", &SolveSpace::GeometryAPI::CancelPendingOperation);
+
+    // Selection
+    function("SelectEntity", &SolveSpace::GeometryAPI::SelectEntity);
+    function("DeselectEntity", &SolveSpace::GeometryAPI::DeselectEntity);
+    function("ClearSelection", &SolveSpace::GeometryAPI::ClearSelection);
+    function("GetSelectedEntities", &SolveSpace::GeometryAPI::GetSelectedEntities);
+
+    // Workplane
+    function("GetActiveWorkplane", &SolveSpace::GeometryAPI::GetActiveWorkplane);
+    function("GetWorkplaneInfo", &SolveSpace::GeometryAPI::GetWorkplaneInfo);
 }
