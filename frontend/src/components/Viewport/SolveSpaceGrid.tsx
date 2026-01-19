@@ -77,7 +77,7 @@ export function SolveSpaceGrid({
         />
       </lineSegments>
 
-      {/* Origin X axis (red) */}
+      {/* Origin X axis (red - matching Figma red/500) */}
       <line>
         <bufferGeometry>
           <bufferAttribute
@@ -87,10 +87,10 @@ export function SolveSpaceGrid({
             itemSize={3}
           />
         </bufferGeometry>
-        <lineBasicMaterial color="#ff4444" opacity={0.8} transparent />
+        <lineBasicMaterial color="#cd5537" opacity={0.8} transparent />
       </line>
 
-      {/* Origin Z axis (blue) */}
+      {/* Origin Z axis (blue - matching Figma vibrantblue/500) */}
       <line>
         <bufferGeometry>
           <bufferAttribute
@@ -100,7 +100,7 @@ export function SolveSpaceGrid({
             itemSize={3}
           />
         </bufferGeometry>
-        <lineBasicMaterial color="#4444ff" opacity={0.8} transparent />
+        <lineBasicMaterial color="#2172ab" opacity={0.8} transparent />
       </line>
     </group>
   );

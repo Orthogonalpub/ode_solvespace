@@ -266,6 +266,27 @@ namespace GeometryAPI {
         return result;
     }
 
+    // Returns array of {id, x, y, z, construction} for each point
+    val GetPointsWithIds(int groupID) {
+        val result = val::array();
+
+        for(int i = 0; i < SK.entity.n; i++) {
+            Entity* e = &SK.entity[i];
+            if((int)e->group.v == groupID && e->IsPoint()) {
+                Vector p = e->PointGetNum();
+                val point = val::object();
+                point.set("id", (int)e->h.v);
+                point.set("x", p.x);
+                point.set("y", p.y);
+                point.set("z", p.z);
+                point.set("construction", e->construction);
+                result.call<void>("push", point);
+            }
+        }
+
+        return result;
+    }
+
     // Command execution - stub for now (not available in headless build)
     void ActivateCommand(int commandID) {
         // Not available in headless WASM build
@@ -504,6 +525,7 @@ EMSCRIPTEN_BINDINGS(geometry_api) {
     function("GetEntityInfoByIndex", &SolveSpace::GeometryAPI::GetEntityInfoByIndex);
     function("GetPointCount", &SolveSpace::GeometryAPI::GetPointCount);
     function("GetPointPositions", &SolveSpace::GeometryAPI::GetPointPositions);
+    function("GetPointsWithIds", &SolveSpace::GeometryAPI::GetPointsWithIds);
 
     function("GetBoundingBox", &SolveSpace::GeometryAPI::GetBoundingBox);
 

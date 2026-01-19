@@ -14,6 +14,8 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const setWASMModule = useGeometryStore((state) => state.setWASMModule);
   const loadGroups = useGeometryStore((state) => state.loadGroups);
+  const enableMockData = useGeometryStore((state) => state.enableMockData);
+  const useMockData = useGeometryStore((state) => state.useMockData);
 
   useEffect(() => {
     async function initWASM() {
@@ -21,10 +23,10 @@ function App() {
         const module = await loadWASMModule();
         setWASMModule(module);
         loadGroups();
-        console.log('✅ Application ready:', module.GetVersion());
+        console.log('WASM ready:', module.GetVersion());
         setIsLoading(false);
       } catch (error) {
-        console.error('❌ Failed to load WASM module:', error);
+        console.error('Failed to load WASM module:', error);
         setError(error instanceof Error ? error.message : 'Unknown error');
         setIsLoading(false);
       }
@@ -33,17 +35,33 @@ function App() {
     initWASM();
   }, [setWASMModule, loadGroups]);
 
+  const handleUseMockData = () => {
+    enableMockData();
+    setError(null);
+  };
+
   if (isLoading) {
     return <LoadingScreen />;
   }
 
-  if (error) {
+  if (error && !useMockData) {
     return (
       <div className="error-screen">
         <div className="error-content">
-          <h2>Failed to Load</h2>
+          <h2>Failed to Load WASM</h2>
           <p>{error}</p>
-          <button onClick={() => window.location.reload()}>Reload</button>
+          <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
+            <button onClick={() => window.location.reload()}>Reload</button>
+            <button
+              onClick={handleUseMockData}
+              style={{ background: '#2172ab' }}
+            >
+              Use Mock Data
+            </button>
+          </div>
+          <p style={{ fontSize: '12px', color: '#666', marginTop: '12px' }}>
+            Mock data simulates geometry for testing the rendering system
+          </p>
         </div>
       </div>
     );

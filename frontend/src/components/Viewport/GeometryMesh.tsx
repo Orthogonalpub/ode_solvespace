@@ -9,19 +9,30 @@ export function GeometryMesh() {
   const [meshes, setMeshes] = useState<THREE.BufferGeometry[]>([]);
 
   useEffect(() => {
-    if (!wasmModule || groups.length === 0) return;
+    if (!wasmModule || groups.length === 0) {
+      console.log('[GeometryMesh] No wasmModule or groups', { wasmModule: !!wasmModule, groupsLength: groups.length });
+      return;
+    }
 
+    console.log('[GeometryMesh] Processing groups:', groups);
     const newMeshes: THREE.BufferGeometry[] = [];
 
     groups.forEach((group) => {
       if (!group.visible) return;
 
       const triangleCount = wasmModule.GetTriangleCount(group.id);
+      console.log(`[GeometryMesh] Group ${group.id} (${group.name}): ${triangleCount} triangles`);
       if (triangleCount === 0) return;
 
       const vertices = wasmModule.GetTriangleVertices(group.id);
       const normals = wasmModule.GetTriangleNormals(group.id);
       const indices = wasmModule.GetTriangleIndices(group.id);
+
+      console.log(`[GeometryMesh] Group ${group.id} data:`, {
+        vertices: vertices.length,
+        normals: normals.length,
+        indices: indices.length,
+      });
 
       const geometry = new THREE.BufferGeometry();
       geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
@@ -31,6 +42,7 @@ export function GeometryMesh() {
       newMeshes.push(geometry);
     });
 
+    console.log('[GeometryMesh] Created meshes:', newMeshes.length);
     setMeshes(newMeshes);
 
     return () => {

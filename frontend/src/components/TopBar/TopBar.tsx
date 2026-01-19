@@ -1,7 +1,16 @@
-import { Share2, MoreVertical, ZoomIn, ChevronDown } from 'lucide-react';
+import { Share2, MoreVertical, ZoomIn, ChevronDown, Box } from 'lucide-react';
+import { useGeometryStore } from '@/store/useGeometryStore';
 import './TopBar.css';
 
 export function TopBar() {
+  const enableMockData = useGeometryStore((state) => state.enableMockData);
+  const useMockData = useGeometryStore((state) => state.useMockData);
+  const groups = useGeometryStore((state) => state.groups);
+
+  const handleLoadMockData = () => {
+    enableMockData();
+  };
+
   return (
     <div className="top-bar">
       <div className="top-bar-left">
@@ -18,6 +27,19 @@ export function TopBar() {
             <MoreVertical size={16} />
           </button>
         </div>
+        {/* Mock Data Button for Testing */}
+        <button
+          className="icon-btn"
+          onClick={handleLoadMockData}
+          title={useMockData ? `Mock Data Active (${groups.length} groups)` : 'Load Mock Data'}
+          style={{
+            marginLeft: '8px',
+            background: useMockData ? '#2172ab' : undefined,
+            color: useMockData ? 'white' : undefined,
+          }}
+        >
+          <Box size={16} />
+        </button>
       </div>
 
       <div className="divider" />

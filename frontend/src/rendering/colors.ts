@@ -1,17 +1,47 @@
 // SolveSpace color definitions matching src/style.cpp
 // All colors use RGB values from the original C++ implementation
 
-export const SolveSpaceColors = {
-  // Background colors
-  BACKGROUND: '#1a1a1a',        // Dark background (default)
-  BACKGROUND_LIGHT: '#2d2d2d',  // Slightly lighter for contrast
+// Figma design system colors
+export const FigmaDesignColors = {
+  // Container colors
+  CONTAINER_300: '#f4f6f7',
+  CONTAINER_400: '#eff1f4',
+  CONTAINER_500: '#e9edf0',
 
-  // Entity styles from Style::Defaults[] in style.cpp
-  ACTIVE_GRP: '#ffffff',        // RGBf(1.0, 1.0, 1.0) - White
+  // Element colors
+  BACKGROUND: '#f9fafb',
+  BACKGROUND_ALT: 'rgba(149, 183, 208, 0.24)',
+  DIVIDER: 'rgba(149, 183, 208, 0.16)',
+
+  // Cement (gray) colors
+  CEMENT_100: '#e4e6e7',
+  CEMENT_200: '#c9cccf',
+  CEMENT_300: '#afb3b6',
+  CEMENT_400: '#949a9e',
+  CEMENT_500: '#696f74',
+
+  // Accent colors
+  RED_500: '#cd5537',
+  AQUA_500: '#6dc6c6',
+  VIBRANT_BLUE_500: '#2172ab',
+
+  // Content colors
+  CONTENT_MAIN: '#203646',
+  CONTENT_SUB: 'rgba(6, 7, 8, 0.6)',
+  CONTENT_FOCUS: '#1b5d8d',
+} as const;
+
+export const SolveSpaceColors = {
+  // Background colors - Updated to match Figma design
+  BACKGROUND: '#e9edf0',        // Light background matching Figma Container/500
+  BACKGROUND_LIGHT: '#f4f6f7',  // Slightly lighter for contrast (Container/300)
+
+  // Entity styles - Updated for light background
+  ACTIVE_GRP: '#203646',        // Dark blue-gray for visibility on light bg
   CONSTRUCTION: '#1ab31a',      // RGBf(0.1, 0.7, 0.1) - Light green
   INACTIVE_GRP: '#804d00',      // RGBf(0.5, 0.3, 0.0) - Orange/brown
   DATUM: '#00cc00',             // RGBf(0.0, 0.8, 0.0) - Dark green
-  SOLID_EDGE: '#cccccc',        // RGBf(0.8, 0.8, 0.8) - Light gray
+  SOLID_EDGE: '#696f74',        // Darker gray for light background (Cement/500)
   CONSTRAINT: '#ff1aff',        // RGBf(1.0, 0.1, 1.0) - Magenta
   SELECTED: '#ff0000',          // RGBf(1.0, 0.0, 0.0) - Red
   HOVERED: '#ffff00',           // RGBf(1.0, 1.0, 0.0) - Yellow
@@ -23,9 +53,9 @@ export const SolveSpaceColors = {
   HIDDEN_EDGE: '#cccccc',       // Same as SOLID_EDGE but dashed
   OUTLINE: '#cccccc',           // RGBf(0.8, 0.8, 0.8) - Gray
 
-  // Grid colors
-  GRID_MAJOR: '#404040',        // Major grid lines
-  GRID_MINOR: '#2a2a2a',        // Minor grid lines
+  // Grid colors - Updated for light background
+  GRID_MAJOR: '#c9cccf',        // Major grid lines (Cement/200)
+  GRID_MINOR: '#d8dbdd',        // Minor grid lines (lighter)
 
   // Mesh colors (for solid bodies)
   MESH_FRONT: '#4a6fa5',        // Front face color
@@ -89,4 +119,35 @@ export const StipplePatterns: Record<StipplePattern, { dashSize: number; gapSize
 // Convert hex color to Three.js format
 export function hexToThreeColor(hex: string): number {
   return parseInt(hex.replace('#', ''), 16);
+}
+
+// Entity visual state
+export type EntityState = 'normal' | 'selected' | 'hovered' | 'construction';
+
+// Get color for entity based on its state
+export function getColorForState(
+  state: EntityState,
+  isConstruction: boolean = false
+): string {
+  if (state === 'hovered') {
+    return SolveSpaceColors.HOVERED;
+  }
+  if (state === 'selected') {
+    return SolveSpaceColors.SELECTED;
+  }
+  if (isConstruction || state === 'construction') {
+    return SolveSpaceColors.CONSTRUCTION;
+  }
+  return SolveSpaceColors.ACTIVE_GRP;
+}
+
+// Get line width for entity based on its state
+export function getLineWidthForState(state: EntityState): number {
+  if (state === 'hovered') {
+    return LineWidths.HOVERED;
+  }
+  if (state === 'selected') {
+    return LineWidths.SELECTED;
+  }
+  return LineWidths.ACTIVE_GRP;
 }

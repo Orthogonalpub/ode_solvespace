@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import type { GroupInfo, EntityID, WASMModule, WorkplaneInfo } from '@/types/geometry';
 import { Command, PendingOperation } from '@/types/geometry';
+import { createMockWASMModule } from '@/utils/mockGeometryData';
 
 interface Tool {
   type: string;
@@ -11,6 +12,7 @@ interface Tool {
 
 interface GeometryState {
   wasmModule: WASMModule | null;
+  useMockData: boolean;
   groups: GroupInfo[];
   selectedEntities: EntityID[];
   hoveredEntity: EntityID | null;
@@ -20,6 +22,7 @@ interface GeometryState {
 
   // Core actions
   setWASMModule: (module: WASMModule) => void;
+  enableMockData: () => void;
   loadGroups: () => void;
   refreshGeometry: () => void;
 
@@ -41,6 +44,7 @@ interface GeometryState {
 export const useGeometryStore = create<GeometryState>()(
   immer((set, get) => ({
     wasmModule: null,
+    useMockData: false,
     groups: [],
     selectedEntities: [],
     hoveredEntity: null,
@@ -51,7 +55,19 @@ export const useGeometryStore = create<GeometryState>()(
     setWASMModule: (module) => {
       set((state) => {
         state.wasmModule = module;
+        state.useMockData = false;
       });
+    },
+
+    enableMockData: () => {
+      const mockModule = createMockWASMModule() as unknown as WASMModule;
+      set((state) => {
+        state.wasmModule = mockModule;
+        state.useMockData = true;
+      });
+      // Load mock data immediately
+      get().refreshGeometry();
+      console.log('[Store] Mock data enabled - geometry loaded');
     },
 
     loadGroups: () => {

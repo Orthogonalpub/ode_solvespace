@@ -4,9 +4,10 @@
 
 Migrate all rendering features from original SolveSpace C++/OpenGL (4,726 lines) to React/Three.js frontend while keeping WASM geometry engine for calculations only.
 
-**Status**: Planning
+**Status**: Phase 2A & 2B Complete ✅
 **Priority**: High
 **Created**: 2025-11-25
+**Updated**: 2025-11-28
 
 ---
 
@@ -22,53 +23,61 @@ Migrate all rendering features from original SolveSpace C++/OpenGL (4,726 lines)
 - [x] UI components (Toolbar, PropertyBrowser, ColorPicker)
 - [x] Tooltips, hover effects
 
-### Missing (Phase 2 - Rendering System)
-- [ ] Edge/wireframe rendering
-- [ ] Point rendering
-- [ ] Selection visualization
-- [ ] Hit testing/picking
-- [ ] Construction geometry differentiation
-- [ ] Constraint visualization
-- [ ] 2D sketch plane view
-- [ ] Rendering abstraction layer
+### Completed (Phase 2A & 2B - Core Rendering) ✅
+- [x] Edge/wireframe rendering (`EdgeRenderer.tsx`)
+- [x] Point rendering (`PointRenderer.tsx`)
+- [x] Selection visualization (color highlighting)
+- [x] Hit testing/picking (Raycaster in `InteractionManager.tsx`)
+- [x] Material system (`colors.ts`, `materials.ts`)
+- [x] Grid and workplanes (`SolveSpaceGrid.tsx`, `Workplane.tsx`)
+- [x] Mock data system for testing (`mockGeometryData.ts`)
+- [x] Light theme matching Figma design
+
+### Remaining (Phase 2C-2E)
+- [ ] Construction geometry differentiation (dashed lines) → Task 003
+- [ ] 2D sketch plane view (ortho camera) → Task 004
+- [ ] Constraint visualization → Task 005
+- [ ] Snap point system → Task 006
+- [ ] Bezier curve rendering → Task 007
+- [ ] Performance optimization → Task 008
 
 ---
 
 ## Rendering Features from Original C++ Codebase
 
 ### A. Geometry Rendering
-| Feature | Status | Priority |
-|---------|--------|----------|
-| Triangulated Meshes | ✅ Done | - |
-| Edges/Wireframes | ❌ | P1 |
-| Points | ❌ | P1 |
-| Surface Contours | ❌ | P2 |
-| Bezier Curves | ❌ | P2 |
+| Feature | Status | Priority | Task |
+|---------|--------|----------|------|
+| Triangulated Meshes | ✅ Done | - | - |
+| Edges/Wireframes | ✅ Done | P1 | Task 002 |
+| Points | ✅ Done | P1 | Task 002 |
+| Surface Contours | ❌ | P2 | Task 007 |
+| Bezier Curves | ❌ | P2 | Task 007 |
 
 ### B. Selection & Interaction
-| Feature | Status | Priority |
-|---------|--------|----------|
-| Entity Selection Highlight | ❌ | P1 |
-| Hover Effect | ❌ | P1 |
-| Hit Testing | ❌ | P1 |
-| Multi-Select | ❌ | P2 |
-| Snap Points | ❌ | P2 |
+| Feature | Status | Priority | Task |
+|---------|--------|----------|------|
+| Entity Selection Highlight | ✅ Done | P1 | Task 002 |
+| Hover Effect | ✅ Done | P1 | Task 002 |
+| Hit Testing | ✅ Done | P1 | Task 002 |
+| Multi-Select | ❌ | P2 | (Future) |
+| Snap Points | ❌ | P2 | Task 006 |
 
 ### C. Sketch & Construction
-| Feature | Status | Priority |
-|---------|--------|----------|
-| Construction Lines (dashed) | ❌ | P2 |
-| Work Plane Grid | ❌ | P2 |
-| 2D Orthographic View | ❌ | P2 |
-| Point/Line/Circle entities | ❌ | P2 |
+| Feature | Status | Priority | Task |
+|---------|--------|----------|------|
+| Construction Lines (dashed) | ❌ | P2 | Task 003 |
+| Work Plane Grid | ✅ Done | P2 | Task 002 |
+| 2D Orthographic View | ❌ | P2 | Task 004 |
+| Point/Line/Circle entities | ✅ Done | P2 | Task 002 |
 
 ### D. Constraint Visualization
-| Feature | Status | Priority |
-|---------|--------|----------|
-| Distance Dimensions | ❌ | P3 |
-| Angle Dimensions | ❌ | P3 |
-| Constraint Symbols | ❌ | P3 |
-| Conflict Indicators | ❌ | P3 |
+| Feature | Status | Priority | Task |
+|---------|--------|----------|------|
+| Distance Dimensions | ❌ | P3 | Task 005 |
+| Angle Dimensions | ❌ | P3 | Task 005 |
+| Constraint Symbols | ❌ | P3 | Task 005 |
+| Conflict Indicators | ❌ | P3 | Task 005 |
 
 ---
 

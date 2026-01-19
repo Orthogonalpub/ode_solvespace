@@ -38,6 +38,9 @@ emscripten::val GetEntityInfoByIndex(int entityIndex);
 emscripten::val GetPointPositions(int groupID);
 int GetPointCount(int groupID);
 
+// Point data with entity IDs (for selection visualization)
+emscripten::val GetPointsWithIds(int groupID);
+
 // Bounding box
 emscripten::val GetBoundingBox(int groupID);
 

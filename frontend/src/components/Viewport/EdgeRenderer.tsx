@@ -9,8 +9,12 @@ export function EdgeRenderer() {
   const [edgeGeometries, setEdgeGeometries] = useState<THREE.BufferGeometry[]>([]);
 
   useEffect(() => {
-    if (!wasmModule || groups.length === 0) return;
+    if (!wasmModule || groups.length === 0) {
+      console.log('[EdgeRenderer] No wasmModule or groups');
+      return;
+    }
 
+    console.log('[EdgeRenderer] Processing groups:', groups.length);
     const newGeometries: THREE.BufferGeometry[] = [];
 
     groups.forEach((group) => {
@@ -18,10 +22,13 @@ export function EdgeRenderer() {
 
       try {
         const edgeCount = wasmModule.GetEdgeCount(group.id);
+        console.log(`[EdgeRenderer] Group ${group.id}: ${edgeCount} edges`);
         if (edgeCount === 0) return;
 
         const edgeVertices = wasmModule.GetEdgeVertices(group.id);
         if (!edgeVertices || edgeVertices.length === 0) return;
+
+        console.log(`[EdgeRenderer] Group ${group.id}: ${edgeVertices.length} vertices`);
 
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute(
@@ -31,11 +38,11 @@ export function EdgeRenderer() {
 
         newGeometries.push(geometry);
       } catch (e) {
-        // Edge data not available for this group
-        console.debug(`No edge data for group ${group.id}`);
+        console.debug(`No edge data for group ${group.id}`, e);
       }
     });
 
+    console.log('[EdgeRenderer] Created geometries:', newGeometries.length);
     setEdgeGeometries(newGeometries);
 
     return () => {

@@ -61,11 +61,11 @@ export function Viewport() {
           }}
         />
 
-        {/* Coordinate gizmo */}
+        {/* Coordinate gizmo - colors matching Figma design */}
         <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
           <GizmoViewport
-            axisColors={['#ff4444', '#44ff44', '#4444ff']}
-            labelColor="white"
+            axisColors={['#cd5537', '#6dc6c6', '#2172ab']}
+            labelColor="#203646"
           />
         </GizmoHelper>
       </Canvas>

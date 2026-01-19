@@ -41,6 +41,14 @@ export interface EntityInfo {
   position?: number[]; // For points
 }
 
+export interface PointWithId {
+  id: EntityID;
+  x: number;
+  y: number;
+  z: number;
+  construction: boolean;
+}
+
 export interface WorkplaneInfo {
   id: number;
   name: string;
@@ -165,6 +173,7 @@ export interface WASMModule {
   GetEntityInfo: (entityID: number) => EntityInfo; // From exposed_textwin.cpp
   GetPointCount: (groupID: GroupID) => number;
   GetPointPositions: (groupID: GroupID) => Float32Array;
+  GetPointsWithIds: (groupID: GroupID) => PointWithId[];
 
   // Bounding box
   GetBoundingBox: (groupID: GroupID) => BoundingBox;
