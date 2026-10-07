@@ -80,6 +80,11 @@ bool ConstraintBase::IsProjectible() const {
     ssassert(false, "Impossible");
 }
 
+bool ConstraintBase::IsOrientedParallel() const {
+    if(type != Type::PARALLEL || !other || workplane != EntityBase::FREE_IN_3D) return false;
+    return SK.GetEntity(entityA)->IsNormal() && SK.GetEntity(entityB)->IsNormal();
+}
+
 ExprVector ConstraintBase::VectorsParallel3d(ExprVector a, ExprVector b, hParam p) {
     return a.Minus(b.ScaledBy(Expr::From(p)));
 }
@@ -253,6 +258,8 @@ void ConstraintBase::Generate(ParamList *l) {
         case Type::CUBIC_LINE_TANGENT:
             // Add new parameter only when we operate in 3d space
             if(workplane != EntityBase::FREE_IN_3D) break;
+            // The oriented parallel between two normals needs no scale param.
+            if(type == Type::PARALLEL && IsOrientedParallel()) break;
             // fallthrough
         case Type::SAME_ORIENTATION:
         case Type::PT_ON_LINE: {
@@ -1012,6 +1019,21 @@ void ConstraintBase::GenerateEquations(IdList<Equation,hEquation> *l,
 
         case Type::PARALLEL: {
             EntityBase *ea = SK.GetEntity(entityA), *eb = SK.GetEntity(entityB);
+            if(IsOrientedParallel()) {
+                // Oriented: n_a (negated when other2) points along n_b. With u_b, v_b, n_b
+                // the frame of b, write the stereographic coordinates of n_a seen from -n_b,
+                //     (n_a . u_b) / (1 + n_a . n_b) = 0,  (n_a . v_b) / (1 + n_a . n_b) = 0,
+                // which vanish only at n_a = n_b and have a full-rank Jacobian there. They
+                // are undefined at n_a = -n_b, so callers start on the right side.
+                ExprVector na = ea->NormalExprsN();
+                if(other2) na = na.ScaledBy(Expr::From(-1));
+                ExprVector ub = eb->NormalExprsU(), vb = eb->NormalExprsV(),
+                           nb = eb->NormalExprsN();
+                Expr *den = Expr::From(1)->Plus(na.Dot(nb));
+                AddEq(l, (na.Dot(ub))->Div(den), 0);
+                AddEq(l, (na.Dot(vb))->Div(den), 1);
+                return;
+            }
             ExprVector a = ea->VectorGetExprsInWorkplane(workplane);
             ExprVector b = eb->VectorGetExprsInWorkplane(workplane);
 

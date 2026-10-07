@@ -1,5 +1,7 @@
 #include "solvespace.h"
+#if !defined(SLVS_SIMPLE_ARENA)
 #include <mimalloc.h>
+#endif
 
 #if defined(WIN32)
 #   include <Windows.h>
@@ -66,6 +68,52 @@ void DebugPrint(const char *fmt, ...) {
 // Temporary arena.
 //-----------------------------------------------------------------------------
 
+#if defined(SLVS_SIMPLE_ARENA)
+
+// A bump arena over malloc, for builds without mimalloc (the orth-solver wasm target). The
+// solver allocates its expression trees here and frees them all at once after each solve.
+struct SimpleArena {
+    static const size_t CHUNK = 1 << 20;
+    std::vector<char *> chunks;
+    size_t used = CHUNK;
+
+    ~SimpleArena() { Clear(); }
+    void Clear() {
+        for(char *c : chunks) free(c);
+        chunks.clear();
+        used = CHUNK;
+    }
+};
+
+static SimpleArena TempArena;
+
+void *AllocTemporary(size_t size) {
+    size = (size + 15) & ~(size_t)15;
+    if(size > SimpleArena::CHUNK / 4) {
+        // Large blocks get a chunk of their own, kept behind the current one.
+        char *big = (char *)calloc(1, size);
+        ssassert(big != NULL, "out of memory");
+        TempArena.chunks.insert(TempArena.chunks.begin(), big);
+        return big;
+    }
+    if(TempArena.used + size > SimpleArena::CHUNK) {
+        char *chunk = (char *)malloc(SimpleArena::CHUNK);
+        ssassert(chunk != NULL, "out of memory");
+        TempArena.chunks.push_back(chunk);
+        TempArena.used = 0;
+    }
+    void *ptr = TempArena.chunks.back() + TempArena.used;
+    TempArena.used += size;
+    memset(ptr, 0, size);
+    return ptr;
+}
+
+void FreeAllTemporary() {
+    TempArena.Clear();
+}
+
+#else
+
 struct MimallocHeap {
     mi_heap_t *heap = NULL;
 
@@ -91,6 +139,8 @@ void FreeAllTemporary() {
     MimallocHeap temp;
     std::swap(TempArena.heap, temp.heap);
 }
+
+#endif
 
 }
 }

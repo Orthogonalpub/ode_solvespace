@@ -56,9 +56,18 @@ typedef struct {
 
 #define SLVS_E_DISTANCE             70000
 
-/* The special point, normal, and distance types used for parametric step
- * and repeat, extrude, and assembly are currently not exposed. Please
- * contact us if you are interested in using these. */
+/* Rigid-body features (orth-solver). A body is a POINT_IN_3D (its origin, params
+ * tx ty tz) plus a NORMAL_IN_3D (its orientation, params qw qx qy qz). A feature on
+ * the body references those seven params and carries constant body-local data:
+ *   POINT_N_ROT_TRANS   p = t + q * p_local       (Slvs_AddBodyPoint)
+ *   NORMAL_N_ROT        n = q * n_local           (Slvs_AddBodyNormal)
+ * They add no params and no equations of their own, so a body moves rigidly with
+ * all of its features. They can be used wherever a 3d point or normal is expected
+ * (line segments, workplanes, constraints). They are created through the sketch API
+ * (Slvs_Add*, Slvs_SolveSketch) only; Slvs_Solve's Slvs_Entity has no room for the
+ * local data. The other step-and-repeat / extrude types stay unexposed. */
+#define SLVS_E_POINT_N_ROT_TRANS    50002
+#define SLVS_E_NORMAL_N_ROT         60002
 
 #define SLVS_E_WORKPLANE            80000
 #define SLVS_E_LINE_SEGMENT         80001
@@ -106,6 +115,9 @@ typedef struct {
 #define SLVS_C_SAME_ORIENTATION         100023
 #define SLVS_C_ANGLE                    100024
 #define SLVS_C_PARALLEL                 100025
+/* SLVS_C_PARALLEL between two 3d normals (free in 3d) with `other` set is oriented:
+ * the normals point the same way, or opposite ways when `other2` is also set. It
+ * writes two equations (no extra param) that vanish only for that sense. */
 #define SLVS_C_PERPENDICULAR            100026
 #define SLVS_C_ARC_LINE_TANGENT         100027
 #define SLVS_C_CUBIC_LINE_TANGENT       100028
@@ -444,6 +456,14 @@ DLL Slvs_Entity Slvs_AddArc(uint32_t grouph, Slvs_Entity normal, Slvs_Entity cen
 DLL Slvs_Entity Slvs_AddCircle(uint32_t grouph, Slvs_Entity normal, Slvs_Entity center, Slvs_Entity radius, Slvs_Entity workplane);
 DLL Slvs_Entity Slvs_AddWorkplane(uint32_t grouph, Slvs_Entity origin, Slvs_Entity nm);
 DLL Slvs_Entity Slvs_AddBase2D(uint32_t grouph);
+/* Rigid-body features, see SLVS_E_POINT_N_ROT_TRANS above. `origin` is the body's
+ * POINT_IN_3D and `orientation` its NORMAL_IN_3D; (x, y, z) are body-local. */
+DLL Slvs_Entity Slvs_AddBodyPoint(uint32_t grouph, Slvs_Entity origin, Slvs_Entity orientation,
+                                  double x, double y, double z);
+/* (qw, qx, qy, qz) is the body-local orientation of the normal; its N axis is the
+ * normal's direction (Slvs_MakeQuaternion builds one from two basis vectors). */
+DLL Slvs_Entity Slvs_AddBodyNormal(uint32_t grouph, Slvs_Entity orientation,
+                                   double qw, double qx, double qy, double qz);
 
 
 DLL Slvs_Constraint Slvs_AddConstraint(uint32_t grouph, int type, Slvs_Entity workplane, double val, Slvs_Entity ptA,

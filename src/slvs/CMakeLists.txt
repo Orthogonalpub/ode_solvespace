@@ -58,6 +58,31 @@ if(EMSCRIPTEN)
         --closure 0)
     target_compile_definitions(slvs-wasm PRIVATE WITH_FULL_CORE)
     set_target_properties(slvs-wasm PROPERTIES OUTPUT_NAME "slvs" SUFFIX ".js")
+
+    # orth-solver: the narrow solver-only build (libslvs sources + a JSON C ABI; no geometry,
+    # rendering or file APIs, no embind). Same flags as build-orth-solver.sh, which builds it
+    # without configuring the whole project.
+    add_executable(orth-solver
+        lib.cpp
+        orth_solver.cpp
+        ${CMAKE_SOURCE_DIR}/src/constrainteq.cpp
+        ${CMAKE_SOURCE_DIR}/src/entity.cpp
+        ${CMAKE_SOURCE_DIR}/src/expr.cpp
+        ${CMAKE_SOURCE_DIR}/src/system.cpp
+        ${CMAKE_SOURCE_DIR}/src/util.cpp
+        ${CMAKE_SOURCE_DIR}/src/platform/platformbase.cpp)
+    target_include_directories(orth-solver PRIVATE
+        ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/include ${EIGEN3_INCLUDE_DIRS})
+    target_compile_definitions(orth-solver PRIVATE LIBRARY NDEBUG ORTH_SOLVER SLVS_SIMPLE_ARENA)
+    target_compile_options(orth-solver PRIVATE -O3 -flto -fwasm-exceptions)
+    target_link_options(orth-solver PRIVATE
+        -O3 -flto -fwasm-exceptions --no-entry
+        "SHELL:-s STANDALONE_WASM=1"
+        "SHELL:-s EXPORTED_FUNCTIONS=_orth_solve,_orth_version,_orth_alloc,_orth_free"
+        "SHELL:-s ALLOW_MEMORY_GROWTH=1"
+        "SHELL:-s INITIAL_MEMORY=16MB"
+        "SHELL:-s STACK_SIZE=1MB")
+    set_target_properties(orth-solver PROPERTIES OUTPUT_NAME "orth-solver" SUFFIX ".wasm")
 endif()
 
 add_library(slvs SHARED)

@@ -9,16 +9,27 @@
 #include <string>
 
 #include <type_traits>
+#if defined(ORTH_SOLVER)
+#   include "orth_solver.h"
+#endif
 using namespace SolveSpace;
 
 #ifndef WITH_FULL_CORE
 Sketch SolveSpace::SK = {};
 static System SYS;
 
+#if defined(ORTH_SOLVER)
+// The orth-solver target catches this in its JSON entry point (orth_solver.cpp), so a failed
+// assertion is reported as an error response instead of aborting the wasm instance.
+void SolveSpace::Platform::FatalError(const std::string &message) {
+    throw OrthSolverFatal{message};
+}
+#else
 void SolveSpace::Platform::FatalError(const std::string &message) {
     fprintf(stderr, "%s", message.c_str());
     abort();
 }
+#endif
 
 void Group::GenerateEquations(IdList<Equation, hEquation> *) {
     // Nothing to do for now.
@@ -88,6 +99,8 @@ static EntityBase::Type Slvs_CTypeToEntityBaseType(int type) {
     case SLVS_E_CUBIC: return EntityBase::Type::CUBIC;
     case SLVS_E_CIRCLE: return EntityBase::Type::CIRCLE;
     case SLVS_E_ARC_OF_CIRCLE: return EntityBase::Type::ARC_OF_CIRCLE;
+    case SLVS_E_POINT_N_ROT_TRANS: return EntityBase::Type::POINT_N_ROT_TRANS;
+    case SLVS_E_NORMAL_N_ROT: return EntityBase::Type::NORMAL_N_ROT;
     default: SolveSpace::Platform::FatalError("bad entity type " + std::to_string(type));
     }
 }
@@ -163,7 +176,7 @@ bool Slvs_IsPoint2D(Slvs_Entity e) {
 }
 
 bool Slvs_IsPoint3D(Slvs_Entity e) {
-    return e.type == SLVS_E_POINT_IN_3D;
+    return e.type == SLVS_E_POINT_IN_3D || e.type == SLVS_E_POINT_N_ROT_TRANS;
 }
 
 bool Slvs_IsNormal2D(Slvs_Entity e) {
@@ -171,7 +184,7 @@ bool Slvs_IsNormal2D(Slvs_Entity e) {
 }
 
 bool Slvs_IsNormal3D(Slvs_Entity e) {
-    return e.type == SLVS_E_NORMAL_IN_3D;
+    return e.type == SLVS_E_NORMAL_IN_3D || e.type == SLVS_E_NORMAL_N_ROT;
 }
 
 bool Slvs_IsLine(Slvs_Entity e) {
@@ -205,7 +218,8 @@ bool Slvs_IsDistance(Slvs_Entity e) {
 bool Slvs_IsPoint(Slvs_Entity e) {
     switch(e.type) {
     case SLVS_E_POINT_IN_3D:
-    case SLVS_E_POINT_IN_2D: return true;
+    case SLVS_E_POINT_IN_2D:
+    case SLVS_E_POINT_N_ROT_TRANS: return true;
     default: return false;
     }
 }
@@ -502,6 +516,54 @@ Slvs_Entity Slvs_AddWorkplane(uint32_t grouph, Slvs_Entity origin, Slvs_Entity n
     ce.wrkpl       = SLVS_FREE_IN_3D;
     ce.point[0]    = origin.h;
     ce.normal      = nm.h;
+    return ce;
+}
+
+Slvs_Entity Slvs_AddBodyPoint(uint32_t grouph, Slvs_Entity origin, Slvs_Entity orientation,
+                              double x, double y, double z) {
+    if(origin.type != SLVS_E_POINT_IN_3D) {
+        SolveSpace::Platform::FatalError("origin argument is not a POINT_IN_3D");
+    } else if(orientation.type != SLVS_E_NORMAL_IN_3D) {
+        SolveSpace::Platform::FatalError("orientation argument is not a NORMAL_IN_3D");
+    }
+    SketchEntity e = {};
+    e.type         = EntityBase::Type::POINT_N_ROT_TRANS;
+    e.group.v      = grouph;
+    e.workplane.v  = EntityBase::FREE_IN_3D.v;
+    for(int i = 0; i < 3; i++) e.param[i].v = origin.param[i];
+    for(int i = 0; i < 4; i++) e.param[3 + i].v = orientation.param[i];
+    e.numPoint     = Vector::From(x, y, z);
+    SK.entity.AddAndAssignId(&e);
+
+    Slvs_Entity ce = Slvs_Entity{};
+    ce.h           = e.h.v;
+    ce.type        = SLVS_E_POINT_N_ROT_TRANS;
+    ce.group       = grouph;
+    ce.wrkpl       = SLVS_FREE_IN_3D;
+    ce.point[0]    = origin.h;
+    ce.normal      = orientation.h;
+    return ce;
+}
+
+Slvs_Entity Slvs_AddBodyNormal(uint32_t grouph, Slvs_Entity orientation,
+                               double qw, double qx, double qy, double qz) {
+    if(orientation.type != SLVS_E_NORMAL_IN_3D) {
+        SolveSpace::Platform::FatalError("orientation argument is not a NORMAL_IN_3D");
+    }
+    SketchEntity e = {};
+    e.type         = EntityBase::Type::NORMAL_N_ROT;
+    e.group.v      = grouph;
+    e.workplane.v  = EntityBase::FREE_IN_3D.v;
+    for(int i = 0; i < 4; i++) e.param[i].v = orientation.param[i];
+    e.numNormal    = Quaternion::From(qw, qx, qy, qz).WithMagnitude(1);
+    SK.entity.AddAndAssignId(&e);
+
+    Slvs_Entity ce = Slvs_Entity{};
+    ce.h           = e.h.v;
+    ce.type        = SLVS_E_NORMAL_N_ROT;
+    ce.group       = grouph;
+    ce.wrkpl       = SLVS_FREE_IN_3D;
+    ce.normal      = orientation.h;
     return ce;
 }
 
@@ -909,7 +971,9 @@ Slvs_SolveResult Slvs_SolveSketch(uint32_t shg, Slvs_hConstraint **bad = nullptr
             continue;
         }
         for(hParam &parh : e->param) {
-            if(parh.v != 0) {
+            // Rigid-body features (POINT_N_ROT_TRANS, NORMAL_N_ROT) share their body's
+            // params, so a param may already be in the system.
+            if(parh.v != 0 && !SYS.param.FindByIdNoOops(parh)) {
                 // get params for this entity and add it to the system
                 Param *p = SK.GetParam(parh);
                 p->known = false;

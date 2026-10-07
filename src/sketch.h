@@ -721,6 +721,9 @@ public:
 
     bool HasLabel() const;
     bool IsProjectible() const;
+    // PARALLEL between two normals, free in 3d, with `other` set: n_a along n_b (or against
+    // it, with `other2`), see GenerateEquations.
+    bool IsOrientedParallel() const;
 
     void Generate(ParamList *param);
 
