@@ -17,7 +17,7 @@
 //   { "v": 1,
 //     "bodies":  [{ "id", "fixed"?: bool, "t": [x,y,z], "q": [w,x,y,z] }],
 //     "points":  [{ "id", "body", "p": [x,y,z] }],          body-local
-//     "dirs":    [{ "id", "body", "d": [x,y,z] }],          body-local
+//     "dirs":    [{ "id", "body", "d": [x,y,z], "u"?: [x,y,z] }],  body-local; u: frame reference
 //     "lines":   [{ "id", "a": point, "b": point }],
 //     "planes":  [{ "id", "origin": point, "normal": dir }],
 //     "constraints": [{ "id", "type", "a", "b"?, "value"?, "flip"?, "sense"? }],
@@ -30,7 +30,8 @@
 //   pointLineDistance (point, line, value)  pointPointDistance (point, point, value)
 //   parallel (dir|line, dir|line; sense "same"|"opposite" for two dirs)
 //   perpendicular (dir|line, dir|line)   angle (dir|line, dir|line, value deg, flip)
-//   sameOrientation (dir, dir)           whereDragged (point)
+//   sameOrientation (dir, dir: frames d, u, d x u match; give both dirs "u")
+//   whereDragged (point)
 //
 // Response:
 //   { "v": 1, "status": "ok" | "redundant-ok" | "inconsistent" | "didnt-converge"
@@ -564,8 +565,21 @@ void Solve(const char *text) {
         if(!(m > 1e-12) || !std::isfinite(m)) Invalid(where + ": \"d\" must be a non-zero vector");
         dv = dv.ScaledBy(1 / m);
 
-        // A local frame whose N axis is d: u is any unit vector normal to d, v = d x u, so u x v = d.
-        Vector u = dv.Normal(0), v = dv.Normal(1);
+        // A local frame whose N axis is d, so u x v = d with v = d x u. u is the given reference
+        // direction made normal to d, or any unit vector normal to d. Only sameOrientation sees u.
+        Vector u = dv.Normal(0);
+        if(jd.Get("u") && jd.Get("u")->t != Json::T::NUL) {
+            double uu[3];
+            Numbers(jd, "u", where, 3, uu);
+            Vector ur = Vector::From(uu[0], uu[1], uu[2]);
+            ur        = ur.Minus(dv.ScaledBy(ur.Dot(dv)));
+            double um = ur.Magnitude();
+            if(!(um > 1e-9) || !std::isfinite(um)) {
+                Invalid(where + ": \"u\" must not be parallel to \"d\"");
+            }
+            u = ur.ScaledBy(1 / um);
+        }
+        Vector v = dv.Cross(u);
         SketchEntity e = {};
         e.type         = EntityBase::Type::NORMAL_N_ROT;
         e.group.v      = GROUP_FEATURE;
