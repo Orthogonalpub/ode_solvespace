@@ -21,7 +21,8 @@
 //     "lines":   [{ "id", "a": point, "b": point }],
 //     "planes":  [{ "id", "origin": point, "normal": dir }],
 //     "constraints": [{ "id", "type", "a", "b"?, "value"?, "flip"?, "sense"? }],
-//     "dragged"?: [body or point id],                     solver keeps these near
+//     "dragged"?: [body or point id],   a body: its params change as little as possible;
+//                                       a point: it is pulled toward where the request puts it
 //     "findFailed"?: bool }
 // Point, dir, line and plane ids share one namespace; body and constraint ids
 // have their own. Constraint types and their operands:
@@ -769,7 +770,31 @@ void Solve(const char *text) {
         if(f == features.end() || f->second.kind != Kind::POINT) {
             Invalid(where + ": unknown body or point \"" + jd.s + "\"");
         }
-        dragBody(f->second.body);
+        if(bodies[f->second.body].fixed) continue;
+        // A dragged point: a free handle where the request's poses put the point, coincident
+        // with it, and dragged (SolveSpace's own way to drag a point that hangs off other
+        // params). The body moves to meet the handle as far as its constraints allow, so
+        // a hinged part turns toward the pointer.
+        Vector at = SK.GetEntity(f->second.h)->PointGetNum();
+        SketchEntity handle = {};
+        handle.type         = EntityBase::Type::POINT_IN_3D;
+        handle.group.v      = GROUP_SOLVE;
+        handle.workplane    = EntityBase::FREE_IN_3D;
+        double xyz[3]       = {at.x, at.y, at.z};
+        for(int i = 0; i < 3; i++) {
+            handle.param[i] = AddParam(xyz[i]);
+            SolveParam(handle.param[i]);
+            OSYS.dragged.insert(handle.param[i]);
+        }
+        SK.entity.AddAndAssignId(&handle);
+        SketchConstraint c = {};
+        c.type             = ConstraintBase::Type::POINTS_COINCIDENT;
+        c.group.v          = GROUP_SOLVE;
+        c.workplane        = EntityBase::FREE_IN_3D;
+        c.ptA              = handle.h;
+        c.ptB              = f->second.h;
+        SK.constraint.AddAndAssignId(&c);
+        constraintIds[c.h.v] = "dragged:" + jd.s;
     }
     for(hEntity hp : draggedPoints) {
         for(const auto &f : features) {
