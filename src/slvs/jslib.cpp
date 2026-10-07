@@ -87,8 +87,8 @@ EMSCRIPTEN_BINDINGS(slvs) {
   emscripten::value_array<std::array<uint32_t, 4>>("array_uint32_4")
     .element(emscripten::index<0>())
     .element(emscripten::index<1>())
-    .element(emscripten::index<3>())
-    .element(emscripten::index<4>());
+    .element(emscripten::index<2>())
+    .element(emscripten::index<3>());
 
   emscripten::value_object<Slvs_Entity>("Slvs_Entity")
     .field("h", &Slvs_Entity::h)
