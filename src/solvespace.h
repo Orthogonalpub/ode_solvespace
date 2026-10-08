@@ -267,6 +267,7 @@ public:
     } mat;
 
     static const double CONVERGE_TOLERANCE;
+    static const double RANK_TOLERANCE;
     int CalculateRank();
     bool TestRank(int *dof = NULL, int *rank = NULL);
     static bool SolveLinearSystem(const Eigen::SparseMatrix<double> &A,

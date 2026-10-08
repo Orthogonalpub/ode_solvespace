@@ -40,7 +40,8 @@
 //     "dof": n, "bodies": [{ "id", "t", "q" }], "failed": [constraint id],
 //     "error"?: message }
 // Bodies come back in request order. When the solve fails they keep their
-// request pose. Numbers are written with 17 significant digits, so a response
+// request pose. A parallel with a sense is checked on the solved pose too: one
+// that does not hold makes the answer "didnt-converge" with it in "failed". Numbers are written with 17 significant digits, so a response
 // is the same bytes wherever the same wasm runs.
 //-----------------------------------------------------------------------------
 #include "solvespace.h"
@@ -808,9 +809,42 @@ void Solve(const char *text) {
     // No time limit on finding the failed constraints, so the answer does not depend on speed.
     g.solved.findToFixTimeout = INT_MAX;
 
+    std::vector<double> requestPose;
+    for(const Body &b : bodies) {
+        for(int k = 0; k < 7; k++) requestPose.push_back(SK.GetParam(b.params[k])->val);
+    }
+
     List<hConstraint> bad = {};
     int dof               = 0;
     SolveResult how       = OSYS.Solve(&g, &dof, &bad, findFailed, /*andFindFree=*/false);
+
+    // An oriented parallel pivots on the pose the solve starts from (see PARALLEL in
+    // constrainteq.cpp); its equations have zeros away from n_a = n_b once both normals have
+    // swung across that pivot. Never answer such a pose as solved: check the sense itself.
+    // Converged normals agree to ~1e-8 rad (CONVERGE_TOLERANCE, more where the pivot is poor);
+    // 1e-5 rad leaves room for that and still catches a pose that only looks solved.
+    if(how == SolveResult::OKAY || how == SolveResult::REDUNDANT_OKAY) {
+        List<hConstraint> wrongSense = {};
+        for(auto &con : SK.constraint) {
+            ConstraintBase *c = &con;
+            if(!c->IsOrientedParallel()) continue;
+            Vector na = SK.GetEntity(c->entityA)->NormalN().WithMagnitude(1);
+            Vector nb = SK.GetEntity(c->entityB)->NormalN().WithMagnitude(1);
+            if(c->other2) na = na.ScaledBy(-1);
+            if(na.Minus(nb).Magnitude() > 1e-5) wrongSense.Add(&c->h);
+        }
+        if(wrongSense.n > 0) {
+            how = SolveResult::DIDNT_CONVERGE;
+            bad.Clear();
+            bad = wrongSense;
+            size_t i = 0;
+            for(const Body &b : bodies) {
+                for(int k = 0; k < 7; k++) SK.GetParam(b.params[k])->val = requestPose[i++];
+            }
+        } else {
+            wrongSense.Clear();
+        }
+    }
 
     response.clear();
     response += "{\"v\":1,\"status\":\"";
