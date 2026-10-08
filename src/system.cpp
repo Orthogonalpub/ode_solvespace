@@ -15,6 +15,20 @@
 // always be much less than LENGTH_EPS, and in practice should be much less.
 const double System::CONVERGE_TOLERANCE = (LENGTH_EPS/(1e2));
 
+// The rank test (CalculateRank) equilibrates the Jacobian's columns to unit norm and treats a
+// column as dependent when what is left of it, after the columns before it are projected out,
+// is at most RANK_TOLERANCE. The rank is taken where Newton stopped, within CONVERGE_TOLERANCE
+// (1e-8) of the solution, not on it; an equation whose free direction is exact only at the
+// solution leaves that direction a singular value of the order of the residual there (the first
+// oriented parallel did: 2.5e-13 of the largest column at a converged pin, above Eigen's default
+// threshold of 20 (m + n) eps ~ 8e-14, so a free spin was counted as constrained). Freedom is resolved only
+// as finely as the solve converges, so the tolerance is the convergence tolerance, as a
+// fraction of a unit column. Genuine constraints sit far above it: on pin-in-plate assemblies
+// the smallest kept singular value of the equilibrated Jacobian was 1.5e-3 at 50 mm, 3.6e-4 at
+// 500 mm and 3.6e-5 at 5 m (it falls like 1/size, the angular equations against lever arms),
+// and the dependent ones below 1e-12.
+const double System::RANK_TOLERANCE = CONVERGE_TOLERANCE;
+
 constexpr size_t LikelyPartialCountPerEq = 10;
 
 bool System::WriteJacobian(int tag) {
@@ -238,8 +252,19 @@ SubstitutionMap System::SolveBySubstitution() {
 int System::CalculateRank() {
     using namespace Eigen;
     if(mat.n == 0 || mat.m == 0) return 0;
+    // Equilibrate the columns first: the rank does not change, but a rotation param's column
+    // scales with its lever arms (mm) and a translation's does not, and without this a direction
+    // held only by an angular equation would look weaker the larger the part.
+    SparseMatrix<double> A = mat.A.num;
+    for(int k = 0; k < A.outerSize(); k++) {
+        double norm = A.col(k).norm();
+        if(norm > 0.0) A.col(k) /= norm;
+    }
     SparseQR <SparseMatrix<double>, COLAMDOrdering<int>> solver;
-    solver.compute(mat.A.num);
+    // See RANK_TOLERANCE. FindWhichToRemoveToFixJacobian, SolveRank and MarkParamsFree all
+    // come through here, so redundancy and freedom are judged with the same tolerance.
+    solver.setPivotThreshold(RANK_TOLERANCE);
+    solver.compute(A);
     int result = solver.rank();
     return result;
 }

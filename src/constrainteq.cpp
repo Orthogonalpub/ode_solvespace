@@ -1020,18 +1020,44 @@ void ConstraintBase::GenerateEquations(IdList<Equation,hEquation> *l,
         case Type::PARALLEL: {
             EntityBase *ea = SK.GetEntity(entityA), *eb = SK.GetEntity(entityB);
             if(IsOrientedParallel()) {
-                // Oriented: n_a (negated when other2) points along n_b. With u_b, v_b, n_b
-                // the frame of b, write the stereographic coordinates of n_a seen from -n_b,
-                //     (n_a . u_b) / (1 + n_a . n_b) = 0,  (n_a . v_b) / (1 + n_a . n_b) = 0,
-                // which vanish only at n_a = n_b and have a full-rank Jacobian there. They
-                // are undefined at n_a = -n_b, so callers start on the right side.
-                ExprVector na = ea->NormalExprsN();
-                if(other2) na = na.ScaledBy(Expr::From(-1));
-                ExprVector ub = eb->NormalExprsU(), vb = eb->NormalExprsV(),
-                           nb = eb->NormalExprsN();
-                Expr *den = Expr::From(1)->Plus(na.Dot(nb));
-                AddEq(l, (na.Dot(ub))->Div(den), 0);
-                AddEq(l, (na.Dot(vb))->Div(den), 1);
+                // Oriented: n_a (negated when other2) points along n_b. Two equations in the two
+                // normals only. They were first the stereographic coordinates of n_a seen from
+                // -n_b in b's frame, (n_a . u_b) / (1 + n_a . n_b) and the same with v_b; but u_b,
+                // v_b turn with b's spin about n_b, which leaves both normals alone. That spin
+                // then moved the equations everywhere except exactly at the solution: Newton stops
+                // a hair off it (within CONVERGE_TOLERANCE), where the spin has a small but nonzero
+                // singular value, and the rank test counted it as constrained (a pin in a hole,
+                // concentric + flush, came back with 0 DOF instead of 1).
+                //
+                // No pair of equations in the normals alone can vanish just at n_a = n_b with a
+                // full-rank Jacobian along all of it: their derivative there would be a frame field
+                // on the whole sphere (hairy ball). So, like SolveSpace's own VectorsParallel of
+                // old, pivot on where this solve starts. r is the unit bisector of the two normals
+                // here (n_b if they start exactly opposite), p, q a fixed unit frame across it, and
+                //     (n_a x n_b) . p / (1 + n_a . n_b) = 0,   (n_a x n_b) . q / (1 + n_a . n_b) = 0.
+                // - p, q are numbers, so a spin of either body about its normal is an exact null
+                //   direction of both equations, at every pose, not only at the solution.
+                // - |n_a x n_b| / (1 + n_a . n_b) = tan(theta / 2): zero at n_a = n_b, unbounded
+                //   toward n_a = -n_b, so the wrong sense is never a solution (undefined exactly
+                //   there; callers start on the right side, within 90 deg).
+                // - At a solution n the Jacobian is ((dn_a - dn_b) x n) . p, . q: rank 2 as long as
+                //   n . r != 0. Their only other zeros are where n_a x n_b lies along r, that is,
+                //   both normals have turned to lie across r, each at least 45 deg from where it
+                //   started (never when one of the two is fixed). Equations are written per solve,
+                //   so each solve re-pivots on its own start; orth-solver also checks the sense
+                //   of every oriented parallel after the solve.
+                ExprVector na = ea->NormalExprsN(), nb = eb->NormalExprsN();
+                Vector     na0 = ea->NormalN(), nb0 = eb->NormalN();
+                if(other2) {
+                    na  = na.ScaledBy(Expr::From(-1));
+                    na0 = na0.ScaledBy(-1);
+                }
+                Vector r = na0.WithMagnitude(1).Plus(nb0.WithMagnitude(1));
+                r        = (r.Magnitude() > 1e-6) ? r.WithMagnitude(1) : nb0.WithMagnitude(1);
+                ExprVector c = na.Cross(nb);
+                Expr *den    = Expr::From(1)->Plus(na.Dot(nb));
+                AddEq(l, (c.Dot(ExprVector::From(r.Normal(0))))->Div(den), 0);
+                AddEq(l, (c.Dot(ExprVector::From(r.Normal(1))))->Div(den), 1);
                 return;
             }
             ExprVector a = ea->VectorGetExprsInWorkplane(workplane);
